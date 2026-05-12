@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="../assets/css/layout/footer.css">
   <link rel="stylesheet" href="../assets/css/components/buttons.css">
   <link rel="stylesheet" href="../assets/css/components/search.css">
+  <link rel="stylesheet" href="../assets/css/components/modal.css">
 
   <style>
     /* ============================================================
@@ -454,6 +455,30 @@
     </div>
   </footer>
 
+
+  <!-- MODAL -->
+  <div class="overlay" id="overlay" onclick="closeOverlayOut(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-img" id="m-img"></div>
+      <div class="modal-body">
+        <div class="modal-cat" id="m-cat"></div>
+        <h2 class="modal-title" id="m-title"></h2>
+        <div class="modal-desc" id="m-desc"></div>
+        <div class="specs">
+          <table id="m-specs"></table>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-wa" id="m-wa-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pesan via WhatsApp
+          </button>
+          <button class="btn-close" onclick="closeModal()">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- JS dari project -->
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/navbar.js"></script>
@@ -516,7 +541,7 @@
       ? `<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
       : p.icon;
     return `
-      <div class="sr-card" onclick="goToProduct('${p.modal}')">
+      <div class="sr-card" onclick="openModal('${p.modal}')">
         <div class="sr-card-img">${thumb}</div>
         <div class="sr-card-body">
           <div class="sr-card-cat">${p.cat}</div>
@@ -527,11 +552,81 @@
       </div>`;
   }
 
-  /* ---- Navigate ke produk ---- */
-  function goToProduct(modalId) {
-    /* Simpan modal target, buka di halaman produk */
-    sessionStorage.setItem('openModal', modalId);
-    window.location.href = 'produk.html';
+  /* ---- Data modal produk (lengkap) ---- */
+  const MODAL_DATA = {
+    getuk1: {
+      name: 'Getuk Goreng Haji Tohirin 1 KG', cat: 'Getuk Goreng', icon: '🍠',
+      img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg',
+      desc: 'Getuk goreng asli Sokaraja berbahan singkong pilihan dan gula merah alami. Digoreng hingga kecokelatan sempurna dengan cita rasa manis legit yang khas.',
+      specs: [['Berat','1 Kilogram'],['Bahan Utama','Singkong pilihan, gula merah'],['Kategori','Getuk Goreng'],['Asal','Sokaraja, Banyumas']]
+    },
+    getuk2: {
+      name: 'Getuk Goreng Haji Tohirin ½ KG', cat: 'Getuk Goreng', icon: '🍠',
+      img: null,
+      desc: 'Pilihan hemat getuk goreng asli Sokaraja dalam kemasan ½ KG. Cocok untuk oleh-oleh atau dinikmati sendiri.',
+      specs: [['Berat','½ Kilogram'],['Bahan Utama','Singkong pilihan, gula merah'],['Kategori','Getuk Goreng'],['Asal','Sokaraja, Banyumas']]
+    },
+    nopia1: {
+      name: 'Nopia Gula Jawa', cat: 'Nopia', icon: '🟤',
+      img: null,
+      desc: 'Nopia khas Banyumas dengan isian gula jawa asli. Kulit tipis renyah dengan isian manis legit yang autentik.',
+      specs: [['Rasa','Gula Jawa'],['Kategori','Nopia'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
+    },
+    nopia2: {
+      name: 'Nopia Rasa Coklat', cat: 'Nopia', icon: '🍫',
+      img: null,
+      desc: 'Varian nopia dengan isian coklat lembut. Perpaduan kulit renyah dan coklat manis yang digemari semua kalangan.',
+      specs: [['Rasa','Coklat'],['Kategori','Nopia'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
+    },
+    kb1: {
+      name: 'Klanting Jagung Bakar', cat: 'Klanting Bumbu', icon: '🌽',
+      img: null,
+      desc: 'Klanting singkong dengan bumbu jagung bakar yang gurih dan renyah. Camilan khas Sokaraja dengan cita rasa modern.',
+      specs: [['Rasa','Jagung Bakar'],['Kategori','Klanting Bumbu'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
+    },
+    ko1: {
+      name: 'Klanting Original Besar', cat: 'Klanting Original', icon: '⭕',
+      img: null,
+      desc: 'Klanting original ukuran besar dengan tekstur renyah khas tradisional Sokaraja. Dibuat dari singkong pilihan tanpa bahan pengawet.',
+      specs: [['Ukuran','Besar'],['Kategori','Klanting Original'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
+    },
+  };
+
+  /* ---- Buka modal ---- */
+  function openModal(id) {
+    const p = MODAL_DATA[id];
+    if (!p) return;
+
+    const imgEl = document.getElementById('m-img');
+    imgEl.innerHTML = p.img
+      ? '<img src="' + p.img + '" alt="' + p.name + '">'
+      : '<div class="moji">' + p.icon + '</div>';
+
+    document.getElementById('m-cat').textContent   = p.cat;
+    document.getElementById('m-title').textContent = p.name;
+    document.getElementById('m-desc').textContent  = p.desc;
+    document.getElementById('m-specs').innerHTML   = p.specs
+      .map(function(row) { return '<tr><td>' + row[0] + '</td><td>' + row[1] + '</td></tr>'; })
+      .join('');
+
+    const waMsg = encodeURIComponent(
+      'Halo, saya ingin memesan *' + p.name + '*. Mohon info ketersediaan dan harganya. Terima kasih!'
+    );
+    document.getElementById('m-wa-btn').onclick = function() {
+      window.open('https://wa.me/628112615272?text=' + waMsg, '_blank');
+    };
+
+    document.getElementById('overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeOverlayOut(e) {
+    if (e.target === document.getElementById('overlay')) closeModal();
   }
 
   /* ---- Filter by category ---- */
