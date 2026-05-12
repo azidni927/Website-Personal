@@ -1,0 +1,57 @@
+/* SEARCH & FILTERING UTILITIES */
+
+/* Smooth Fade Animation for filtering */
+.product-fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.product-fade-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Not Found Component */
+.not-found-wrapper {
+  grid-column: 1 / -1;
+  padding: 4rem 2rem;
+  text-align: center;
+  display: none;
+  background: rgba(27, 58, 45, 0.02);
+  border-radius: 8px;
+  border: 1px dashed rgba(27, 58, 45, 0.1);
+  margin-top: 2rem;
+}
+
+.not-found-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.not-found-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+.not-found-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--h);
+  margin-bottom: 0.5rem;
+}
+
+.not-found-text {
+  color: var(--tm);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Premium Focus Ring for Search */
+.nav-search-container:focus-within {
+  outline: 2px solid rgba(201, 151, 58, 0.3);
+  outline-offset: 2px;
+}

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galeri Foto - Haji Tohirin 6A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/global/reset.css">
+    <link rel="stylesheet" href="../assets/css/global/variables.css">
+    <link rel="stylesheet" href="../assets/css/global/typography.css">
+    <link rel="stylesheet" href="../assets/css/global/utilities.css">
+    <link rel="stylesheet" href="../assets/css/layout/navbar.css">
+    <link rel="stylesheet" href="../assets/css/layout/section.css">
+    <link rel="stylesheet" href="../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../assets/css/components/search.css">
+    <link rel="stylesheet" href="../assets/css/pages/galeri.css">
+    <link rel="stylesheet" href="../assets/css/layout/footer.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-left">
+        <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <a href="../index.html" class="nav-logo-centered">
+        <div class="nav-logo">
+          <img src="../assets/img/logo.png" alt="Logo Getuk Goreng Haji Tohirin 6A">
+        </div>
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="profil.html">Profil</a></li>
+          <li><a href="produk.html">Produk</a></li>
+          <li><a href="galeri.html" class="active">Galeri</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+        <button class="nav-search-btn" aria-label="Search" onclick="openSearch()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </div>
+      <!-- SEARCH OVERLAY -->
+      <div id="search-overlay"></div>
+    </nav>
+
+    <div class="page-hero">
+      <div class="hero-badge">Foto & Visual</div>
+      <h1>Galeri</h1>
+      <p>Foto produk, suasana toko, dan proses produksi Getuk Goreng ASLI Haji Tohirin 6A, Sokaraja.</p>
+    </div>
+
+    <div class="main-gallery">
+      <!-- FILTER -->
+      <div class="filter-row">
+        <div class="filter-tabs">
+          <span class="filter-label">Filter:</span>
+          <button class="ftab active" onclick="filterG(this,'all')">Semua</button>
+          <button class="ftab" onclick="filterG(this,'produk')">Produk</button>
+          <button class="ftab" onclick="filterG(this,'toko')">Suasana Toko</button>
+          <button class="ftab" onclick="filterG(this,'proses')">Proses Produksi</button>
+          <button class="ftab" onclick="filterG(this,'kemasan')">Kemasan</button>
+        </div>
+        <div class="count-tag">Menampilkan <strong id="gcount">9</strong> foto</div>
+      </div>
+
+      <!-- GRID -->
+      <div class="galeri-grid" id="ggrid">
+        <!-- 1 wide - produk hero -->
+        <div class="gitem wide" data-cat="produk" data-idx="0" onclick="openLB(0)">
+          <div class="gitem-inner" style="min-height:240px">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZ5FzWtrZVFLnchPqz7bavPLhruvVAEqWlXEg2HFushP88gpPoJ9dk5kUqV7erYuZs1RDkuvJDwHeoUiRKveJmiPjH1MvK1aCvhywBwDjjhpOEfufaxhGZSP8J9w3jttkCttT7i-itQqHJlWENiQIrfBo0V8ds5Vfc2iHeXVJEwgkh6m7oJ0eGzl-i2y46/s1280/WhatsApp%20Image%202024-07-29%20at%2001.20.24%20(1).jpeg" alt="" onerror="this.style.display='none'">
+            <div class="gitem-overlay">
+              <div class="gitem-cat">Produk</div>
+              <div class="gitem-cap">Getuk Goreng Original — Sajian Khas Sokaraja</div>
+            </div>
+            <div class="gitem-zoom">⤢</div>
+          </div>
+        </div>
+
+        <!-- 2 tall - toko -->
+        <div class="gitem tall" data-cat="toko" data-idx="1" onclick="openLB(1)">
+          <div class="gitem-inner" style="min-height:490px">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglW-F_9vZkLrf7WvWspYT4p2EJUc8GEdpdK_CHqB5Bs0h8W7NjbJAI0-NjeQ0G2jDkPeG30uYK2c1U1J7_jE908bRyxfH0dNNq5hjG0ysHJ3flyeWWaDwx6qA9uco6ljfP0vZYMxLweVqSSP9kNmfIYlUCcPcCAybEN_iSwBw26oXS1lJJAvFt4S_TnDui/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.24%20(1).jpeg" alt="" onerror="this.style.display='none'">
+            <div class="gitem-overlay">
+              <div class="gitem-cat">Suasana Toko</div>
+              <div class="gitem-cap">Toko Getuk Goreng Haji Tohirin 6A</div>
+            </div>
+            <div class="gitem-zoom">⤢</div>
+          </div>
+        </div>
+
+        <!-- 3 normal - produk -->
+        <div class="gitem" data-cat="produk" data-idx="2" onclick="openLB(2)">
+          <div class="gitem-inner">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg" alt="" onerror="this.style.display='none'">
+            <div class="gitem-overlay">
+              <div class="gitem-cat">Produk</div>
+              <div class="gitem-cap">Getuk Goreng Segar</div>
+            </div>
+            <div class="gitem-zoom">⤢</div>
+          </div>
+        </div>
+
+        <!-- 4 normal - kemasan -->
+        <div class="gitem" data-cat="kemasan" data-idx="3" onclick="openLB(3)">
+          <div class="gitem-inner">
+            <div class="ph">📦</div>
+            <div class="gitem-overlay">
+              <div class="gitem-cat">Kemasan</div>
+              <div class="gitem-cap">Kemasan Box Getuk Goreng 1 KG</div>
+            </div>
+            <div class="gitem-zoom">⤢</div>
+          </div>
+        </div>
+
+        <!-- 5 normal - proses -->
+        <div class="gitem" data-cat="proses" data-idx="4" onclick="openLB(4)">
+          <div class="gitem-inner">
+            <div class="ph">👨‍🍳</div>
+            <div class="gitem-overlay">
+              <div class="gitem-cat">Proses Produksi</div>
+              <div class="gitem-cap">Proses Penggorengan Getuk</div>
+            </div>
+            <div class="gitem-zoom">⤢</div>
+          </div>
+        </div>
+
+        <!-- 6 normal - proses -->
+        <div class="gitem" data-cat="proses" data-idx="5" onclick="openLB(5)">
+          <div class="gitem-inner">
+            <div class="ph">🌾</div>
+            <div class="gitem-overlay">
+              <div class="gitem-cat">Proses Produksi</div>
+              <div class="gitem-cap">Bahan Baku Singkong Pilihan</div>
+            </div>
+            <div class="gitem-zoom">⤢</div>
+          </div>
+        </div>
+
+        <!-- 7 normal - produk -->
+        <div class="gitem" data-cat="produk" data-idx="6" onclick="openLB(6)">
+          <div class="gitem-inner">
+            <div class="ph">🟤</div>
+            <div class="gitem-overlay">
+              <div class="gitem-cat">Produk</div>
+              <div class="gitem-cap">Nopia Aneka Rasa</div>
+            </div>
+            <div class="gitem-zoom">⤢</div>
+          </div>
+        </div>
+
+        <!-- 8 normal - kemasan -->
+        <div class="gitem" data-cat="kemasan" data-idx="7" onclick="openLB(7)">
+          <div class="gitem-inner">
+            <div class="ph">🛍️</div>
+            <div class="gitem-overlay">
+              <div class="gitem-cat">Kemasan</div>
+              <div class="gitem-cap">Kemasan Plastik Klanting</div>
+            </div>
+            <div class="gitem-zoom">⤢</div>
+          </div>
+        </div>
+
+        <!-- 9 normal - toko -->
+        <div class="gitem" data-cat="toko" data-idx="8" onclick="openLB(8)">
+          <div class="gitem-inner">
+            <div class="ph">🏪</div>
+            <div class="gitem-overlay">
+              <div class="gitem-cat">Suasana Toko</div>
+              <div class="gitem-cap">Display Produk di Toko</div>
+            </div>
+            <div class="gitem-zoom">⤢</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty" id="gempty">Tidak ada foto dalam kategori ini.</div>
+
+      <!-- CTA -->
+      <div class="cta-strip">
+        <div>
+          <h3>Tertarik dengan Produk Kami?</h3>
+          <p>Pesan sekarang via WhatsApp — kami siap melayani pengiriman ke seluruh Indonesia.</p>
+        </div>
+        <button class="btn-wa" onclick="window.open('https://wa.me/628112615272','_blank')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pesan via WhatsApp
+        </button>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lb" class="lb" onclick="closeLBOut(event)">
+      <div class="lb-box">
+        <button class="lb-close" onclick="closeLB()">✕</button>
+        <div id="lb-content"></div>
+        <div class="lb-info">
+          <div>
+            <div class="lb-cat" id="lb-cat"></div>
+            <div class="lb-title" id="lb-title"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.8rem">
+            <span class="lb-counter" id="lb-counter"></span>
+            <div class="lb-nav">
+              <button class="lb-btn" onclick="navLB(-1)">←</button>
+              <button class="lb-btn" onclick="navLB(1)">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-bottom">
+          <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/galeri.js"></script>
+  </body>
+</html>

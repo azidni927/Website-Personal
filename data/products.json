@@ -1,0 +1,26 @@
+{
+  "getuk1": {
+    "cat": "Getuk Goreng",
+    "name": "Getuk Goreng Haji Tohirin — 1 KG",
+    "desc": "Getuk goreng asli Sokaraja dengan cita rasa khas gula merah dan singkong pilihan. Digoreng hingga renyah di luar dan lembut di dalam. Produk andalan kami yang paling banyak dicari sebagai oleh-oleh dari Banyumas.",
+    "specs": [["Berat", "1 Kilogram"], ["Bahan", "Singkong & Gula Merah"], ["Masa simpan", "3–5 hari suhu ruang"], ["Kemasan", "Box karton kedap"], ["Pengiriman", "Seluruh Indonesia"]],
+    "img": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg",
+    "wa": "Getuk+Goreng+1+KG"
+  },
+  "getuk2": {
+    "cat": "Getuk Goreng",
+    "name": "Getuk Goreng Haji Tohirin — ½ KG",
+    "desc": "Versi setengah kilogram dari getuk goreng andalan kami. Ideal untuk oleh-oleh personal atau untuk dicoba sebelum memesan lebih banyak.",
+    "specs": [["Berat", "½ Kilogram"], ["Bahan", "Singkong & Gula Merah"], ["Masa simpan", "3–5 hari suhu ruang"], ["Kemasan", "Box karton kedap"], ["Pengiriman", "Seluruh Indonesia"]],
+    "img": "",
+    "wa": "Getuk+Goreng+%C2%BD+KG"
+  },
+  "nopia1": {
+    "cat": "Nopia",
+    "name": "Nopia Gula Jawa",
+    "desc": "Nopia khas Banyumas berbentuk bulat dengan kulit tipis renyah and isian gula aren manis yang harum. Cita rasa karamel alami yang tidak terlalu manis.",
+    "specs": [["Varian", "Gula Jawa / Gula Aren"], ["Bentuk", "Bulat, ukuran sedang"], ["Masa simpan", "7–14 hari"], ["Kemasan", "Plastik kedap udara"], ["Pengiriman", "Seluruh Indonesia"]],
+    "img": "",
+    "wa": "Nopia+Gula+Jawa"
+  }
+}

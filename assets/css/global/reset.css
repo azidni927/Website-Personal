@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--k);
+  color: var(--td);
+  overflow-x: hidden;
+  line-height: 1.5;
+}

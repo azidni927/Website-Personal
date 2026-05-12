@@ -1,0 +1,31 @@
+:root {
+  /* Short Names (New Design) */
+  --h: #1B3A2D;
+  --hm: #2D5C42;
+  --hl: #4A8C64;
+  --g: #C9973A;
+  --gl: #D4A84A;
+  --k: #F4EFE2;
+  --kd: #EDE4CC;
+  --km: #E0D0AD;
+  --td: #0F1F17;
+  --tm: #2D5C42;
+  --tl: #6B8F7A;
+  --w: #FFFFFF;
+
+  /* Aliases (Original Design) */
+  --hijau-tua: var(--h);
+  --hijau-med: var(--hm);
+  --hijau-muda: var(--hl);
+  --aksen-emas: var(--g);
+  --aksen-krem: var(--k);
+  --aksen-krem-dark: var(--kd);
+  --krem-bg: var(--k);
+  --krem-surface: var(--kd);
+  --text-dark: var(--td);
+  --text-med: var(--tm);
+  --text-light: var(--tl);
+  
+  /* Additional */
+  --merah: #B22222;
+}

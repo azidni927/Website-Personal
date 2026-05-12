@@ -1,0 +1,19 @@
+.btn-primary {
+  background: var(--g);
+  color: var(--h);
+  padding: 0.7rem 1.5rem;
+  border-radius: 2px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background 0.2s;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.btn-primary:hover {
+  background: var(--gl);
+}

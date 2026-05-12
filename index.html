@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haji Tohirin 6A - Getuk Goreng Sokaraja</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/global/reset.css">
+    <link rel="stylesheet" href="assets/css/global/variables.css">
+    <link rel="stylesheet" href="assets/css/global/typography.css">
+    <link rel="stylesheet" href="assets/css/global/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout/navbar.css">
+    <link rel="stylesheet" href="assets/css/layout/section.css">
+    <link rel="stylesheet" href="assets/css/components/buttons.css">
+    <link rel="stylesheet" href="assets/css/components/modal.css">
+    <link rel="stylesheet" href="assets/css/components/search.css">
+    <link rel="stylesheet" href="assets/css/pages/home.css">
+    <link rel="stylesheet" href="assets/css/layout/footer.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-left">
+        <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <a href="index.html" class="nav-logo-centered">
+        <div class="nav-logo">
+          <img src="assets/img/logo.png" alt="Logo Getuk Goreng Haji Tohirin 6A">
+        </div>
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="pages/profil.html">Profil</a></li>
+          <li><a href="pages/produk.html">Produk</a></li>
+          <li><a href="pages/galeri.html">Galeri</a></li>
+          <li><a href="pages/faq.html">FAQ</a></li>
+          <li><a href="pages/kontak.html">Kontak</a></li>
+        </ul>
+        <button class="nav-search-btn" aria-label="Search" onclick="openSearch()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </div>
+      <!-- SEARCH OVERLAY -->
+      <div id="search-overlay"></div>
+    </nav>
+
+    <div class="hero-wrap">
+      <div class="hero">
+        <div>
+          <div class="hero-badge">Asli Sokaraja, Banyumas</div>
+          <h1>Getuk Goreng <em>Haji Tohirin</em></h1>
+          <p>Cita rasa autentik getuk goreng Sokaraja sejak generasi pertama. Dibuat dari singkong pilihan dengan gula merah pilihan — khas, hangat, tak terlupakan.</p>
+          <div class="hero-btns">
+            <a class="btn-primary" href="https://wa.me/628112615272">Pesan via WhatsApp</a>
+            <a class="btn-outline" href="pages/produk.html">Lihat Produk</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><span class="stat-num">1 KG</span><span class="stat-label">& ½ KG</span></div>
+            <div class="stat"><span class="stat-num">3+</span><span class="stat-label">Kategori</span></div>
+            <div class="stat"><span class="stat-num">Asli</span><span class="stat-label">Sokaraja</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="hero-img-box">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZ5FzWtrZVFLnchPqz7bavPLhruvVAEqWlXEg2HFushP88gpPoJ9dk5kUqV7erYuZs1RDkuvJDwHeoUiRKveJmiPjH1MvK1aCvhywBwDjjhpOEfufaxhGZSP8J9w3jttkCttT7i-itQqHJlWENiQIrfBo0V8ds5Vfc2iHeXVJEwgkh6m7oJ0eGzl-i2y46/s1280/WhatsApp%20Image%202024-07-29%20at%2001.20.24%20(1).jpeg" alt="Getuk Goreng Haji Tohirin">
+            <span class="hero-img-label">Getuk Goreng Original</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-tag">Pilihan Produk</div>
+      <div class="section-title">Oleh-oleh Khas Sokaraja</div>
+      <div class="cat-tabs">
+        <button class="cat-tab active" onclick="filterProd(this,'all')">Semua</button>
+        <button class="cat-tab" onclick="filterProd(this,'getuk')">Getuk Goreng</button>
+        <button class="cat-tab" onclick="filterProd(this,'nopia')">Nopia</button>
+        <button class="cat-tab" onclick="filterProd(this,'klanting-bumbu')">Klanting Bumbu</button>
+        <button class="cat-tab" onclick="filterProd(this,'klanting-ori')">Klanting Original</button>
+      </div>
+      <div class="products-grid" id="prod-grid">
+        <!-- Getuk -->
+        <div class="product-card" data-cat="getuk" onclick="openModal('getuk1')">
+          <div class="product-img"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg" alt="Getuk 1KG"></div>
+          <div class="product-info">
+            <div class="product-cat">Getuk Goreng</div>
+            <div class="product-name">Haji Tohirin - 1 KG</div>
+            <span class="product-order">Lihat Detail →</span>
+          </div>
+        </div>
+        <div class="product-card" data-cat="getuk" onclick="openModal('getuk2')">
+          <div class="product-img" style="background: var(--kd); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🍠</div>
+          <div class="product-info">
+            <div class="product-cat">Getuk Goreng</div>
+            <div class="product-name">Haji Tohirin - ½ KG</div>
+            <span class="product-order">Lihat Detail →</span>
+          </div>
+        </div>
+
+        <!-- Nopia -->
+        <div class="product-card" data-cat="nopia" onclick="openModal('nopia1')">
+          <div class="product-img" style="background: var(--kd); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🟤</div>
+          <div class="product-info">
+            <div class="product-cat">Nopia</div>
+            <div class="product-name">Nopia Gula Jawa</div>
+            <span class="product-order">Lihat Detail →</span>
+          </div>
+        </div>
+        <div class="product-card" data-cat="nopia" onclick="openModal('nopia2')">
+          <div class="product-img" style="background: var(--kd); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🍫</div>
+          <div class="product-info">
+            <div class="product-cat">Nopia</div>
+            <div class="product-name">Nopia Rasa Coklat</div>
+            <span class="product-order">Lihat Detail →</span>
+          </div>
+        </div>
+
+        <!-- Klanting Bumbu -->
+        <div class="product-card" data-cat="klanting-bumbu" onclick="openModal('kb1')">
+          <div class="product-img" style="background: var(--kd); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🌽</div>
+          <div class="product-info">
+            <div class="product-cat">Klanting Bumbu</div>
+            <div class="product-name">Klanting Jagung Bakar</div>
+            <span class="product-order">Lihat Detail →</span>
+          </div>
+        </div>
+
+        <!-- Klanting Original -->
+        <div class="product-card" data-cat="klanting-ori" onclick="openModal('ko1')">
+          <div class="product-img" style="background: var(--kd); display: flex; align-items: center; justify-content: center; font-size: 3rem;">⭕</div>
+          <div class="product-info">
+            <div class="product-cat">Klanting Original</div>
+            <div class="product-name">Klanting Ori Besar</div>
+            <span class="product-order">Lihat Detail →</span>
+          </div>
+        </div>
+
+        <a href="pages/produk.html" class="btn-primary" style="grid-column: 1/-1; margin-top: 2rem; text-align: center;">Lihat Semua Produk</a>
+      </div>
+    </div>
+
+    <div class="features-bg">
+      <div class="features">
+        <div class="section-tag">Keunggulan Kami</div>
+        <div class="section-title" style="color:var(--aksen-krem)">Mengapa Memilih Kami?</div>
+        <div class="features-grid">
+          <div class="feature">
+            <div class="feature-icon">🏆</div>
+            <div class="feature-title">Resep Asli Turun-temurun</div>
+            <div class="feature-desc">Dibuat dengan resep leluhur yang terjaga keasliannya, menggunakan bahan-bahan pilihan khas Sokaraja.</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">📦</div>
+            <div class="feature-title">Siap Kirim ke Seluruh Indonesia</div>
+            <div class="feature-desc">Dikemas dengan baik agar cita rasa tetap terjaga saat tiba di tangan Anda, ke mana pun tujuannya.</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">💬</div>
+            <div class="feature-title">Pesan Langsung via WhatsApp</div>
+            <div class="feature-desc">Proses pemesanan mudah dan cepat melalui WhatsApp. Hubungi kami kapan saja untuk informasi lebih lanjut.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-tag">Kunjungi Kami</div>
+      <div class="section-title">Lokasi Toko</div>
+      <div class="lokasi-grid">
+        <div class="lokasi-info">
+          <h3>Getuk Goreng ASLI Haji Tohirin 6A</h3>
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div class="info-text"><strong>Alamat</strong><p>Jl. Jenderal Soedirman No.6A, Sokaraja, Banyumas, Jawa Tengah</p></div>
+          </div>
+          <a class="wa-btn" href="https://wa.me/628112615272" target="_blank" rel="noreferrer">Chat WhatsApp</a>
+        </div>
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.0693082280372!2d109.29445989999999!3d-7.457584999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655b85660f3311%3A0xd9be1362e4acc38f!2sGetuk%20Goreng%20ASLI%20Haji%20Tohirin%206A!5e0!3m2!1sid!2sid!4v1722238814654!5m2!1sid!2sid" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-brand-name">Haji Tohirin <span>6A</span></div>
+            <p>Oleh-oleh khas Sokaraja yang autentik sejak generasi pertama.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Produk</h4>
+            <ul>
+              <li><a href="pages/produk.html">Getuk Goreng</a></li>
+              <li><a href="pages/produk.html">Nopia</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Informasi</h4>
+            <ul>
+              <li><a href="pages/profil.html">Profil Toko</a></li>
+              <li><a href="pages/kontak.html">Hubungi Kami</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
+          <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="overlay" id="overlay" onclick="closeOverlayOut(event)">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div class="modal-img" id="m-img"></div>
+        <div class="modal-body">
+          <div class="modal-cat" id="m-cat"></div>
+          <h2 class="modal-title" id="m-title"></h2>
+          <div class="modal-desc" id="m-desc"></div>
+          <div class="specs">
+            <table id="m-specs"></table>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-wa" id="m-wa-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pesan via WhatsApp
+            </button>
+            <button class="btn-close" onclick="closeModal()">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/produk-filter.js"></script>
+  </body>
+</html>
