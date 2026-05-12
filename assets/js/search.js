@@ -1,5 +1,8 @@
 /* ============================================================
    search.js — Getuk Goreng Haji Tohirin 6A
+   Letakkan di: assets/js/search.js
+   Tambahkan di index.html (sebelum </body>):
+     <script src="assets/js/search.js"></script>
    ============================================================ */
 
 (function () {
@@ -158,32 +161,56 @@
   }
 
   function handleSearch(e) {
-    /* Keyboard navigation */
+    /* ---- Keyboard navigation ---- */
     if (e.type === 'keydown') {
       const items = document.querySelectorAll('.sr-item[data-idx]');
+
       if (e.key === 'ArrowDown') {
         e.preventDefault();
         activeIdx = Math.min(activeIdx + 1, items.length - 1);
         updateActive();
-      } else if (e.key === 'ArrowUp') {
+        return;
+      }
+
+      if (e.key === 'ArrowUp') {
         e.preventDefault();
         activeIdx = Math.max(activeIdx - 1, 0);
         updateActive();
-      } else if (e.key === 'Enter') {
+        return;
+      }
+
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const q = e.target.value.trim();
+
+        /* Ada item ter-highlight dengan ↑↓ → klik item itu (buka modal/detail) */
         if (activeIdx >= 0 && items[activeIdx]) {
           items[activeIdx].click();
-        } else if (results.length === 1) {
-          pickProduct(results[0].modal, e.target.value.trim());
+          return;
         }
-      } else if (e.key === 'Escape') {
-        closeSearch();
+
+        /* Enter langsung (tanpa navigasi) → selalu redirect ke halaman hasil */
+        if (q) {
+          goToSearchResults(q);
+        }
+        return;
       }
-      return;
+
+      if (e.key === 'Escape') {
+        closeSearch();
+        return;
+      }
     }
-    /* Debounced input */
+
+    /* ---- Debounced input (oninput) ---- */
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
-      renderResults(e.target.value.trim());
+      const q = e.target.value.trim();
+      results = PRODUCTS.filter(p =>
+        p.name.toLowerCase().includes(q.toLowerCase()) ||
+        p.cat.toLowerCase().includes(q.toLowerCase())
+      );
+      renderResults(q);
     }, DEBOUNCE_MS);
   }
 
@@ -196,17 +223,24 @@
   function pickProduct(modalId, query) {
     saveRecent(query);
     closeSearch();
-    
-    // Check if we are already on the products page
-    if (window.location.pathname.includes('produk.html')) {
-      if (typeof openModal === 'function') {
-        openModal(modalId);
-      }
-    } else {
-      // Redirect to products page with search query
-      const basePath = window.location.pathname.includes('pages/') ? '' : 'pages/';
-      window.location.href = basePath + 'produk.html?q=' + encodeURIComponent(query);
+
+    /* index.html punya openModal → buka modal langsung */
+    if (typeof openModal === 'function') {
+      openModal(modalId);
+      return;
     }
+
+    /* Halaman lain → redirect ke search-results.html dengan query */
+    goToSearchResults(query);
+  }
+
+  function goToSearchResults(query) {
+    if (!query) return;
+    saveRecent(query);
+    closeSearch();
+    const isInPages = window.location.pathname.includes('/pages/');
+    const base = isInPages ? '' : 'pages/';
+    window.location.href = base + 'search-results.html?q=' + encodeURIComponent(query);
   }
 
   function clearAllRecent() {
@@ -257,9 +291,10 @@
   }
 
   /* ---- Expose ke global (dipanggil dari HTML onclick) ---- */
-  window.openSearch  = openSearch;
-  window.closeSearch = closeSearch;
-  window.handleSearch = handleSearch;
+  window.openSearch        = openSearch;
+  window.closeSearch       = closeSearch;
+  window.handleSearch      = handleSearch;
+  window.goToSearchResults = goToSearchResults;
 
   /* Internal API untuk render callbacks */
   window._search = {
@@ -273,19 +308,5 @@
   document.addEventListener('DOMContentLoaded', function () {
     buildOverlayHTML();
     initBackdropClose();
-
-    // Check for URL parameters
-    const params = new URLSearchParams(window.location.search);
-    const q = params.get('q');
-    if (q) {
-      setTimeout(() => {
-        openSearch();
-        const inp = document.querySelector('.search-field');
-        if (inp) {
-          inp.value = q;
-          renderResults(q);
-        }
-      }, 500);
-    }
   });
 })();
