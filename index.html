@@ -53,17 +53,43 @@
       <div class="hero">
         <div>
           <div class="hero-badge">Asli Sokaraja, Banyumas</div>
-          <h1>Getuk Goreng ASLI <em>Haji Tohirin</em></h1>
+          <h1>Getuk Goreng <em>Haji Tohirin</em></h1>
           <p>Cita rasa autentik getuk goreng Sokaraja sejak generasi pertama. Dibuat dari singkong pilihan dengan gula merah pilihan — khas, hangat, tak terlupakan.</p>
           <div class="hero-btns">
             <a class="btn-primary" href="https://wa.me/628112615272">Pesan via WhatsApp</a>
             <a class="btn-outline" href="pages/produk.html">Lihat Produk</a>
           </div>
+          
         </div>
         <div>
-          <div class="hero-img-box">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZ5FzWtrZVFLnchPqz7bavPLhruvVAEqWlXEg2HFushP88gpPoJ9dk5kUqV7erYuZs1RDkuvJDwHeoUiRKveJmiPjH1MvK1aCvhywBwDjjhpOEfufaxhGZSP8J9w3jttkCttT7i-itQqHJlWENiQIrfBo0V8ds5Vfc2iHeXVJEwgkh6m7oJ0eGzl-i2y46/s1280/WhatsApp%20Image%202024-07-29%20at%2001.20.24%20(1).jpeg" alt="Getuk Goreng Haji Tohirin">
-            <span class="hero-img-label">Getuk Goreng Original</span>
+          <div class="hero-slider-wrap">
+            <div class="hero-img-box" id="hero-slider">
+              <div class="slider-container">
+                <div class="slide active">
+                  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZ5FzWtrZVFLnchPqz7bavPLhruvVAEqWlXEg2HFushP88gpPoJ9dk5kUqV7erYuZs1RDkuvJDwHeoUiRKveJmiPjH1MvK1aCvhywBwDjjhpOEfufaxhGZSP8J9w3jttkCttT7i-itQqHJlWENiQIrfBo0V8ds5Vfc2iHeXVJEwgkh6m7oJ0eGzl-i2y46/s1280/WhatsApp%20Image%202024-07-29%20at%2001.20.24%20(1).jpeg" alt="Getuk Goreng Haji Tohirin">
+                  <span class="hero-img-label">Getuk Goreng Original</span>
+                </div>
+                <div class="slide">
+                  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg" alt="Produk Getuk Goreng">
+                  <span class="hero-img-label">Kemasan Besek Tradisional</span>
+                </div>
+                <div class="slide">
+                  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEis7i6E_7M8-98p02rC97B7D-p-6_424-m-y6-0/s1280/IMG-20240729-WA0001.jpg" alt="Getuk Goreng Sokaraja">
+                  <span class="hero-img-label">Cita Rasa Autentik</span>
+                </div>
+              </div>
+              <button class="slider-btn prev" onclick="moveSlide(-1)" aria-label="Slide Sebelumnya">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button class="slider-btn next" onclick="moveSlide(1)" aria-label="Slide Selanjutnya">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+            <div class="slider-dots">
+              <span class="dot active" onclick="currentSlide(0)"></span>
+              <span class="dot" onclick="currentSlide(1)"></span>
+              <span class="dot" onclick="currentSlide(2)"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -142,29 +168,62 @@
       </div>
     </div>
 
-    <div class="features-bg">
-      <div class="features">
-        <div class="section-tag">Keunggulan Kami</div>
-        <div class="section-title" style="color:var(--aksen-krem)">Mengapa Memilih Kami?</div>
-        <div class="features-grid">
-          <div class="feature">
-            <div class="feature-icon">🏆</div>
-            <div class="feature-title">Resep Asli Turun-temurun</div>
-            <div class="feature-desc">Dibuat dengan resep leluhur yang terjaga keasliannya, menggunakan bahan-bahan pilihan khas Sokaraja.</div>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">📦</div>
-            <div class="feature-title">Siap Kirim ke Seluruh Indonesia</div>
-            <div class="feature-desc">Dikemas dengan baik agar cita rasa tetap terjaga saat tiba di tangan Anda, ke mana pun tujuannya.</div>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">💬</div>
-            <div class="feature-title">Pesan Langsung via WhatsApp</div>
-            <div class="feature-desc">Proses pemesanan mudah dan cepat melalui WhatsApp. Hubungi kami kapan saja untuk informasi lebih lanjut.</div>
-          </div>
-        </div>
-      </div>
-    </div>
+     <!-- SLIDER KEUNGGULAN -->
+<style>
+.ht-wrap { 
+  overflow:hidden; 
+  background:transparent; 
+  max-width: 1100px; 
+  margin: 0 auto; 
+  padding: 1.5rem 1.5rem 0.6rem; 
+}
+.ht-track { display:flex; gap:14px; width:max-content; animation:ht-scroll 32s linear infinite; }
+.ht-track:hover { animation-play-state:paused; }
+.ht-card {
+  width:200px; flex-shrink:0;
+  background:#EDE4CC;
+  border:1px solid #C9973A44;
+  border-radius:12px;
+  padding:1rem;
+}
+.ht-badge {
+  display:inline-block; font-size:10px; padding:2px 9px;
+  border-radius:999px;
+  background:#1B3A2D; color:#D4A84A;
+  font-weight:600; margin-bottom:8px; letter-spacing:0.03em;
+}
+.ht-icon { font-size:22px; margin-bottom:6px; color:#2D5C42; }
+.ht-title { font-size:13px; font-weight:700; margin-bottom:5px; color:#0F1F17; line-height:1.4; }
+.ht-desc { font-size:11.5px; color:#2D5C42; line-height:1.55; }
+@keyframes ht-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+</style>
+
+<div class="ht-wrap">
+  <div class="ht-track" id="ht2-track"></div>
+</div>
+
+<script>
+(function(){
+  const items = [
+    { icon:"🏆", badge:"Warisan Leluhur",      title:"Resep Asli Turun-temurun",    desc:"Resep leluhur terjaga keasliannya sejak 1918 dengan bahan pilihan khas Sokaraja." },
+    { icon:"🚚", badge:"Pengiriman Nasional",   title:"Kirim ke Seluruh Indonesia",  desc:"Dikemas rapi agar cita rasa tetap terjaga sampai ke tangan Anda." },
+    { icon:"💬", badge:"Mudah & Cepat",         title:"Pesan via WhatsApp",           desc:"Pemesanan mudah langsung via WhatsApp, siap melayani kapan saja." },
+    { icon:"🌿", badge:"100% Alami",            title:"Bahan Pilihan Berkualitas",   desc:"Singkong segar, gula kelapa asli, tanpa bahan pengawet — murni alami." },
+    { icon:"✅", badge:"Terpercaya",            title:"Sertifikasi Halal MUI",       desc:"Tersertifikasi halal MUI, aman dan nyaman untuk seluruh keluarga." },
+    { icon:"🎁", badge:"Oleh-oleh Khas",        title:"Hampers & Oleh-oleh",         desc:"Berbagai ukuran kemasan untuk buah tangan dan kado spesial." },
+    { icon:"⏰", badge:"Selalu Segar",          title:"Dibuat Setiap Hari",          desc:"Dibuat fresh setiap hari agar tekstur renyah dan cita rasa selalu prima." },
+    { icon:"⭐", badge:"Legendaris",            title:"Ikon Kuliner Sokaraja",       desc:"Lebih dari satu abad menjadi oleh-oleh wajib dari Banyumas." }
+  ];
+  const t = document.getElementById('ht2-track');
+  const html = items.map(i=>`<div class="ht-card">
+    <div class="ht-badge">${i.badge}</div>
+    <div class="ht-icon">${i.icon}</div>
+    <div class="ht-title">${i.title}</div>
+    <div class="ht-desc">${i.desc}</div>
+  </div>`).join('');
+  t.innerHTML = html + html;
+})();
+</script>
 
     <div class="section">
       <div class="section-tag">Kunjungi Kami</div>
