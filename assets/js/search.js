@@ -8,12 +8,18 @@
 (function () {
   /* ---- Data Produk ---- */
   const PRODUCTS = [
-    { id: 'getuk1',  name: 'Getuk Goreng 1 KG',      cat: 'Getuk Goreng',      icon: '🍠', page: 'pages/produk.html', modal: 'getuk1' },
-    { id: 'getuk2',  name: 'Getuk Goreng ½ KG',      cat: 'Getuk Goreng',      icon: '🍠', page: 'pages/produk.html', modal: 'getuk2' },
-    { id: 'nopia1',  name: 'Nopia Gula Jawa',         cat: 'Nopia',             icon: '🟤', page: 'pages/produk.html', modal: 'nopia1' },
-    { id: 'nopia2',  name: 'Nopia Rasa Coklat',       cat: 'Nopia',             icon: '🍫', page: 'pages/produk.html', modal: 'nopia2' },
-    { id: 'kb1',     name: 'Klanting Jagung Bakar',   cat: 'Klanting Bumbu',    icon: '🌽', page: 'pages/produk.html', modal: 'kb1'    },
-    { id: 'ko1',     name: 'Klanting Ori Besar',      cat: 'Klanting Original', icon: '⭕', page: 'pages/produk.html', modal: 'ko1'    },
+    { id: 'getuk1',  name: 'Getuk Goreng Haji Tohirin 1 KG',   cat: 'Getuk Goreng',      icon: '🍠', page: 'pages/produk.html', modal: 'getuk1' },
+    { id: 'getuk2',  name: 'Getuk Goreng Haji Tohirin 1/2 KG', cat: 'Getuk Goreng',      icon: '🍠', page: 'pages/produk.html', modal: 'getuk2' },
+    { id: 'nopia1',  name: 'Nopia Gula Jawa',                  cat: 'Nopia',             icon: '🟤', page: 'pages/produk.html', modal: 'nopia1' },
+    { id: 'nopia2',  name: 'Nopia Rasa Coklat',                cat: 'Nopia',             icon: '🍫', page: 'pages/produk.html', modal: 'nopia2' },
+    { id: 'nopia3',  name: 'Nopia Rasa Durian',                cat: 'Nopia',             icon: '🍈', page: 'pages/produk.html', modal: 'nopia3' },
+    { id: 'kb1',     name: 'Klanting Bumbu Jagung Bakar',      cat: 'Klanting Bumbu',    icon: '🌽', page: 'pages/produk.html', modal: 'kb1'    },
+    { id: 'kb2',     name: 'Klanting Bumbu Pedas Manis',       cat: 'Klanting Bumbu',    icon: '🌶️', page: 'pages/produk.html', modal: 'kb2'    },
+    { id: 'kb3',     name: 'Klanting Bumbu Bawang',            cat: 'Klanting Bumbu',    icon: '🧄', page: 'pages/produk.html', modal: 'kb3'    },
+    { id: 'kb4',     name: 'Klanting Bumbu Keju',              cat: 'Klanting Bumbu',    icon: '🧀', page: 'pages/produk.html', modal: 'kb4'    },
+    { id: 'ko1',     name: 'Klanting Original Besar',          cat: 'Klanting Original', icon: '⭕', page: 'pages/produk.html', modal: 'ko1'    },
+    { id: 'ko2',     name: 'Klanting Original Kecil',          cat: 'Klanting Original', icon: '⚪', page: 'pages/produk.html', modal: 'ko2'    },
+    { id: 'ko3',     name: 'Klanting Original Warna',          cat: 'Klanting Original', icon: '🎨', page: 'pages/produk.html', modal: 'ko3'    },
   ];
 
   /* ---- Konstanta ---- */
