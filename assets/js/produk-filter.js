@@ -1,57 +1,57 @@
 const prods = {
   getuk1: {
     cat: 'Getuk Goreng',
-    name: 'Getuk Goreng Haji Tohirin — 1 KG',
+    name: 'Getuk Goreng Haji Tohirin 1 KG',
     desc: 'Getuk goreng asli Sokaraja dengan cita rasa khas gula merah dan singkong pilihan. Digoreng hingga renyah di luar dan lembut di dalam. Produk andalan kami yang paling banyak dicari sebagai oleh-oleh dari Banyumas.',
-    specs: [['Berat', '1 Kilogram'], ['Bahan', 'Singkong & Gula Merah'], ['Masa simpan', '3–5 hari suhu ruang'], ['Kemasan', 'Box karton kedap'], ['Pengiriman', 'Seluruh Indonesia']],
+    specs: [['Harga', 'Rp 36.000'], ['Berat', '1 Kilogram'], ['Bahan', 'Singkong & Gula Merah'], ['Masa simpan', '3–5 hari suhu ruang'], ['Kemasan', 'Box karton kedap']],
     img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg',
     wa: 'Getuk+Goreng+1+KG'
   },
   getuk2: {
     cat: 'Getuk Goreng',
-    name: 'Getuk Goreng Haji Tohirin — ½ KG',
+    name: 'Getuk Goreng Haji Tohirin 1/2 KG',
     desc: 'Versi setengah kilogram dari getuk goreng andalan kami. Ideal untuk oleh-oleh personal atau untuk dicoba sebelum memesan lebih banyak.',
-    specs: [['Berat', '½ Kilogram'], ['Bahan', 'Singkong & Gula Merah'], ['Masa simpan', '3–5 hari suhu ruang'], ['Kemasan', 'Box karton kedap'], ['Pengiriman', 'Seluruh Indonesia']],
+    specs: [['Harga', 'Rp 18.000'], ['Berat', '½ Kilogram'], ['Bahan', 'Singkong & Gula Merah'], ['Masa simpan', '3–5 hari suhu ruang'], ['Kemasan', 'Box karton kedap']],
     img: '',
     wa: 'Getuk+Goreng+%C2%BD+KG'
   },
   nopia1: {
     cat: 'Nopia',
     name: 'Nopia Gula Jawa',
-    desc: 'Nopia khas Banyumas berbentuk bulat dengan kulit tipis renyah and isian gula aren manis yang harum. Cita rasa karamel alami yang tidak terlalu manis.',
-    specs: [['Varian', 'Gula Jawa / Gula Aren'], ['Bentuk', 'Bulat, ukuran sedang'], ['Masa simpan', '7–14 hari'], ['Kemasan', 'Plastik kedap udara'], ['Pengiriman', 'Seluruh Indonesia']],
+    desc: 'Nopia khas Banyumas berbentuk bulat dengan kulit tipis renyah dan isian gula aren manis yang harum. Cita rasa karamel alami yang tidak terlalu manis.',
+    specs: [['Harga', 'Rp 26.000'], ['Varian', 'Gula Jawa / Gula Aren'], ['Bentuk', 'Bulat, ukuran sedang'], ['Masa simpan', '7–14 hari'], ['Kemasan', 'Plastik kedap udara']],
     img: '',
     wa: 'Nopia+Gula+Jawa'
   },
   nopia2: {
     cat: 'Nopia',
     name: 'Nopia Rasa Coklat',
-    desc: 'Nopia dengan isian coklat lembut yang berpadu sempurna dengan kulit renyah. Favorit anak-anak and pecinta coklat yang ingin cita rasa modern dalam wadah tradisional.',
-    specs: [['Varian', 'Coklat'], ['Bentuk', 'Bulat, ukuran sedang'], ['Masa simpan', '7–14 hari'], ['Kemasan', 'Plastik kedap udara'], ['Pengiriman', 'Seluruh Indonesia']],
+    desc: 'Nopia dengan isian coklat lembut yang berpadu sempurna dengan kulit renyah. Favorit anak-anak dan pecinta coklat yang ingin cita rasa modern dalam wadah tradisional.',
+    specs: [['Harga', 'Rp 26.000'], ['Varian', 'Coklat'], ['Bentuk', 'Bulat, ukuran sedang'], ['Masa simpan', '7–14 hari'], ['Kemasan', 'Plastik kedap udara']],
     img: '',
     wa: 'Nopia+Coklat'
   },
   nopia3: {
     cat: 'Nopia',
     name: 'Nopia Rasa Durian',
-    desc: 'Nopia dengan isian durian asli yang harum and berkarakter. Perpaduan aroma durian kuat dengan tekstur nopia yang unik. Tersedia musiman.',
-    specs: [['Varian', 'Durian'], ['Bentuk', 'Bulat, ukuran sedang'], ['Masa simpan', '7–10 hari'], ['Kemasan', 'Plastik kedap udara'], ['Catatan', 'Tersedia musiman']],
+    desc: 'Nopia dengan isian durian asli yang harum dan berkarakter. Perpaduan aroma durian kuat dengan tekstur nopia yang unik. Tersedia musiman.',
+    specs: [['Harga', 'Rp 26.000'], ['Varian', 'Durian'], ['Bentuk', 'Bulat, ukuran sedang'], ['Masa simpan', '7–10 hari'], ['Kemasan', 'Plastik kedap udara']],
     img: '',
     wa: 'Nopia+Durian'
   },
   kb1: {
     cat: 'Klanting Bumbu',
-    name: 'Klanting Jagung Bakar',
-    desc: 'Klanting singkong dengan bumbu jagung bakar yang smoky-manis. Tekstur renyah and rasa unik yang adiktif — cocok untuk camilan santai kapan saja.',
-    specs: [['Varian', 'Jagung Bakar'], ['Tekstur', 'Renyah'], ['Masa simpan', '14–21 hari'], ['Kemasan', 'Plastik standing pouch'], ['Pengiriman', 'Seluruh Indonesia']],
+    name: 'Klanting Bumbu Jagung Bakar',
+    desc: 'Klanting singkong dengan bumbu jagung bakar yang smoky-manis. Tekstur renyah dan rasa unik yang adiktif — cocok untuk camilan santai kapan saja.',
+    specs: [['Harga', 'Rp 22.000'], ['Varian', 'Jagung Bakar'], ['Tekstur', 'Renyah'], ['Masa simpan', '14–21 hari'], ['Kemasan', 'Plastik standing pouch']],
     img: '',
     wa: 'Klanting+Jagung+Bakar'
   },
   kb2: {
     cat: 'Klanting Bumbu',
-    name: 'Klanting Pedas Manis',
-    desc: 'Perpaduan pedas and manis yang seimbang. Tingkat kepedasan sedang sehingga cocok untuk semua kalangan, termasuk anak-anak yang sudah bisa makan pedas ringan.',
-    specs: [['Varian', 'Pedas Manis'], ['Tingkat pedas', 'Sedang'], ['Masa simpan', '14–21 hari'], ['Kemasan', 'Plastik standing pouch'], ['Pengiriman', 'Seluruh Indonesia']],
+    name: 'Klanting Bumbu Pedas Manis',
+    desc: 'Perpaduan pedas dan manis yang seimbang. Tingkat kepedasan sedang sehingga cocok untuk semua kalangan, termasuk anak-anak yang sudah bisa makan pedas ringan.',
+    specs: [['Harga', 'Rp 22.000'], ['Varian', 'Pedas Manis'], ['Tingkat pedas', 'Sedang'], ['Masa simpan', '14–21 hari'], ['Kemasan', 'Plastik standing pouch']],
     img: '',
     wa: 'Klanting+Pedas+Manis'
   },
@@ -59,23 +59,23 @@ const prods = {
     cat: 'Klanting Bumbu',
     name: 'Klanting Bumbu Bawang',
     desc: 'Aroma bawang goreng yang kuat dengan rasa gurih-asin sempurna. Pilihan favorit untuk teman nonton atau camilan keluarga.',
-    specs: [['Varian', 'Bawang'], ['Rasa', 'Gurih Bawang'], ['Masa simpan', '14–21 hari'], ['Kemasan', 'Plastik standing pouch'], ['Pengiriman', 'Seluruh Indonesia']],
+    specs: [['Harga', 'Rp 22.000'], ['Varian', 'Bawang'], ['Rasa', 'Gurih Bawang'], ['Masa simpan', '14–21 hari'], ['Kemasan', 'Plastik standing pouch']],
     img: '',
     wa: 'Klanting+Bawang'
   },
   kb4: {
     cat: 'Klanting Bumbu',
     name: 'Klanting Bumbu Keju',
-    desc: 'Taburan bumbu keju creamy and gurih di atas klanting renyah. Perpaduan tradisional and modern yang disukai kalangan muda.',
-    specs: [['Varian', 'Keju'], ['Rasa', 'Gurih Keju'], ['Masa simpan', '14–21 hari'], ['Kemasan', 'Plastik standing pouch'], ['Pengiriman', 'Seluruh Indonesia']],
+    desc: 'Taburan bumbu keju creamy dan gurih di atas klanting renyah. Perpaduan tradisional dan modern yang disukai kalangan muda.',
+    specs: [['Harga', 'Rp 22.000'], ['Varian', 'Keju'], ['Rasa', 'Gurih Keju'], ['Masa simpan', '14–21 hari'], ['Kemasan', 'Plastik standing pouch']],
     img: '',
     wa: 'Klanting+Keju'
   },
   ko1: {
     cat: 'Klanting Original',
     name: 'Klanting Original Besar',
-    desc: 'Klanting tanpa bumbu tambahan ukuran besar. Cita rasa singkong asli yang natural, renyah and ringan. Masa simpan paling panjang di antara semua produk kami.',
-    specs: [['Varian', 'Original / Polos'], ['Ukuran', 'Besar'], ['Masa simpan', '30+ hari'], ['Kemasan', 'Plastik kedap'], ['Pengiriman', 'Seluruh Indonesia']],
+    desc: 'Klanting tanpa bumbu tambahan ukuran besar. Cita rasa singkong asli yang natural, renyah dan ringan. Masa simpan paling panjang di antara semua produk kami.',
+    specs: [['Harga', 'Rp 20.000'], ['Varian', 'Original / Polos'], ['Ukuran', 'Besar'], ['Masa simpan', '30+ hari'], ['Kemasan', 'Plastik kedap']],
     img: '',
     wa: 'Klanting+Original+Besar'
   },
@@ -83,7 +83,7 @@ const prods = {
     cat: 'Klanting Original',
     name: 'Klanting Original Kecil',
     desc: 'Klanting original ukuran kecil yang praktis. Ideal untuk isian toples lebaran, souvenir, atau camilan sekali santap.',
-    specs: [['Varian', 'Original / Polos'], ['Ukuran', 'Kecil'], ['Masa simpan', '30+ hari'], ['Kemasan', 'Plastik kedap'], ['Pengiriman', 'Seluruh Indonesia']],
+    specs: [['Harga', 'Rp 20.000'], ['Varian', 'Original / Polos'], ['Ukuran', 'Kecil'], ['Masa simpan', '30+ hari'], ['Kemasan', 'Plastik kedap']],
     img: '',
     wa: 'Klanting+Original+Kecil'
   },
@@ -91,7 +91,7 @@ const prods = {
     cat: 'Klanting Original',
     name: 'Klanting Original Warna',
     desc: 'Klanting original dengan warna-warni alami yang menarik dari pewarna food grade. Pilihan menarik untuk souvenir pernikahan, ulang tahun, atau hadiah.',
-    specs: [['Varian', 'Aneka Warna'], ['Pewarna', 'Alami / Food Grade'], ['Masa simpan', '30+ hari'], ['Kemasan', 'Plastik kedap'], ['Pengiriman', 'Seluruh Indonesia']],
+    specs: [['Harga', 'Rp 20.000'], ['Varian', 'Aneka Warna'], ['Pewarna', 'Alami / Food Grade'], ['Masa simpan', '30+ hari'], ['Kemasan', 'Plastik kedap']],
     img: '',
     wa: 'Klanting+Original+Warna'
   }
