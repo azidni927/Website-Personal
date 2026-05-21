@@ -4,7 +4,7 @@ const prods = {
     name: 'Getuk Goreng Haji Tohirin 1 KG',
     desc: 'Getuk goreng asli Sokaraja dengan cita rasa khas gula merah dan singkong pilihan. Digoreng hingga renyah di luar dan lembut di dalam. Produk andalan kami yang paling banyak dicari sebagai oleh-oleh dari Banyumas.',
     specs: [['Harga', 'Rp 36.000'], ['Berat', '1 Kilogram'], ['Bahan', 'Singkong & Gula Merah'], ['Masa simpan', '3–5 hari suhu ruang'], ['Kemasan', 'Box karton kedap']],
-    img: 'assets/img/produk/foto.jpeg',
+    img: 'assets/img/produk/getuk1kg_1.jpeg',
     wa: 'Getuk+Goreng+1+KG'
   },
   getuk2: {
