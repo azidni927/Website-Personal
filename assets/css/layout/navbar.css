@@ -104,6 +104,25 @@ nav {
     flex: 0;
   }
 
+  /* Overlay backdrop */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: 56px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 98;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+
   .nav-links {
     position: fixed;
     top: 56px;
@@ -112,19 +131,39 @@ nav {
     background: var(--h);
     flex-direction: column;
     gap: 0;
-    padding: 1rem 0;
+    padding: 0.5rem 0 1rem;
     border-top: 1px solid rgba(255,255,255,0.05);
-    display: none; /* Changed from display:none to handled by JS/active class */
     z-index: 99;
+    /* Slide animation */
+    display: flex;
+    transform: translateY(-110%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 
   .nav-links.active {
-    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
+  /* Staggered link entrance */
   .nav-links li {
     width: 100%;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
+
+  .nav-links.active li:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.08s; }
+  .nav-links.active li:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.13s; }
+  .nav-links.active li:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.18s; }
+  .nav-links.active li:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.23s; }
+  .nav-links.active li:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
+  .nav-links.active li:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.33s; }
 
   .nav-links a {
     display: block;
@@ -133,6 +172,7 @@ nav {
     font-size: 0.9rem;
   }
 
+  /* Hamburger / X toggle */
   .nav-toggle {
     display: flex;
     flex-direction: column;
@@ -141,6 +181,11 @@ nav {
     border: none;
     cursor: pointer;
     padding: 0.5rem;
+    position: relative;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
   }
 
   .nav-toggle span {
@@ -149,7 +194,26 @@ nav {
     height: 2px;
     background: var(--k);
     border-radius: 2px;
-    transition: 0.3s;
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+    transform-origin: center;
+    position: absolute;
+  }
+
+  /* Three lines default state */
+  .nav-toggle span:nth-child(1) { transform: translateY(-7px); }
+  .nav-toggle span:nth-child(2) { transform: translateY(0); }
+  .nav-toggle span:nth-child(3) { transform: translateY(7px); }
+
+  /* X state when active */
+  .nav-toggle.active span:nth-child(1) {
+    transform: translateY(0) rotate(45deg);
+  }
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+    width: 0;
+  }
+  .nav-toggle.active span:nth-child(3) {
+    transform: translateY(0) rotate(-45deg);
   }
 }
 
