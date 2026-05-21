@@ -15,108 +15,6 @@
     <link rel="stylesheet" href="../assets/css/components/search.css">
     <link rel="stylesheet" href="../assets/css/pages/produk.css">
     <link rel="stylesheet" href="../assets/css/layout/footer.css">
-    <style>
-      /* Card Image Slider */
-      .card-img {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .card-slides {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .card-slide {
-        min-width: 100%;
-        height: 100%;
-        flex-shrink: 0;
-      }
-
-      .card-slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      /* Emoji fallback slide */
-      .card-slide-emoji {
-        min-width: 100%;
-        height: 100%;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 3rem;
-      }
-
-      /* Prev/Next arrows */
-      .card-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0,0,0,0.38);
-        border: none;
-        color: #fff;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.2s, background 0.2s;
-        z-index: 3;
-        padding: 0;
-        font-size: 13px;
-        line-height: 1;
-      }
-
-      .card-img:hover .card-arrow {
-        opacity: 1;
-      }
-
-      .card-arrow.prev { left: 6px; }
-      .card-arrow.next { right: 6px; }
-      .card-arrow:hover { background: rgba(0,0,0,0.62); }
-
-      /* Dot indicators */
-      .card-dots {
-        position: absolute;
-        bottom: 7px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 5px;
-        z-index: 3;
-      }
-
-      .card-dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.5);
-        transition: background 0.2s, transform 0.2s;
-        cursor: pointer;
-        border: none;
-        padding: 0;
-      }
-
-      .card-dot.active {
-        background: #fff;
-        transform: scale(1.25);
-      }
-
-      /* Hide arrows/dots if only 1 slide */
-      .card-img[data-total="1"] .card-arrow,
-      .card-img[data-total="1"] .card-dots {
-        display: none;
-      }
-    </style>
   </head>
   <body>
     <nav>
@@ -144,6 +42,7 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>
       </div>
+      <!-- SEARCH OVERLAY -->
       <div id="search-overlay"></div>
     </nav>
 
@@ -170,20 +69,10 @@
       </div>
 
       <div class="grid" id="grid">
-
         <!-- Getuk 1KG -->
         <div class="card" data-cat="getuk" onclick="openModal('getuk1')">
-          <div class="card-img" data-total="2">
-            <div class="card-slides">
-              <div class="card-slide"><img src="../assets/img/produk/getuk1kg_1.jpeg" alt="Getuk Goreng 1KG"></div>
-              <div class="card-slide"><img src="../assets/img/produk/getuk1kg_2.jpeg" alt="Getuk Goreng 1KG"></div>
-            </div>
-            <button class="card-arrow prev" onclick="slideCard(event,this,-1)">&#8249;</button>
-            <button class="card-arrow next" onclick="slideCard(event,this,1)">&#8250;</button>
-            <div class="card-dots">
-              <button class="card-dot active" onclick="slideCardTo(event,this,0)"></button>
-              <button class="card-dot" onclick="slideCardTo(event,this,1)"></button>
-            </div>
+          <div class="card-img">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg" alt="">
             <span class="card-badge">Terlaris</span>
           </div>
           <div class="card-body">
@@ -196,18 +85,7 @@
 
         <!-- Getuk 500g -->
         <div class="card" data-cat="getuk" onclick="openModal('getuk2')">
-          <div class="card-img" data-total="2">
-            <div class="card-slides">
-              <div class="card-slide"><img src="../assets/img/produk/getuk1kg_1.jpeg" alt="Getuk Goreng ½KG"></div>
-              <div class="card-slide"><img src="../assets/img/produk/getuk1kg_2.jpeg" alt="Getuk Goreng ½KG"></div>
-            </div>
-            <button class="card-arrow prev" onclick="slideCard(event,this,-1)">&#8249;</button>
-            <button class="card-arrow next" onclick="slideCard(event,this,1)">&#8250;</button>
-            <div class="card-dots">
-              <button class="card-dot active" onclick="slideCardTo(event,this,0)"></button>
-              <button class="card-dot" onclick="slideCardTo(event,this,1)"></button>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">🍠</div></div>
           <div class="card-body">
             <div class="card-cat">Getuk Goreng</div>
             <div class="card-name">Getuk Goreng Haji Tohirin 1/2 KG</div>
@@ -216,13 +94,9 @@
           </div>
         </div>
 
-        <!-- Nopia Gula Jawa -->
+        <!-- Nopia 1 -->
         <div class="card" data-cat="nopia" onclick="openModal('nopia1')">
-          <div class="card-img" data-total="1">
-            <div class="card-slides">
-              <div class="card-slide card-slide-emoji">🟤</div>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">🟤</div></div>
           <div class="card-body">
             <div class="card-cat">Nopia</div>
             <div class="card-name">Nopia Gula Jawa</div>
@@ -231,20 +105,9 @@
           </div>
         </div>
 
-        <!-- Nopia Coklat -->
+        <!-- Nopia 2 -->
         <div class="card" data-cat="nopia" onclick="openModal('nopia2')">
-          <div class="card-img" data-total="2">
-            <div class="card-slides">
-              <div class="card-slide"><img src="../assets/img/produk/nopia_coklat1.jpeg" alt="Nopia Coklat"></div>
-              <div class="card-slide"><img src="../assets/img/produk/nopia_coklat2.jpeg" alt="Nopia Coklat"></div>
-            </div>
-            <button class="card-arrow prev" onclick="slideCard(event,this,-1)">&#8249;</button>
-            <button class="card-arrow next" onclick="slideCard(event,this,1)">&#8250;</button>
-            <div class="card-dots">
-              <button class="card-dot active" onclick="slideCardTo(event,this,0)"></button>
-              <button class="card-dot" onclick="slideCardTo(event,this,1)"></button>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">🍫</div></div>
           <div class="card-body">
             <div class="card-cat">Nopia</div>
             <div class="card-name">Nopia Rasa Coklat</div>
@@ -253,20 +116,9 @@
           </div>
         </div>
 
-        <!-- Nopia Durian -->
+        <!-- Nopia 3 -->
         <div class="card" data-cat="nopia" onclick="openModal('nopia3')">
-          <div class="card-img" data-total="2">
-            <div class="card-slides">
-              <div class="card-slide"><img src="../assets/img/produk/nopia_durian1.jpeg" alt="Nopia Durian"></div>
-              <div class="card-slide"><img src="../assets/img/produk/nopia_durian2.jpeg" alt="Nopia Durian"></div>
-            </div>
-            <button class="card-arrow prev" onclick="slideCard(event,this,-1)">&#8249;</button>
-            <button class="card-arrow next" onclick="slideCard(event,this,1)">&#8250;</button>
-            <div class="card-dots">
-              <button class="card-dot active" onclick="slideCardTo(event,this,0)"></button>
-              <button class="card-dot" onclick="slideCardTo(event,this,1)"></button>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">🍈</div></div>
           <div class="card-body">
             <div class="card-cat">Nopia</div>
             <div class="card-name">Nopia Rasa Durian</div>
@@ -277,11 +129,7 @@
 
         <!-- KB 1 -->
         <div class="card" data-cat="klanting-bumbu" onclick="openModal('kb1')">
-          <div class="card-img" data-total="1">
-            <div class="card-slides">
-              <div class="card-slide card-slide-emoji">🌽</div>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">🌽</div></div>
           <div class="card-body">
             <div class="card-cat">Klanting Bumbu</div>
             <div class="card-name">Klanting Bumbu Jagung Bakar</div>
@@ -292,11 +140,7 @@
 
         <!-- KB 2 -->
         <div class="card" data-cat="klanting-bumbu" onclick="openModal('kb2')">
-          <div class="card-img" data-total="1">
-            <div class="card-slides">
-              <div class="card-slide card-slide-emoji">🌶️</div>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">🌶️</div></div>
           <div class="card-body">
             <div class="card-cat">Klanting Bumbu</div>
             <div class="card-name">Klanting Bumbu Pedas Manis</div>
@@ -307,11 +151,7 @@
 
         <!-- KB 3 -->
         <div class="card" data-cat="klanting-bumbu" onclick="openModal('kb3')">
-          <div class="card-img" data-total="1">
-            <div class="card-slides">
-              <div class="card-slide card-slide-emoji">🧄</div>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">🧄</div></div>
           <div class="card-body">
             <div class="card-cat">Klanting Bumbu</div>
             <div class="card-name">Klanting Bumbu Bawang</div>
@@ -322,11 +162,7 @@
 
         <!-- KB 4 -->
         <div class="card" data-cat="klanting-bumbu" onclick="openModal('kb4')">
-          <div class="card-img" data-total="1">
-            <div class="card-slides">
-              <div class="card-slide card-slide-emoji">🧀</div>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">🧀</div></div>
           <div class="card-body">
             <div class="card-cat">Klanting Bumbu</div>
             <div class="card-name">Klanting Bumbu Keju</div>
@@ -337,11 +173,7 @@
 
         <!-- KO 1 -->
         <div class="card" data-cat="klanting-ori" onclick="openModal('ko1')">
-          <div class="card-img" data-total="1">
-            <div class="card-slides">
-              <div class="card-slide card-slide-emoji">⭕</div>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">⭕</div></div>
           <div class="card-body">
             <div class="card-cat">Klanting Original</div>
             <div class="card-name">Klanting Original Besar</div>
@@ -352,11 +184,7 @@
 
         <!-- KO 2 -->
         <div class="card" data-cat="klanting-ori" onclick="openModal('ko2')">
-          <div class="card-img" data-total="1">
-            <div class="card-slides">
-              <div class="card-slide card-slide-emoji">⚪</div>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">⚪</div></div>
           <div class="card-body">
             <div class="card-cat">Klanting Original</div>
             <div class="card-name">Klanting Original Kecil</div>
@@ -367,11 +195,7 @@
 
         <!-- KO 3 -->
         <div class="card" data-cat="klanting-ori" onclick="openModal('ko3')">
-          <div class="card-img" data-total="1">
-            <div class="card-slides">
-              <div class="card-slide card-slide-emoji">🎨</div>
-            </div>
-          </div>
+          <div class="card-img"><div class="card-emoji">🎨</div></div>
           <div class="card-body">
             <div class="card-cat">Klanting Original</div>
             <div class="card-name">Klanting Original Warna</div>
@@ -379,7 +203,6 @@
             <span class="card-cta">Rp 20.000</span>
           </div>
         </div>
-
       </div>
       <div class="empty" id="empty">Tidak ada produk dalam kategori ini.</div>
     </div>
@@ -420,62 +243,10 @@
     <script src="../assets/js/search.js"></script>
     <script src="../assets/js/produk-filter.js"></script>
     <script>
+      // Initial count update
       document.addEventListener('DOMContentLoaded', () => {
         filterCatalog(document.querySelector('.ftab.active'), 'all');
-        initCardSwipe();
       });
-
-      // ── Card Slider Logic ──────────────────────────────────
-      function getSliderState(cardImg) {
-        if (!cardImg._idx) cardImg._idx = 0;
-        return cardImg._idx;
-      }
-
-      function goToSlide(cardImg, idx) {
-        const total = parseInt(cardImg.dataset.total) || 1;
-        idx = Math.max(0, Math.min(idx, total - 1));
-        cardImg._idx = idx;
-
-        const slides = cardImg.querySelector('.card-slides');
-        if (slides) slides.style.transform = `translateX(-${idx * 100}%)`;
-
-        // Update dots
-        cardImg.querySelectorAll('.card-dot').forEach((d, i) => {
-          d.classList.toggle('active', i === idx);
-        });
-      }
-
-      function slideCard(e, btn, dir) {
-        e.stopPropagation();
-        const cardImg = btn.closest('.card-img');
-        goToSlide(cardImg, (cardImg._idx || 0) + dir);
-      }
-
-      function slideCardTo(e, dot, idx) {
-        e.stopPropagation();
-        const cardImg = dot.closest('.card-img');
-        goToSlide(cardImg, idx);
-      }
-
-      // ── Touch/Swipe support ────────────────────────────────
-      function initCardSwipe() {
-        document.querySelectorAll('.card-img[data-total]').forEach(cardImg => {
-          if (parseInt(cardImg.dataset.total) < 2) return;
-          cardImg._idx = 0;
-
-          let startX = 0;
-          cardImg.addEventListener('touchstart', e => {
-            startX = e.touches[0].clientX;
-          }, { passive: true });
-
-          cardImg.addEventListener('touchend', e => {
-            const diff = startX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 40) {
-              goToSlide(cardImg, (cardImg._idx || 0) + (diff > 0 ? 1 : -1));
-            }
-          }, { passive: true });
-        });
-      }
     </script>
   </body>
 </html>
