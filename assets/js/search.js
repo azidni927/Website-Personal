@@ -60,12 +60,24 @@
   /* ---- Render helpers ---- */
   function getThumbHTML(p) {
     const BASE = window._PRODUK_BASE || (window.location.pathname.replace(/\\/g, '/').includes('/pages/') ? '../assets/img/produk/' : 'assets/img/produk/');
-    const prodDetails = window.prods && window.prods[p.id];
-    const imgSrc = prodDetails && prodDetails.img ? (BASE + prodDetails.img) : (BASE + 'foto.jpeg');
+    
+    // Choose existing robust images on disk (getuk.jpeg for getuk, foto.jpeg for others) to prevent broken image placeholders
+    let imgName = 'foto.jpeg';
+    if (p.id && p.id.startsWith('getuk')) {
+      imgName = 'getuk.jpeg';
+    } else if (p.cat && p.cat.toLowerCase().includes('getuk')) {
+      imgName = 'getuk.jpeg';
+    } else if (p.name && p.name.toLowerCase().includes('getuk')) {
+      imgName = 'getuk.jpeg';
+    }
+    
+    const imgSrc = BASE + imgName;
+    const emoji = p.icon || '🍱';
+    
     return `
-      <div class="sr-thumb" style="overflow: hidden; background: #f0e6d0; display: flex; align-items: center; justify-content: center; position: relative;">
-        <img src="${imgSrc}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='${BASE}foto.jpeg'; this.onerror=function(){ this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex'; }">
-        <div style="display: none; align-items: center; justify-content: center; height: 100%; width: 100%; font-size: 20px;">${p.icon || '🍱'}</div>
+      <div class="sr-thumb">
+        <img src="${imgSrc}" alt="${p.name}" onerror="this.onerror=null; this.src='${BASE}foto.jpeg'; this.onerror=function(){ this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex'; }">
+        <div style="display: none; align-items: center; justify-content: center; height: 100%; width: 100%; font-size: 20px;">${emoji}</div>
       </div>
     `;
   }
