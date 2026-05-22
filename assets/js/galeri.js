@@ -1,13 +1,14 @@
 const items = [
-  { cat: 'produk', cap: 'Getuk Goreng Original — Sajian Khas Sokaraja', img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZ5FzWtrZVFLnchPqz7bavPLhruvVAEqWlXEg2HFushP88gpPoJ9dk5kUqV7erYuZs1RDkuvJDwHeoUiRKveJmiPjH1MvK1aCvhywBwDjjhpOEfufaxhGZSP8J9w3jttkCttT7i-itQqHJlWENiQIrfBo0V8ds5Vfc2iHeXVJEwgkh6m7oJ0eGzl-i2y46/s1280/WhatsApp%20Image%202024-07-29%20at%2001.20.24%20(1).jpeg', ph: '🍠' },
-  { cat: 'toko', cap: 'Toko Getuk Goreng Haji Tohirin 6A', img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglW-F_9vZkLrf7WvWspYT4p2EJUc8GEdpdK_CHqB5Bs0h8W7NjbJAI0-NjeQ0G2jDkPeG30uYK2c1U1J7_jE908bRyxfH0dNNq5hjG0ysHJ3flyeWWaDwx6qA9uco6ljfP0vZYMxLweVqSSP9kNmfIYlUCcPcCAybEN_iSwBw26oXS1lJJAvFt4S_TnDui/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.24%20(1).jpeg', ph: '🏪' },
-  { cat: 'produk', cap: 'Getuk Goreng Segar', img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg', ph: '🍠' },
-  { cat: 'kemasan', cap: 'Kemasan Box Getuk Goreng 1 KG', img: '', ph: '📦' },
-  { cat: 'proses', cap: 'Proses Penggorengan Getuk', img: '', ph: '👨‍🍳' },
-  { cat: 'proses', cap: 'Bahan Baku Singkong Pilihan', img: '', ph: '🌾' },
-  { cat: 'produk', cap: 'Nopia Aneka Rasa', img: '', ph: '🟤' },
-  { cat: 'kemasan', cap: 'Kemasan Plastik Klanting', img: '', ph: '🛍️' },
-  { cat: 'toko', cap: 'Display Produk di Toko', img: '', ph: '🏪' },
+  { cat: 'produk', cap: 'Getuk Goreng Original — Sajian Khas Sokaraja', img: '../assets/img/galeri/galeri1.jpeg', ph: '🍠' },
+  { cat: 'toko', cap: 'Toko Getuk Goreng Haji Tohirin 6A', img: '../assets/img/galeri/galeri2.jpeg', ph: '🏪' },
+  { cat: 'produk', cap: 'Getuk Goreng Fresh Gula Jawa', img: '../assets/img/galeri/galeri3.jpeg', ph: '🍠' },
+  { cat: 'proses', cap: 'Proses Tradisional Pembuatan Adonan Getuk', img: '../assets/img/galeri/galeri4.jpeg', ph: '👨‍🍳' },
+  { cat: 'kemasan', cap: 'Kemasan Besek Bambu & Box Khas Sokaraja', img: '../assets/img/galeri/galeri5.jpeg', ph: '📦' },
+  { cat: 'produk', cap: 'Nopia Isian Gula Aren Manis', img: '../assets/img/galeri/galeri6.jpeg', ph: '🟤' },
+  { cat: 'proses', cap: 'Penggorengan Getuk Tradisional', img: '../assets/img/galeri/galeri7.jpeg', ph: '🥣' },
+  { cat: 'kemasan', cap: 'Packing Rapi & Higienis', img: '../assets/img/galeri/galeri8.jpeg', ph: '🛍️' },
+  { cat: 'toko', cap: 'Display Lengkap Aneka Oleh-Oleh Banyumasan', img: '../assets/img/galeri/galeri9.jpeg', ph: '🏪' },
+  { cat: 'produk', cap: 'Klanting Renyah Aneka Rasa', img: '../assets/img/galeri/galeri10.jpeg', ph: '⭕' },
 ];
 
 let visIdxs = [...Array(items.length).keys()];
@@ -52,7 +53,7 @@ function renderLB() {
 
   if (d.img) {
     content.innerHTML = `
-      <img class="lb-img" src="${d.img}" alt="${d.cap}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="lb-img" src="${d.img}" alt="${d.cap}" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="lb-ph" style="display:none">${d.ph}</div>
     `;
   } else {
