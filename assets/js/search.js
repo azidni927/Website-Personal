@@ -57,13 +57,25 @@
     return text.replace(re, '<mark>$1</mark>');
   }
 
-  /* ---- Base path helper ---- */
-  function getBase() {
-    if (window._PRODUK_BASE) return window._PRODUK_BASE;
-    return window.location.pathname.replace(/\\/g, '/').includes('/pages/')
-      ? '../assets/img/produk/'
-      : 'assets/img/produk/';
+ // SESUDAH
+function getBase() {
+  if (window._PRODUK_BASE) return window._PRODUK_BASE;
+
+  // Cari <script> yang src-nya mengandung "search.js" lalu
+  // ambil path relatifnya — ini selalu akurat tanpa peduli halaman mana
+  const scripts = document.querySelectorAll('script[src]');
+  for (const s of scripts) {
+    const src = s.getAttribute('src');
+    if (src && src.includes('search.js')) {
+      // src bisa: "assets/js/search.js" atau "../assets/js/search.js"
+      return src.replace(/js\/search\.js.*$/, 'img/produk/');
+    }
   }
+
+  // Fallback: deteksi lewat pathname
+  const inPages = window.location.pathname.replace(/\\/g, '/').includes('/pages/');
+  return inPages ? '../assets/img/produk/' : 'assets/img/produk/';
+}
 
   /* ---- Render thumbnail dengan foto produk ---- */
   function getThumbHTML(p) {
