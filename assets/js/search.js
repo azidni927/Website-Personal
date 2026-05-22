@@ -8,18 +8,18 @@
 (function () {
   /* ---- Data Produk ---- */
   const PRODUCTS = [
-    { id: 'getuk1',  name: 'Getuk Goreng Haji Tohirin 1 KG',   cat: 'Getuk Goreng',      icon: '🍠', page: 'pages/produk.html', modal: 'getuk1' },
-    { id: 'getuk2',  name: 'Getuk Goreng Haji Tohirin 1/2 KG', cat: 'Getuk Goreng',      icon: '🍠', page: 'pages/produk.html', modal: 'getuk2' },
-    { id: 'nopia1',  name: 'Nopia Gula Jawa',                  cat: 'Nopia',             icon: '🟤', page: 'pages/produk.html', modal: 'nopia1' },
-    { id: 'nopia2',  name: 'Nopia Rasa Coklat',                cat: 'Nopia',             icon: '🍫', page: 'pages/produk.html', modal: 'nopia2' },
-    { id: 'nopia3',  name: 'Nopia Rasa Durian',                cat: 'Nopia',             icon: '🍈', page: 'pages/produk.html', modal: 'nopia3' },
-    { id: 'kb1',     name: 'Klanting Bumbu Jagung Bakar',      cat: 'Klanting Bumbu',    icon: '🌽', page: 'pages/produk.html', modal: 'kb1'    },
-    { id: 'kb2',     name: 'Klanting Bumbu Pedas Manis',       cat: 'Klanting Bumbu',    icon: '🌶️', page: 'pages/produk.html', modal: 'kb2'    },
-    { id: 'kb3',     name: 'Klanting Bumbu Bawang',            cat: 'Klanting Bumbu',    icon: '🧄', page: 'pages/produk.html', modal: 'kb3'    },
-    { id: 'kb4',     name: 'Klanting Bumbu Keju',              cat: 'Klanting Bumbu',    icon: '🧀', page: 'pages/produk.html', modal: 'kb4'    },
-    { id: 'ko1',     name: 'Klanting Original Besar',          cat: 'Klanting Original', icon: '⭕', page: 'pages/produk.html', modal: 'ko1'    },
-    { id: 'ko2',     name: 'Klanting Original Kecil',          cat: 'Klanting Original', icon: '⚪', page: 'pages/produk.html', modal: 'ko2'    },
-    { id: 'ko3',     name: 'Klanting Original Warna',          cat: 'Klanting Original', icon: '🎨', page: 'pages/produk.html', modal: 'ko3'    },
+    { id: 'getuk1',  name: 'Getuk Goreng Haji Tohirin 1 KG',   cat: 'Getuk Goreng',      icon: '🍠', img: 'getuk1kg_1.jpeg',    page: 'pages/produk.html', modal: 'getuk1' },
+    { id: 'getuk2',  name: 'Getuk Goreng Haji Tohirin 1/2 KG', cat: 'Getuk Goreng',      icon: '🍠', img: 'getuk1kg_2.jpeg',    page: 'pages/produk.html', modal: 'getuk2' },
+    { id: 'nopia1',  name: 'Nopia Gula Jawa',                  cat: 'Nopia',             icon: '🟤', img: 'nopia_gulajawa.jpeg',     page: 'pages/produk.html', modal: 'nopia1' },
+    { id: 'nopia2',  name: 'Nopia Rasa Coklat',                cat: 'Nopia',             icon: '🍫', img: 'nopia_coklat1.jpeg',     page: 'pages/produk.html', modal: 'nopia2' },
+    { id: 'nopia3',  name: 'Nopia Rasa Durian',                cat: 'Nopia',             icon: '🍈', img: 'nopia_durian1.jpeg',     page: 'pages/produk.html', modal: 'nopia3' },
+    { id: 'kb1',     name: 'Klanting Bumbu Jagung Bakar',      cat: 'Klanting Bumbu',    icon: '🌽', img: 'klanting_bumbu_jagungbakar.jpeg',     page: 'pages/produk.html', modal: 'kb1'    },
+    { id: 'kb2',     name: 'Klanting Bumbu Pedas Manis',       cat: 'Klanting Bumbu',    icon: '🌶️', img: 'klanting_bumbu_pedasmanis.jpeg',     page: 'pages/produk.html', modal: 'kb2'    },
+    { id: 'kb3',     name: 'Klanting Bumbu Bawang',            cat: 'Klanting Bumbu',    icon: '🧄', img: 'klanting_bumbu_bawang.jpeg',     page: 'pages/produk.html', modal: 'kb3'    },
+    { id: 'kb4',     name: 'Klanting Bumbu Keju',              cat: 'Klanting Bumbu',    icon: '🧀', img: 'klanting_bumbu_keju.jpeg',     page: 'pages/produk.html', modal: 'kb4'    },
+    { id: 'ko1',     name: 'Klanting Original Besar',          cat: 'Klanting Original', icon: '⭕', img: 'klanting_originalbesar.jpeg',     page: 'pages/produk.html', modal: 'ko1'    },
+    { id: 'ko2',     name: 'Klanting Original Kecil',          cat: 'Klanting Original', icon: '⚪', img: 'klanting_originalkecil.jpeg',     page: 'pages/produk.html', modal: 'ko2'    },
+    { id: 'ko3',     name: 'Klanting Original Warna',          cat: 'Klanting Original', icon: '🎨', img: 'klanting_originalwarna.jpeg',     page: 'pages/produk.html', modal: 'ko3'    },
   ];
 
   /* ---- Konstanta ---- */
@@ -57,31 +57,28 @@
     return text.replace(re, '<mark>$1</mark>');
   }
 
-  /* ---- Render helpers ---- */
-  function getThumbHTML(p) {
-    const BASE = window._PRODUK_BASE || (window.location.pathname.replace(/\\/g, '/').includes('/pages/') ? '../assets/img/produk/' : 'assets/img/produk/');
-    
-    // Choose existing robust images on disk (getuk.jpeg for getuk, foto.jpeg for others) to prevent broken image placeholders
-    let imgName = 'foto.jpeg';
-    if (p.id && p.id.startsWith('getuk')) {
-      imgName = 'getuk.jpeg';
-    } else if (p.cat && p.cat.toLowerCase().includes('getuk')) {
-      imgName = 'getuk.jpeg';
-    } else if (p.name && p.name.toLowerCase().includes('getuk')) {
-      imgName = 'getuk.jpeg';
-    }
-    
-    const imgSrc = BASE + imgName;
-    const emoji = p.icon || '🍱';
-    
-    return `
-      <div class="sr-thumb">
-        <img src="${imgSrc}" alt="${p.name}" onerror="this.onerror=null; this.src='${BASE}foto.jpeg'; this.onerror=function(){ this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex'; }">
-        <div style="display: none; align-items: center; justify-content: center; height: 100%; width: 100%; font-size: 20px;">${emoji}</div>
-      </div>
-    `;
+  /* ---- Base path helper ---- */
+  function getBase() {
+    if (window._PRODUK_BASE) return window._PRODUK_BASE;
+    return window.location.pathname.replace(/\\/g, '/').includes('/pages/')
+      ? '../assets/img/produk/'
+      : 'assets/img/produk/';
   }
 
+  /* ---- Render thumbnail dengan foto produk ---- */
+  function getThumbHTML(p) {
+    const base   = getBase();
+    const imgSrc = base + (p.img || 'foto.jpeg');
+    const fallbackSrc = base + 'foto.jpeg';
+    const emoji  = p.icon || '🍱';
+
+    return `<div class="sr-thumb">
+      <img src="${imgSrc}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackSrc}'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; };">
+      <div class="sr-thumb-fallback" aria-hidden="true">${emoji}</div>
+    </div>`;
+  }
+
+  /* ---- renderDefault (state awal / kosong) ---- */
   function renderDefault() {
     const recent = getRecent();
     const recentHTML = recent.length
@@ -121,6 +118,7 @@
     activeIdx = -1;
   }
 
+  /* ---- renderResults ---- */
   function renderResults(q) {
     if (!q) { renderDefault(); return; }
 
@@ -191,7 +189,6 @@
   }
 
   function handleSearch(e) {
-    /* ---- Keyboard navigation ---- */
     if (e.type === 'keydown') {
       const items = document.querySelectorAll('.sr-item[data-idx]');
 
@@ -201,38 +198,28 @@
         updateActive();
         return;
       }
-
       if (e.key === 'ArrowUp') {
         e.preventDefault();
         activeIdx = Math.max(activeIdx - 1, 0);
         updateActive();
         return;
       }
-
       if (e.key === 'Enter') {
         e.preventDefault();
         const q = e.target.value.trim();
-
-        /* Ada item ter-highlight dengan ↑↓ → klik item itu (buka modal/detail) */
         if (activeIdx >= 0 && items[activeIdx]) {
           items[activeIdx].click();
           return;
         }
-
-        /* Enter langsung (tanpa navigasi) → selalu redirect ke halaman hasil */
-        if (q) {
-          goToSearchResults(q);
-        }
+        if (q) goToSearchResults(q);
         return;
       }
-
       if (e.key === 'Escape') {
         closeSearch();
         return;
       }
     }
 
-    /* ---- Debounced input (oninput) ---- */
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
       const q = e.target.value.trim();
@@ -253,14 +240,10 @@
   function pickProduct(modalId, query) {
     saveRecent(query);
     closeSearch();
-
-    /* index.html punya openModal → buka modal langsung */
     if (typeof openModal === 'function') {
       openModal(modalId);
       return;
     }
-
-    /* Halaman lain → redirect ke search-results.html dengan query */
     goToSearchResults(query);
   }
 
@@ -283,7 +266,7 @@
     renderDefault();
   }
 
-  /* ---- Inisialisasi DOM ---- */
+  /* ---- Build overlay HTML ---- */
   function buildOverlayHTML() {
     const overlay = document.getElementById('search-overlay');
     if (!overlay) return;
@@ -313,20 +296,18 @@
     `;
   }
 
-  /* ---- Klik backdrop untuk tutup ---- */
   function initBackdropClose() {
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && isOpen) closeSearch();
     });
   }
 
-  /* ---- Expose ke global (dipanggil dari HTML onclick) ---- */
+  /* ---- Expose globals ---- */
   window.openSearch        = openSearch;
   window.closeSearch       = closeSearch;
   window.handleSearch      = handleSearch;
   window.goToSearchResults = goToSearchResults;
 
-  /* Internal API untuk render callbacks */
   window._search = {
     setQuery,
     pickProduct,
@@ -334,7 +315,6 @@
     removeRecent: removeRecentItem,
   };
 
-  /* ---- Boot ---- */
   document.addEventListener('DOMContentLoaded', function () {
     buildOverlayHTML();
     initBackdropClose();
