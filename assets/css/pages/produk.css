@@ -210,7 +210,7 @@
 }
 .modal-img {
   background: var(--kd);
-  height: 220px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -338,7 +338,7 @@
   .card-name { font-size: 0.88rem; }
   
   .modal { max-height: 92vh; }
-  .modal-img { height: 180px; }
+  .modal-img { height: 220px; }
   .modal-body { padding: 1.2rem 1.4rem; }
   .modal-title { font-size: 1.2rem; }
   .modal-actions { flex-direction: column; }
