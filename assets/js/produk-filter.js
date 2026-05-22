@@ -171,7 +171,7 @@ function openModal(id) {
     if (p.img) {
       mi.innerHTML = `
         <img src="${BASE + p.img}" alt="${p.name}"
-          style="width:100%;height:100%;object-fit:cover;display:block"
+          class="modal-product-img"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="moji" style="display:none">${emoji}</div>
         ${badgeHTML}
@@ -240,6 +240,8 @@ function closeOverlayOut(e) {
 }
 
 // Exposure to global scope
+window.prods           = prods;
+window.getFallbackEmoji = getFallbackEmoji;
 window.filterCatalog   = filterCatalog;
 window.openModal       = openModal;
 window.closeModal      = closeModal;
