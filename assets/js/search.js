@@ -58,6 +58,18 @@
   }
 
   /* ---- Render helpers ---- */
+  function getThumbHTML(p) {
+    const BASE = window._PRODUK_BASE || (window.location.pathname.replace(/\\/g, '/').includes('/pages/') ? '../assets/img/produk/' : 'assets/img/produk/');
+    const prodDetails = window.prods && window.prods[p.id];
+    const imgSrc = prodDetails && prodDetails.img ? (BASE + prodDetails.img) : (BASE + 'foto.jpeg');
+    return `
+      <div class="sr-thumb" style="overflow: hidden; background: #f0e6d0; display: flex; align-items: center; justify-content: center; position: relative;">
+        <img src="${imgSrc}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='${BASE}foto.jpeg'; this.onerror=function(){ this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex'; }">
+        <div style="display: none; align-items: center; justify-content: center; height: 100%; width: 100%; font-size: 20px;">${p.icon || '🍱'}</div>
+      </div>
+    `;
+  }
+
   function renderDefault() {
     const recent = getRecent();
     const recentHTML = recent.length
@@ -82,7 +94,7 @@
       <div class="sr-label"><span>Produk populer</span></div>
       ${PRODUCTS.slice(0, 4).map(p =>
         `<div class="sr-item" role="option" tabindex="-1" onclick="window._search.pickProduct('${p.modal}', '${p.name}')">
-          <div class="sr-thumb">${p.icon}</div>
+          ${getThumbHTML(p)}
           <div class="sr-info">
             <div class="sr-name">${p.name}</div>
             <div class="sr-cat">${p.cat}</div>
@@ -124,7 +136,7 @@
         ${results.map((p, i) =>
           `<div class="sr-item" role="option" tabindex="-1" data-idx="${i}"
                onclick="window._search.pickProduct('${p.modal}', '${q}')">
-            <div class="sr-thumb">${p.icon}</div>
+            ${getThumbHTML(p)}
             <div class="sr-info">
               <div class="sr-name">${hl(p.name, q)}</div>
               <div class="sr-cat">${p.cat}</div>
