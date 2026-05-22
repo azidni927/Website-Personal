@@ -190,33 +190,42 @@
       </div>
     </div>
 
-     <!-- SLIDER KEUNGGULAN -->
+   <!-- SLIDER KEUNGGULAN -->
 <style>
 .ht-wrap { 
   overflow:hidden; 
-  background:transparent; 
-  max-width: 1100px; 
-  margin: 0 auto; 
-  padding: 1.5rem 1.5rem 0.6rem; 
+  background: linear-gradient(135deg, #F7F0E0 0%, #EDE4CC 100%);
+  border-top: 1px solid #C9973A33;
+  border-bottom: 1px solid #C9973A33;
+  max-width: 100%; 
+  margin: 2rem 0;
+  padding: 1.8rem 1.5rem;
 }
 .ht-track { display:flex; gap:14px; width:max-content; animation:ht-scroll 32s linear infinite; }
 .ht-track:hover { animation-play-state:paused; }
 .ht-card {
   width:200px; flex-shrink:0;
-  background:#EDE4CC;
-  border:1px solid #C9973A44;
-  border-radius:12px;
-  padding:1rem;
+  background: #FFFDF7;
+  border: 1px solid #C9973A55;
+  border-radius:14px;
+  padding:1.1rem;
+  box-shadow: 0 2px 8px #C9973A18;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.ht-card:hover {
+  box-shadow: 0 6px 18px #C9973A30;
+  transform: translateY(-2px);
 }
 .ht-badge {
-  display:inline-block; font-size:10px; padding:2px 9px;
+  display:inline-block; font-size:10px; padding:3px 10px;
   border-radius:999px;
-  background:#1B3A2D; color:#D4A84A;
-  font-weight:600; margin-bottom:8px; letter-spacing:0.03em;
+  background: linear-gradient(90deg, #1B3A2D, #2D5C42);
+  color:#D4A84A;
+  font-weight:700; margin-bottom:10px; letter-spacing:0.04em;
 }
-.ht-icon { font-size:22px; margin-bottom:6px; color:#2D5C42; }
-.ht-title { font-size:13px; font-weight:700; margin-bottom:5px; color:#0F1F17; line-height:1.4; }
-.ht-desc { font-size:11.5px; color:#2D5C42; line-height:1.55; }
+.ht-icon { font-size:24px; margin-bottom:7px; }
+.ht-title { font-size:13px; font-weight:700; margin-bottom:5px; color:#3B2507; line-height:1.4; }
+.ht-desc { font-size:11.5px; color:#5C4A1E; line-height:1.6; }
 @keyframes ht-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 </style>
 
