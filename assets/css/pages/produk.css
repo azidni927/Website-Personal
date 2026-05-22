@@ -1,4 +1,6 @@
-/* HERO */
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
 .page-hero {
   background: var(--h);
   padding: 3rem 2rem 2.8rem;
@@ -30,14 +32,18 @@
   margin: 0 auto;
 }
 
-/* MAIN */
+/* ═══════════════════════════════════════
+   MAIN WRAPPER
+═══════════════════════════════════════ */
 .main {
   padding: 2.2rem 2rem;
   max-width: 1060px;
   margin: 0 auto;
 }
 
-/* FILTER */
+/* ═══════════════════════════════════════
+   FILTER BAR
+═══════════════════════════════════════ */
 .filter-bar {
   display: flex;
   gap: 0.45rem;
@@ -66,13 +72,34 @@
   transition: all 0.18s;
   font-family: 'DM Sans', sans-serif;
 }
-.ftab.active, .ftab:hover {
+.ftab.active,
+.ftab:hover {
   background: var(--h);
   border-color: var(--h);
   color: var(--k);
 }
 
-/* GRID & CARD */
+/* ═══════════════════════════════════════
+   COUNT BAR
+═══════════════════════════════════════ */
+.count-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+.count-text {
+  font-size: 0.78rem;
+  color: var(--tl);
+}
+.count-text strong {
+  color: var(--h);
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+   PRODUCT GRID & CARD
+═══════════════════════════════════════ */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
@@ -112,14 +139,14 @@
   position: absolute;
   top: 0.6rem;
   left: 0.6rem;
-  background: var(--h);
-  color: var(--k);
+  background: var(--g);
+  color: var(--h);
   font-size: 0.6rem;
-  padding: 0.18rem 0.5rem;
+  padding: 0.18rem 0.55rem;
   border-radius: 2px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
 }
 .card-body {
   padding: 0.85rem 1rem;
@@ -155,6 +182,7 @@
   padding-bottom: 1px;
 }
 
+/* Empty state */
 .empty {
   text-align: center;
   padding: 3rem 1rem;
@@ -163,193 +191,15 @@
   display: none;
 }
 
-/* MODAL */
-.overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 31, 23, 0.72);
-  z-index: 400;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 0;
-}
-.overlay.open {
-  display: flex;
-}
-.modal {
-  background: var(--w);
-  width: 100%;
-  max-width: 640px;
-  max-height: 88vh;
-  overflow-y: auto;
-  border-radius: 6px 6px 0 0;
-  position: relative;
-  animation: slideUp 0.22s ease;
-}
-@keyframes slideUp {
-  from { transform: translateY(40px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-.modal-close {
-  position: absolute;
-  top: 0.9rem;
-  right: 0.9rem;
-  background: var(--merah);
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--w);
-  z-index: 10;
-  box-shadow: 0 2px 8px rgba(178, 34, 34, 0.35);
-  transition: all 0.2s ease;
-}
-.modal-close:hover {
-  background: #8B0000;
-  color: var(--w);
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(178, 34, 34, 0.5);
-}
-.modal-img {
-  background: var(--kd);
-  height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.modal-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.modal-img .moji {
-  font-size: 4rem;
-  opacity: 0.28;
-}
-.modal-body {
-  padding: 1.6rem 1.8rem;
-}
-.modal-cat {
-  font-size: 0.62rem;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--g);
-  font-weight: 500;
-  margin-bottom: 0.35rem;
-}
-.modal-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  color: var(--h);
-  margin-bottom: 0.75rem;
-}
-.modal-desc {
-  font-size: 0.84rem;
-  color: #4A6355;
-  line-height: 1.78;
-  margin-bottom: 1.1rem;
-  font-weight: 300;
-}
-.specs {
-  background: var(--k);
-  border-radius: 3px;
-  padding: 0.85rem 1.1rem;
-  margin-bottom: 1.1rem;
-}
-.specs table {
-  width: 100%;
-  font-size: 0.8rem;
-  border-collapse: collapse;
-}
-.specs td {
-  padding: 0.28rem 0;
-  color: #4A6355;
-  vertical-align: top;
-}
-.specs td:first-child {
-  color: var(--h);
-  font-weight: 500;
-  width: 42%;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.modal-actions {
-  display: flex;
-  gap: 0.7rem;
-}
-.btn-wa {
-  background: #1A7A3C;
-  color: white;
-  border: none;
-  padding: 0.68rem 1.3rem;
-  border-radius: 2px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background 0.2s;
-}
-.btn-wa:hover {
-  background: #218A46;
-}
-.btn-close {
-  border: 1.5px solid var(--merah);
-  background: var(--merah);
-  color: var(--w);
-  padding: 0.65rem 1.1rem;
-  border-radius: 2px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-close:hover {
-  background: #8b0000;
-  border-color: #8b0000;
-  color: var(--w);
-}
-
-.count-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.2rem;
-}
-.count-text {
-  font-size: 0.78rem;
-  color: var(--tl);
-}
-.count-text strong {
-  color: var(--h);
-  font-weight: 500;
-}
-
-@media(max-width:768px) {
-  .page-hero { padding: 3.5rem 1.5rem 2.5rem; }
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .page-hero    { padding: 3.5rem 1.5rem 2.5rem; }
   .page-hero h1 { font-size: 1.8rem; }
-  .main { padding: 1.5rem 1.2rem; }
-  .filter-bar { justify-content: center; }
-  .grid { 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 0.8rem;
-  }
-  .card-body { padding: 0.75rem; }
-  .card-name { font-size: 0.88rem; }
-  
-  .modal { max-height: 92vh; }
-  .modal-img { height: 260px; }
-  .modal-body { padding: 1.2rem 1.4rem; }
-  .modal-title { font-size: 1.2rem; }
-  .modal-actions { flex-direction: column; }
-  .btn-wa, .btn-close { width: 100%; justify-content: center; }
+  .main         { padding: 1.5rem 1.2rem; }
+  .filter-bar   { justify-content: center; }
+  .grid         { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+  .card-body    { padding: 0.75rem; }
+  .card-name    { font-size: 0.88rem; }
 }
