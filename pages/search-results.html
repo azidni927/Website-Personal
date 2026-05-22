@@ -454,7 +454,19 @@
     const BASE = window._PRODUK_BASE || '../assets/img/produk/';
     const emoji = window.getFallbackEmoji ? window.getFallbackEmoji(p.cat) : '🍱';
     const hasBadge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
-    const imgSrc = p.img ? (BASE + p.img) : '../assets/img/produk/foto.jpeg';
+    
+    // Use the product's precise image filename, falling back gracefully if not specified
+    let imgName = p.img || 'foto.jpeg';
+    if (!p.img) {
+      if (p.id && p.id.startsWith('getuk')) {
+        imgName = 'getuk1kg_1.jpeg';
+      } else if (p.cat && p.cat.toLowerCase().includes('getuk')) {
+        imgName = 'getuk1kg_1.jpeg';
+      } else if (p.name && p.name.toLowerCase().includes('getuk')) {
+        imgName = 'getuk1kg_1.jpeg';
+      }
+    }
+    const imgSrc = BASE + imgName;
 
     return `
       <div class="card" onclick="window.openModal('${p.id}')">
