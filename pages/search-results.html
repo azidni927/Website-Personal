@@ -14,10 +14,11 @@
   <link rel="stylesheet" href="../assets/css/global/typography.css">
   <link rel="stylesheet" href="../assets/css/global/utilities.css">
   <link rel="stylesheet" href="../assets/css/layout/navbar.css">
-  <link rel="stylesheet" href="../assets/css/layout/footer.css">
+  <link rel="stylesheet" href="../assets/css/layout/section.css">
   <link rel="stylesheet" href="../assets/css/components/buttons.css">
   <link rel="stylesheet" href="../assets/css/components/search.css">
-  <link rel="stylesheet" href="../assets/css/components/modal.css">
+  <link rel="stylesheet" href="../assets/css/pages/produk.css">
+  <link rel="stylesheet" href="../assets/css/layout/footer.css">
 
   <style>
     /* ============================================================
@@ -150,97 +151,27 @@
     .sr-main {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 2rem 2rem 4rem;
+      padding: 2.2rem 2rem 4rem;
       min-height: 60vh;
     }
 
-    /* ---- Results grid ---- */
-    .sr-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 1.2rem;
+    /* ---- Transition / Entry Animation for Cards ---- */
+    .card {
+      opacity: 0;
+      animation: cardIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-
-    .sr-card {
-      background: white;
-      border: 1px solid var(--kd);
-      border-radius: 4px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      animation: sr-card-in 0.3s ease both;
-    }
-    .sr-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 28px rgba(27,58,45,0.13);
-    }
-
-    @keyframes sr-card-in {
+    @keyframes cardIn {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .sr-card-img {
-      background: var(--kd);
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
-      overflow: hidden;
-      position: relative;
-    }
-    .sr-card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .sr-card-body {
-      padding: 0.9rem 1rem 1rem;
-    }
-    .sr-card-cat {
-      font-size: 0.63rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--g);
-      font-weight: 500;
-      margin-bottom: 0.25rem;
-    }
-    .sr-card-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.98rem;
-      color: var(--h);
-      line-height: 1.3;
-      margin-bottom: 0.35rem;
-    }
-    .sr-card-name mark {
+    /* ---- Highlight search term in catalog names ---- */
+    .card-name mark {
       background: #fff3c4;
       color: #7a4f10;
       border-radius: 2px;
       padding: 0 1px;
       font-style: normal;
-    }
-    .sr-card-desc {
-      font-size: 0.77rem;
-      color: var(--tl);
-      line-height: 1.5;
-      font-weight: 300;
-      margin-bottom: 0.75rem;
-    }
-    .sr-card-action {
-      display: inline-block;
-      font-size: 0.7rem;
-      color: var(--hm);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-weight: 500;
-      border-bottom: 1px solid var(--kd);
-      padding-bottom: 1px;
-      transition: color 0.15s, border-color 0.15s;
-    }
-    .sr-card:hover .sr-card-action {
-      color: var(--h);
-      border-color: var(--h);
     }
 
     /* ---- Empty state ---- */
@@ -326,9 +257,6 @@
       .sr-toolbar { top: 56px; padding: 0.6rem 1rem; }
       .sr-sort { display: none; }
       .sr-main { padding: 1.5rem 1rem 3rem; }
-      .sr-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-      .sr-card-body { padding: 0.7rem 0.75rem 0.85rem; }
-      .sr-card-name { font-size: 0.88rem; }
       .sr-page-header { padding: 2rem 1rem 1.5rem; }
       .sr-page-query { font-size: 1.5rem; }
       .sr-results-bar { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
@@ -400,6 +328,8 @@
           <option value="name-az">Nama A–Z</option>
           <option value="name-za">Nama Z–A</option>
           <option value="cat">Kategori</option>
+          <option value="price-low">Harga Terendah</option>
+          <option value="price-high">Harga Tertinggi</option>
         </select>
       </div>
     </div>
@@ -412,13 +342,13 @@
     </div>
 
     <!-- Grid hasil -->
-    <div class="sr-grid" id="results-grid"></div>
+    <div class="grid" id="results-grid"></div>
 
     <!-- Section "Produk Lainnya" saat hasil < total -->
     <div class="sr-also-section" id="also-section" style="display:none">
       <div class="sr-also-label">Jelajahi Lebih Lanjut</div>
       <div class="sr-also-title">Produk Lainnya</div>
-      <div class="sr-grid" id="also-grid"></div>
+      <div class="grid" id="also-grid"></div>
     </div>
   </div>
 
@@ -483,50 +413,19 @@
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/navbar.js"></script>
   <script src="../assets/js/search.js"></script>
+  <script src="../assets/js/produk-filter.js"></script>
 
   <script>
   /* ============================================================
-     search-results.js — logika halaman hasil pencarian
+     search-results.js — logika halaman hasil pencarian dinamik
      ============================================================ */
-  const ALL_PRODUCTS = [
-    {
-      id: 'getuk1', name: 'Getuk Goreng 1 KG', cat: 'Getuk Goreng', icon: '🍠',
-      desc: 'Getuk goreng asli Sokaraja berbahan singkong pilihan dan gula merah, kemasan 1 KG.',
-      img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg',
-      modal: 'getuk1'
-    },
-    {
-      id: 'getuk2', name: 'Getuk Goreng ½ KG', cat: 'Getuk Goreng', icon: '🍠',
-      desc: 'Pilihan hemat getuk goreng asli Sokaraja, kemasan ½ KG cocok untuk oleh-oleh.',
-      img: null, modal: 'getuk2'
-    },
-    {
-      id: 'nopia1', name: 'Nopia Gula Jawa', cat: 'Nopia', icon: '🟤',
-      desc: 'Nopia khas Banyumas dengan isian gula jawa asli, rasa manis legit yang autentik.',
-      img: null, modal: 'nopia1'
-    },
-    {
-      id: 'nopia2', name: 'Nopia Rasa Coklat', cat: 'Nopia', icon: '🍫',
-      desc: 'Varian nopia dengan isian coklat lembut, digemari semua kalangan.',
-      img: null, modal: 'nopia2'
-    },
-    {
-      id: 'kb1', name: 'Klanting Jagung Bakar', cat: 'Klanting Bumbu', icon: '🌽',
-      desc: 'Klanting singkong dengan bumbu jagung bakar yang gurih dan renyah.',
-      img: null, modal: 'kb1'
-    },
-    {
-      id: 'ko1', name: 'Klanting Ori Besar', cat: 'Klanting Original', icon: '⭕',
-      desc: 'Klanting original ukuran besar, tekstur renyah khas tradisional Sokaraja.',
-      img: null, modal: 'ko1'
-    },
-  ];
+  let ALL_PRODUCTS = [];
 
   /* ---- State ---- */
   let currentQuery   = '';
   let currentCat     = 'all';
   let currentSort    = 'relevance';
-  let filteredResults = [...ALL_PRODUCTS];
+  let filteredResults = [];
 
   /* ---- Highlight helper ---- */
   function hl(text, q) {
@@ -536,97 +435,41 @@
   }
 
   /* ---- Card HTML ---- */
-  function cardHTML(p, q) {
-    const thumb = p.img
-      ? `<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
-      : p.icon;
-    return `
-      <div class="sr-card" onclick="openModal('${p.modal}')">
-        <div class="sr-card-img">${thumb}</div>
-        <div class="sr-card-body">
-          <div class="sr-card-cat">${p.cat}</div>
-          <div class="sr-card-name">${hl(p.name, q)}</div>
-          <div class="sr-card-desc">${p.desc}</div>
-          <span class="sr-card-action">Lihat Detail →</span>
-        </div>
-      </div>`;
-  }
-
-  /* ---- Data modal produk (lengkap) ---- */
-  const MODAL_DATA = {
-    getuk1: {
-      name: 'Getuk Goreng Haji Tohirin 1 KG', cat: 'Getuk Goreng', icon: '🍠',
-      img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg',
-      desc: 'Getuk goreng asli Sokaraja berbahan singkong pilihan dan gula merah alami. Digoreng hingga kecokelatan sempurna dengan cita rasa manis legit yang khas.',
-      specs: [['Berat','1 Kilogram'],['Bahan Utama','Singkong pilihan, gula merah'],['Kategori','Getuk Goreng'],['Asal','Sokaraja, Banyumas']]
-    },
-    getuk2: {
-      name: 'Getuk Goreng Haji Tohirin ½ KG', cat: 'Getuk Goreng', icon: '🍠',
-      img: null,
-      desc: 'Pilihan hemat getuk goreng asli Sokaraja dalam kemasan ½ KG. Cocok untuk oleh-oleh atau dinikmati sendiri.',
-      specs: [['Berat','½ Kilogram'],['Bahan Utama','Singkong pilihan, gula merah'],['Kategori','Getuk Goreng'],['Asal','Sokaraja, Banyumas']]
-    },
-    nopia1: {
-      name: 'Nopia Gula Jawa', cat: 'Nopia', icon: '🟤',
-      img: null,
-      desc: 'Nopia khas Banyumas dengan isian gula jawa asli. Kulit tipis renyah dengan isian manis legit yang autentik.',
-      specs: [['Rasa','Gula Jawa'],['Kategori','Nopia'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
-    },
-    nopia2: {
-      name: 'Nopia Rasa Coklat', cat: 'Nopia', icon: '🍫',
-      img: null,
-      desc: 'Varian nopia dengan isian coklat lembut. Perpaduan kulit renyah dan coklat manis yang digemari semua kalangan.',
-      specs: [['Rasa','Coklat'],['Kategori','Nopia'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
-    },
-    kb1: {
-      name: 'Klanting Jagung Bakar', cat: 'Klanting Bumbu', icon: '🌽',
-      img: null,
-      desc: 'Klanting singkong dengan bumbu jagung bakar yang gurih dan renyah. Camilan khas Sokaraja dengan cita rasa modern.',
-      specs: [['Rasa','Jagung Bakar'],['Kategori','Klanting Bumbu'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
-    },
-    ko1: {
-      name: 'Klanting Original Besar', cat: 'Klanting Original', icon: '⭕',
-      img: null,
-      desc: 'Klanting original ukuran besar dengan tekstur renyah khas tradisional Sokaraja. Dibuat dari singkong pilihan tanpa bahan pengawet.',
-      specs: [['Ukuran','Besar'],['Kategori','Klanting Original'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
-    },
+  const SUB_TAGLINES = {
+    getuk1: 'Resep Asli Sokaraja',
+    getuk2: 'Resep Asli Sokaraja',
+    nopia1: 'Isian Gula Merah',
+    nopia2: 'Isian Coklat Lumer',
+    nopia3: 'Durian Asli',
+    kb1: 'Pecinta Jagung',
+    kb2: 'Pedas Pas',
+    kb3: 'Gurih Bawang',
+    kb4: 'Keju Gurih',
+    ko1: 'Kepingan Besar',
+    ko2: 'Kepingan Kecil',
+    ko3: 'Warna Warni'
   };
 
-  /* ---- Buka modal ---- */
-  function openModal(id) {
-    const p = MODAL_DATA[id];
-    if (!p) return;
+  function cardHTML(p, q) {
+    const BASE = window._PRODUK_BASE || '../assets/img/produk/';
+    const emoji = window.getFallbackEmoji ? window.getFallbackEmoji(p.cat) : '🍱';
+    const hasBadge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
+    const imgSrc = p.img ? (BASE + p.img) : '../assets/img/produk/foto.jpeg';
 
-    const imgEl = document.getElementById('m-img');
-    imgEl.innerHTML = p.img
-      ? '<img src="' + p.img + '" alt="' + p.name + '">'
-      : '<div class="moji">' + p.icon + '</div>';
-
-    document.getElementById('m-cat').textContent   = p.cat;
-    document.getElementById('m-title').textContent = p.name;
-    document.getElementById('m-desc').textContent  = p.desc;
-    document.getElementById('m-specs').innerHTML   = p.specs
-      .map(function(row) { return '<tr><td>' + row[0] + '</td><td>' + row[1] + '</td></tr>'; })
-      .join('');
-
-    const waMsg = encodeURIComponent(
-      'Halo, saya ingin memesan *' + p.name + '*. Mohon info ketersediaan dan harganya. Terima kasih!'
-    );
-    document.getElementById('m-wa-btn').onclick = function() {
-      window.open('https://wa.me/628112615272?text=' + waMsg, '_blank');
-    };
-
-    document.getElementById('overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    document.getElementById('overlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function closeOverlayOut(e) {
-    if (e.target === document.getElementById('overlay')) closeModal();
+    return `
+      <div class="card" onclick="window.openModal('${p.id}')">
+        <div class="card-img">
+          <img src="${imgSrc}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src='../assets/img/produk/foto.jpeg'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
+          <div class="card-emoji" style="display: none;">${emoji}</div>
+          ${hasBadge}
+        </div>
+        <div class="card-body">
+          <div class="card-cat">${p.cat}</div>
+          <div class="card-name">${hl(p.name, q)}</div>
+          <div class="card-sub">${SUB_TAGLINES[p.id] || (p.desc ? p.desc.substring(0, 48) + '...' : '')}</div>
+          <span class="card-cta">${p.price}</span>
+        </div>
+      </div>`;
   }
 
   /* ---- Filter by category ---- */
@@ -667,9 +510,25 @@
     }
 
     /* 3. Sort */
-    if (currentSort === 'name-az') res.sort((a,b) => a.name.localeCompare(b.name));
-    else if (currentSort === 'name-za') res.sort((a,b) => b.name.localeCompare(a.name));
-    else if (currentSort === 'cat') res.sort((a,b) => a.cat.localeCompare(b.cat));
+    if (currentSort === 'name-az') {
+      res.sort((a,b) => a.name.localeCompare(b.name));
+    } else if (currentSort === 'name-za') {
+      res.sort((a,b) => b.name.localeCompare(a.name));
+    } else if (currentSort === 'cat') {
+      res.sort((a,b) => a.cat.localeCompare(b.cat));
+    } else if (currentSort === 'price-low') {
+      res.sort((a, b) => {
+        const numA = parseFloat(a.price.replace(/[^\d]/g, '')) || 0;
+        const numB = parseFloat(b.price.replace(/[^\d]/g, '')) || 0;
+        return numA - numB;
+      });
+    } else if (currentSort === 'price-high') {
+      res.sort((a, b) => {
+        const numA = parseFloat(a.price.replace(/[^\d]/g, '')) || 0;
+        const numB = parseFloat(b.price.replace(/[^\d]/g, '')) || 0;
+        return numB - numA;
+      });
+    }
 
     filteredResults = res;
 
@@ -717,7 +576,7 @@
     grid.innerHTML = res.map((p, i) => {
       const card = cardHTML(p, q);
       /* Tambah animasi delay stagger */
-      return card.replace('class="sr-card"', `class="sr-card" style="animation-delay:${i * 0.04}s"`);
+      return card.replace('class="card"', `class="card" style="animation-delay:${i * 0.04}s"`);
     }).join('');
 
     /* ---- "Produk Lainnya" saat ada pencarian & hasil < total ---- */
@@ -727,7 +586,7 @@
 
     if (q && others.length > 0) {
       alsoGrid.innerHTML = others.map((p, i) => {
-        return cardHTML(p, '').replace('class="sr-card"', `class="sr-card" style="animation-delay:${i * 0.04}s"`);
+        return cardHTML(p, '').replace('class="card"', `class="card" style="animation-delay:${i * 0.04}s"`);
       }).join('');
       alsoSection.style.display = 'block';
     } else {
@@ -750,6 +609,16 @@
 
   /* ---- Init ---- */
   document.addEventListener('DOMContentLoaded', function () {
+    if (window.prods) {
+      ALL_PRODUCTS = Object.keys(window.prods).map(id => {
+        return {
+          id: id,
+          modal: id,
+          ...window.prods[id]
+        };
+      });
+    }
+
     currentQuery = getQueryParam('q').trim();
 
     /* Update judul tab browser */
