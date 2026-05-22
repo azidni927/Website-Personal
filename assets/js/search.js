@@ -77,18 +77,22 @@ function getBase() {
   return inPages ? '../assets/img/produk/' : 'assets/img/produk/';
 }
 
-  /* ---- Render thumbnail dengan foto produk ---- */
-  function getThumbHTML(p) {
-    const base   = getBase();
-    const imgSrc = base + (p.img || 'foto.jpeg');
-    const fallbackSrc = base + 'foto.jpeg';
-    const emoji  = p.icon || '🍱';
+ // SESUDAH — getThumbHTML yang fixed
+function getThumbHTML(p) {
+  const base  = getBase();
+  const imgSrc = base + (p.img || 'foto.jpeg');
+  const emoji  = p.icon || '🍱';
 
-    return `<div class="sr-thumb">
-      <img src="${imgSrc}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackSrc}'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; };">
-      <div class="sr-thumb-fallback" aria-hidden="true">${emoji}</div>
-    </div>`;
-  }
+  return `<div class="sr-thumb">
+    <img
+      src="${imgSrc}"
+      alt="${p.name}"
+      loading="lazy"
+      onerror="this.style.display='none'; var fb=this.nextElementSibling; if(fb) fb.style.display='flex';"
+    >
+    <div class="sr-thumb-fallback" aria-hidden="true" style="display:none">${emoji}</div>
+  </div>`;
+}
 
   /* ---- renderDefault (state awal / kosong) ---- */
   function renderDefault() {
