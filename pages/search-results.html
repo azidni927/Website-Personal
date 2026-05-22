@@ -1,765 +1,209 @@
 <!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hasil Pencarian - Haji Tohirin 6A</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  <!-- CSS dari project (path relatif dari folder pages/) -->
-  <link rel="stylesheet" href="../assets/css/global/reset.css">
-  <link rel="stylesheet" href="../assets/css/global/variables.css">
-  <link rel="stylesheet" href="../assets/css/global/typography.css">
-  <link rel="stylesheet" href="../assets/css/global/utilities.css">
-  <link rel="stylesheet" href="../assets/css/layout/navbar.css">
-  <link rel="stylesheet" href="../assets/css/layout/footer.css">
-  <link rel="stylesheet" href="../assets/css/components/buttons.css">
-  <link rel="stylesheet" href="../assets/css/components/search.css">
-  <link rel="stylesheet" href="../assets/css/components/modal.css">
-
-  <style>
-    /* ============================================================
-       search-results.css — inline untuk kemudahan deployment
-       ============================================================ */
-
-    /* ---- Page header ---- */
-    .sr-page-header {
-      background: var(--h);
-      padding: 2.5rem 2rem 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .sr-page-header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .sr-page-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--g);
-      font-weight: 500;
-      margin-bottom: 0.4rem;
-    }
-    .sr-page-query {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.9rem;
-      color: var(--k);
-      line-height: 1.2;
-      margin-bottom: 0.4rem;
-    }
-    .sr-page-query em {
-      color: var(--g);
-      font-style: italic;
-    }
-    .sr-page-count {
-      font-size: 0.82rem;
-      color: rgba(244,239,226,0.45);
-      font-weight: 300;
-    }
-    .sr-page-count strong {
-      color: rgba(244,239,226,0.75);
-      font-weight: 500;
-    }
-
-    /* ---- Toolbar (filter + sort) ---- */
-    .sr-toolbar {
-      background: var(--k);
-      border-bottom: 1px solid var(--kd);
-      padding: 0.75rem 2rem;
-      position: sticky;
-      top: 60px;
-      z-index: 50;
-    }
-    .sr-toolbar-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-    .sr-filter-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--h);
-      color: var(--k);
-      border: none;
-      padding: 0.45rem 1rem;
-      border-radius: 2px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      letter-spacing: 0.04em;
-      transition: background 0.2s;
-    }
-    .sr-filter-btn:hover { background: var(--hm); }
-    .sr-filter-btn svg { flex-shrink: 0; }
-
-    .sr-cat-filter {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      flex: 1;
-    }
-    .sr-cat-pill {
-      background: none;
-      border: 1.5px solid var(--kd);
-      color: var(--tm);
-      padding: 0.38rem 0.9rem;
-      border-radius: 99px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: all 0.18s;
-      letter-spacing: 0.03em;
-    }
-    .sr-cat-pill:hover,
-    .sr-cat-pill.active {
-      background: var(--h);
-      border-color: var(--h);
-      color: var(--k);
-    }
-
-    .sr-sort {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.78rem;
-      color: var(--tl);
-    }
-    .sr-sort select {
-      border: 1.5px solid var(--kd);
-      background: white;
-      color: var(--h);
-      padding: 0.38rem 0.7rem;
-      border-radius: 2px;
-      font-size: 0.78rem;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      cursor: pointer;
-      outline: none;
-    }
-
-    /* ---- Main content ---- */
-    .sr-main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 2rem 4rem;
-      min-height: 60vh;
-    }
-
-    /* ---- Results grid ---- */
-    .sr-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 1.2rem;
-    }
-
-    .sr-card {
-      background: white;
-      border: 1px solid var(--kd);
-      border-radius: 4px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      animation: sr-card-in 0.3s ease both;
-    }
-    .sr-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 28px rgba(27,58,45,0.13);
-    }
-
-    @keyframes sr-card-in {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .sr-card-img {
-      background: var(--kd);
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
-      overflow: hidden;
-      position: relative;
-    }
-    .sr-card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .sr-card-body {
-      padding: 0.9rem 1rem 1rem;
-    }
-    .sr-card-cat {
-      font-size: 0.63rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--g);
-      font-weight: 500;
-      margin-bottom: 0.25rem;
-    }
-    .sr-card-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.98rem;
-      color: var(--h);
-      line-height: 1.3;
-      margin-bottom: 0.35rem;
-    }
-    .sr-card-name mark {
-      background: #fff3c4;
-      color: #7a4f10;
-      border-radius: 2px;
-      padding: 0 1px;
-      font-style: normal;
-    }
-    .sr-card-desc {
-      font-size: 0.77rem;
-      color: var(--tl);
-      line-height: 1.5;
-      font-weight: 300;
-      margin-bottom: 0.75rem;
-    }
-    .sr-card-action {
-      display: inline-block;
-      font-size: 0.7rem;
-      color: var(--hm);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-weight: 500;
-      border-bottom: 1px solid var(--kd);
-      padding-bottom: 1px;
-      transition: color 0.15s, border-color 0.15s;
-    }
-    .sr-card:hover .sr-card-action {
-      color: var(--h);
-      border-color: var(--h);
-    }
-
-    /* ---- Empty state ---- */
-    .sr-empty-page {
-      text-align: center;
-      padding: 5rem 2rem;
-    }
-    .sr-empty-page-icon {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      opacity: 0.5;
-    }
-    .sr-empty-page h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--h);
-      margin-bottom: 0.5rem;
-    }
-    .sr-empty-page p {
-      font-size: 0.88rem;
-      color: var(--tl);
-      margin-bottom: 1.5rem;
-    }
-    .sr-popular-suggest {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .sr-suggest-pill {
-      background: var(--kd);
-      color: var(--h);
-      border: none;
-      padding: 0.4rem 1rem;
-      border-radius: 99px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: background 0.15s;
-    }
-    .sr-suggest-pill:hover { background: var(--km); }
-
-    /* ---- "Mungkin maksud kamu" section ---- */
-    .sr-also-section {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--kd);
-    }
-    .sr-also-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--g);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-    .sr-also-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--h);
-      margin-bottom: 1.5rem;
-    }
-
-    /* ---- Hasil count bar ---- */
-    .sr-results-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.2rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--kd);
-    }
-    .sr-results-text {
-      font-size: 0.82rem;
-      color: var(--tl);
-    }
-    .sr-results-text strong { color: var(--h); }
-
-    /* ---- Mobile ---- */
-    @media (max-width: 768px) {
-      .sr-toolbar { top: 56px; padding: 0.6rem 1rem; }
-      .sr-sort { display: none; }
-      .sr-main { padding: 1.5rem 1rem 3rem; }
-      .sr-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-      .sr-card-body { padding: 0.7rem 0.75rem 0.85rem; }
-      .sr-card-name { font-size: 0.88rem; }
-      .sr-page-header { padding: 2rem 1rem 1.5rem; }
-      .sr-page-query { font-size: 1.5rem; }
-      .sr-results-bar { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-    }
-
-    @media (max-width: 480px) {
-      .sr-cat-filter { display: none; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- NAVBAR (sama persis dengan halaman lain) -->
-  <nav>
-    <div class="nav-left">
-      <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <a href="../index.html" class="nav-logo-centered">
-      <div class="nav-logo">
-        <img src="../assets/img/logo.png" alt="Logo Getuk Goreng Haji Tohirin 6A">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hasil Pencarian - Haji Tohirin 6A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/global/reset.css">
+    <link rel="stylesheet" href="../assets/css/global/variables.css">
+    <link rel="stylesheet" href="../assets/css/global/typography.css">
+    <link rel="stylesheet" href="../assets/css/global/utilities.css">
+    <link rel="stylesheet" href="../assets/css/layout/navbar.css">
+    <link rel="stylesheet" href="../assets/css/layout/section.css">
+    <link rel="stylesheet" href="../assets/css/components/buttons.css">
+    <link rel="stylesheet" href="../assets/css/components/search.css">
+    <link rel="stylesheet" href="../assets/css/pages/produk.css">
+    <link rel="stylesheet" href="../assets/css/layout/footer.css">
+    <style>
+      .btn-back-link {
+        font-size: 0.88rem; 
+        color: var(--g); 
+        text-decoration: none; 
+        font-weight: 500; 
+        display: inline-flex; 
+        align-items: center; 
+        gap: 8px;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      .btn-back-link:hover {
+        color: var(--gl);
+        transform: translateX(-3px);
+      }
+      .search-results-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .query-text {
+        font-family: 'Playfair Display', serif;
+        color: var(--h);
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-left">
+        <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-    </a>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="profil.html">Profil</a></li>
-        <li><a href="produk.html">Produk</a></li>
-        <li><a href="galeri.html">Galeri</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="kontak.html">Kontak</a></li>
-      </ul>
-      <button class="nav-search-btn" aria-label="Search" onclick="openSearch()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </button>
-    </div>
-    <div id="search-overlay"></div>
-  </nav>
-
-  <!-- PAGE HEADER -->
-  <div class="sr-page-header">
-    <div class="sr-page-header-inner">
-      <div class="sr-page-label">Hasil Pencarian</div>
-      <div class="sr-page-query" id="page-query-title">Semua Produk</div>
-      <div class="sr-page-count" id="page-query-count"></div>
-    </div>
-  </div>
-
-  <!-- TOOLBAR -->
-  <div class="sr-toolbar">
-    <div class="sr-toolbar-inner">
-      <button class="sr-filter-btn" onclick="openSearch()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        Cari Lagi
-      </button>
-      <div class="sr-cat-filter" id="cat-filters">
-        <button class="sr-cat-pill active" data-cat="all" onclick="filterBycat(this,'all')">Semua</button>
-        <button class="sr-cat-pill" data-cat="Getuk Goreng" onclick="filterBycat(this,'Getuk Goreng')">Getuk Goreng</button>
-        <button class="sr-cat-pill" data-cat="Nopia" onclick="filterBycat(this,'Nopia')">Nopia</button>
-        <button class="sr-cat-pill" data-cat="Klanting Bumbu" onclick="filterBycat(this,'Klanting Bumbu')">Klanting Bumbu</button>
-        <button class="sr-cat-pill" data-cat="Klanting Original" onclick="filterBycat(this,'Klanting Original')">Klanting Original</button>
+      <a href="../index.html" class="nav-logo-centered">
+        <div class="nav-logo">
+          <img src="../assets/img/logo.png" alt="Logo Getuk Goreng Haji Tohirin 6A">
+        </div>
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="profil.html">Profil</a></li>
+          <li><a href="produk.html">Produk</a></li>
+          <li><a href="galeri.html">Galeri</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+        <button class="nav-search-btn" aria-label="Search" onclick="openSearch()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
       </div>
-      <div class="sr-sort">
-        <span>Urutkan:</span>
-        <select id="sort-select" onchange="applySort()">
-          <option value="relevance">Relevansi</option>
-          <option value="name-az">Nama A–Z</option>
-          <option value="name-za">Nama Z–A</option>
-          <option value="cat">Kategori</option>
-        </select>
+      <!-- SEARCH OVERLAY -->
+      <div id="search-overlay"></div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="hero-badge">Pencarian Produk</div>
+      <h1>Hasil Pencarian</h1>
+      <p>Menampilkan hasil pencarian produk yang tersedia di Toko Getuk Goreng Haji Tohirin 6A.</p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+      <div class="search-results-info">
+        <div class="count-text">
+          Menampilkan <strong id="results-count">0</strong> produk untuk "<span id="query-highlight" class="query-text"></span>"
+        </div>
+        <a href="produk.html" class="btn-back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Kembali ke Katalog
+        </a>
       </div>
-    </div>
-  </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="sr-main">
-    <div class="sr-results-bar">
-      <div class="sr-results-text" id="results-bar-text"></div>
-    </div>
-
-    <!-- Grid hasil -->
-    <div class="sr-grid" id="results-grid"></div>
-
-    <!-- Section "Produk Lainnya" saat hasil < total -->
-    <div class="sr-also-section" id="also-section" style="display:none">
-      <div class="sr-also-label">Jelajahi Lebih Lanjut</div>
-      <div class="sr-also-title">Produk Lainnya</div>
-      <div class="sr-grid" id="also-grid"></div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-brand-name">Haji Tohirin <span>6A</span></div>
-          <p>Oleh-oleh khas Sokaraja yang autentik sejak generasi pertama.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Produk</h4>
-          <ul>
-            <li><a href="produk.html">Getuk Goreng</a></li>
-            <li><a href="produk.html">Nopia</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Informasi</h4>
-          <ul>
-            <li><a href="profil.html">Profil Toko</a></li>
-            <li><a href="kontak.html">Hubungi Kami</a></li>
-          </ul>
-        </div>
+      <div class="grid" id="search-grid">
+        <!-- Dynamic search results loaded here -->
       </div>
-      <div class="footer-bottom">
-        <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
-        <div class="social-links">
-          <a href="#">Instagram</a>
-          <a href="#">WhatsApp</a>
-        </div>
-      </div>
+      <div class="empty" id="search-empty" style="display: none;">Tidak ada produk yang cocok dengan pencarian Anda.</div>
     </div>
-  </footer>
 
-
-  <!-- MODAL -->
-  <div class="overlay" id="overlay" onclick="closeOverlayOut(event)">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-img" id="m-img"></div>
-      <div class="modal-body">
-        <div class="modal-cat" id="m-cat"></div>
-        <h2 class="modal-title" id="m-title"></h2>
-        <div class="modal-desc" id="m-desc"></div>
-        <div class="specs">
-          <table id="m-specs"></table>
-        </div>
-        <div class="modal-actions">
-          <button class="btn-wa" id="m-wa-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Pesan via WhatsApp
-          </button>
-          <button class="btn-close" onclick="closeModal()">Tutup</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- JS dari project -->
-  <script src="../assets/js/main.js"></script>
-  <script src="../assets/js/navbar.js"></script>
-  <script src="../assets/js/search.js"></script>
-
-  <script>
-  /* ============================================================
-     search-results.js — logika halaman hasil pencarian
-     ============================================================ */
-  const ALL_PRODUCTS = [
-    {
-      id: 'getuk1', name: 'Getuk Goreng 1 KG', cat: 'Getuk Goreng', icon: '🍠',
-      desc: 'Getuk goreng asli Sokaraja berbahan singkong pilihan dan gula merah, kemasan 1 KG.',
-      img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg',
-      modal: 'getuk1'
-    },
-    {
-      id: 'getuk2', name: 'Getuk Goreng ½ KG', cat: 'Getuk Goreng', icon: '🍠',
-      desc: 'Pilihan hemat getuk goreng asli Sokaraja, kemasan ½ KG cocok untuk oleh-oleh.',
-      img: null, modal: 'getuk2'
-    },
-    {
-      id: 'nopia1', name: 'Nopia Gula Jawa', cat: 'Nopia', icon: '🟤',
-      desc: 'Nopia khas Banyumas dengan isian gula jawa asli, rasa manis legit yang autentik.',
-      img: null, modal: 'nopia1'
-    },
-    {
-      id: 'nopia2', name: 'Nopia Rasa Coklat', cat: 'Nopia', icon: '🍫',
-      desc: 'Varian nopia dengan isian coklat lembut, digemari semua kalangan.',
-      img: null, modal: 'nopia2'
-    },
-    {
-      id: 'kb1', name: 'Klanting Jagung Bakar', cat: 'Klanting Bumbu', icon: '🌽',
-      desc: 'Klanting singkong dengan bumbu jagung bakar yang gurih dan renyah.',
-      img: null, modal: 'kb1'
-    },
-    {
-      id: 'ko1', name: 'Klanting Ori Besar', cat: 'Klanting Original', icon: '⭕',
-      desc: 'Klanting original ukuran besar, tekstur renyah khas tradisional Sokaraja.',
-      img: null, modal: 'ko1'
-    },
-  ];
-
-  /* ---- State ---- */
-  let currentQuery   = '';
-  let currentCat     = 'all';
-  let currentSort    = 'relevance';
-  let filteredResults = [...ALL_PRODUCTS];
-
-  /* ---- Highlight helper ---- */
-  function hl(text, q) {
-    if (!q) return text;
-    const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-    return text.replace(re, '<mark>$1</mark>');
-  }
-
-  /* ---- Card HTML ---- */
-  function cardHTML(p, q) {
-    const thumb = p.img
-      ? `<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
-      : p.icon;
-    return `
-      <div class="sr-card" onclick="openModal('${p.modal}')">
-        <div class="sr-card-img">${thumb}</div>
-        <div class="sr-card-body">
-          <div class="sr-card-cat">${p.cat}</div>
-          <div class="sr-card-name">${hl(p.name, q)}</div>
-          <div class="sr-card-desc">${p.desc}</div>
-          <span class="sr-card-action">Lihat Detail →</span>
-        </div>
-      </div>`;
-  }
-
-  /* ---- Data modal produk (lengkap) ---- */
-  const MODAL_DATA = {
-    getuk1: {
-      name: 'Getuk Goreng Haji Tohirin 1 KG', cat: 'Getuk Goreng', icon: '🍠',
-      img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg',
-      desc: 'Getuk goreng asli Sokaraja berbahan singkong pilihan dan gula merah alami. Digoreng hingga kecokelatan sempurna dengan cita rasa manis legit yang khas.',
-      specs: [['Berat','1 Kilogram'],['Bahan Utama','Singkong pilihan, gula merah'],['Kategori','Getuk Goreng'],['Asal','Sokaraja, Banyumas']]
-    },
-    getuk2: {
-      name: 'Getuk Goreng Haji Tohirin ½ KG', cat: 'Getuk Goreng', icon: '🍠',
-      img: null,
-      desc: 'Pilihan hemat getuk goreng asli Sokaraja dalam kemasan ½ KG. Cocok untuk oleh-oleh atau dinikmati sendiri.',
-      specs: [['Berat','½ Kilogram'],['Bahan Utama','Singkong pilihan, gula merah'],['Kategori','Getuk Goreng'],['Asal','Sokaraja, Banyumas']]
-    },
-    nopia1: {
-      name: 'Nopia Gula Jawa', cat: 'Nopia', icon: '🟤',
-      img: null,
-      desc: 'Nopia khas Banyumas dengan isian gula jawa asli. Kulit tipis renyah dengan isian manis legit yang autentik.',
-      specs: [['Rasa','Gula Jawa'],['Kategori','Nopia'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
-    },
-    nopia2: {
-      name: 'Nopia Rasa Coklat', cat: 'Nopia', icon: '🍫',
-      img: null,
-      desc: 'Varian nopia dengan isian coklat lembut. Perpaduan kulit renyah dan coklat manis yang digemari semua kalangan.',
-      specs: [['Rasa','Coklat'],['Kategori','Nopia'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
-    },
-    kb1: {
-      name: 'Klanting Jagung Bakar', cat: 'Klanting Bumbu', icon: '🌽',
-      img: null,
-      desc: 'Klanting singkong dengan bumbu jagung bakar yang gurih dan renyah. Camilan khas Sokaraja dengan cita rasa modern.',
-      specs: [['Rasa','Jagung Bakar'],['Kategori','Klanting Bumbu'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
-    },
-    ko1: {
-      name: 'Klanting Original Besar', cat: 'Klanting Original', icon: '⭕',
-      img: null,
-      desc: 'Klanting original ukuran besar dengan tekstur renyah khas tradisional Sokaraja. Dibuat dari singkong pilihan tanpa bahan pengawet.',
-      specs: [['Ukuran','Besar'],['Kategori','Klanting Original'],['Tekstur','Renyah'],['Asal','Sokaraja, Banyumas']]
-    },
-  };
-
-  /* ---- Buka modal ---- */
-  function openModal(id) {
-    const p = MODAL_DATA[id];
-    if (!p) return;
-
-    const imgEl = document.getElementById('m-img');
-    imgEl.innerHTML = p.img
-      ? '<img src="' + p.img + '" alt="' + p.name + '">'
-      : '<div class="moji">' + p.icon + '</div>';
-
-    document.getElementById('m-cat').textContent   = p.cat;
-    document.getElementById('m-title').textContent = p.name;
-    document.getElementById('m-desc').textContent  = p.desc;
-    document.getElementById('m-specs').innerHTML   = p.specs
-      .map(function(row) { return '<tr><td>' + row[0] + '</td><td>' + row[1] + '</td></tr>'; })
-      .join('');
-
-    const waMsg = encodeURIComponent(
-      'Halo, saya ingin memesan *' + p.name + '*. Mohon info ketersediaan dan harganya. Terima kasih!'
-    );
-    document.getElementById('m-wa-btn').onclick = function() {
-      window.open('https://wa.me/628112615272?text=' + waMsg, '_blank');
-    };
-
-    document.getElementById('overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    document.getElementById('overlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function closeOverlayOut(e) {
-    if (e.target === document.getElementById('overlay')) closeModal();
-  }
-
-  /* ---- Filter by category ---- */
-  function filterBycat(el, cat) {
-    document.querySelectorAll('.sr-cat-pill').forEach(b => b.classList.remove('active'));
-    el.classList.add('active');
-    currentCat = cat;
-    renderPage();
-  }
-
-  /* ---- Sort ---- */
-  function applySort() {
-    currentSort = document.getElementById('sort-select').value;
-    renderPage();
-  }
-
-  /* ---- Search dari query string ---- */
-  function getQueryParam(key) {
-    return new URLSearchParams(window.location.search).get(key) || '';
-  }
-
-  /* ---- Main render ---- */
-  function renderPage() {
-    const q = currentQuery;
-
-    /* 1. Filter by search query */
-    let res = q
-      ? ALL_PRODUCTS.filter(p =>
-          p.name.toLowerCase().includes(q.toLowerCase()) ||
-          p.cat.toLowerCase().includes(q.toLowerCase()) ||
-          p.desc.toLowerCase().includes(q.toLowerCase())
-        )
-      : [...ALL_PRODUCTS];
-
-    /* 2. Filter by category pill */
-    if (currentCat !== 'all') {
-      res = res.filter(p => p.cat === currentCat);
-    }
-
-    /* 3. Sort */
-    if (currentSort === 'name-az') res.sort((a,b) => a.name.localeCompare(b.name));
-    else if (currentSort === 'name-za') res.sort((a,b) => b.name.localeCompare(a.name));
-    else if (currentSort === 'cat') res.sort((a,b) => a.cat.localeCompare(b.cat));
-
-    filteredResults = res;
-
-    /* ---- Update header ---- */
-    const titleEl = document.getElementById('page-query-title');
-    const countEl = document.getElementById('page-query-count');
-    if (q) {
-      titleEl.innerHTML = `"<em>${q}</em>"`;
-      countEl.innerHTML = res.length
-        ? `Ditemukan <strong>${res.length} produk</strong>`
-        : 'Tidak ada produk yang cocok';
-    } else {
-      titleEl.textContent = 'Semua Produk';
-      countEl.innerHTML = `Menampilkan <strong>${res.length} produk</strong>`;
-    }
-
-    /* ---- Results bar ---- */
-    const barEl = document.getElementById('results-bar-text');
-    if (currentCat !== 'all') {
-      barEl.innerHTML = `Kategori: <strong>${currentCat}</strong> — ${res.length} produk`;
-    } else if (q) {
-      barEl.innerHTML = `Hasil untuk <strong>"${q}"</strong>: ${res.length} produk`;
-    } else {
-      barEl.innerHTML = `Semua produk: <strong>${res.length}</strong>`;
-    }
-
-    /* ---- Render grid ---- */
-    const grid = document.getElementById('results-grid');
-    if (res.length === 0) {
-      grid.innerHTML = `
-        <div class="sr-empty-page" style="grid-column:1/-1">
-          <div class="sr-empty-page-icon">🔍</div>
-          <h2>Tidak ditemukan</h2>
-          <p>Tidak ada produk untuk "<strong>${q}</strong>".<br>Coba kata kunci atau kategori lain.</p>
-          <div class="sr-popular-suggest">
-            <button class="sr-suggest-pill" onclick="searchFor('getuk')">Getuk Goreng</button>
-            <button class="sr-suggest-pill" onclick="searchFor('nopia')">Nopia</button>
-            <button class="sr-suggest-pill" onclick="searchFor('klanting')">Klanting</button>
+    <!-- MODAL OVERLAY -->
+    <div class="overlay" id="overlay" onclick="closeOverlayOut(event)">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div class="modal-img" id="m-img"></div>
+        <div class="modal-body">
+          <div class="modal-cat" id="m-cat"></div>
+          <h2 class="modal-title" id="m-title"></h2>
+          <div class="modal-desc" id="m-desc"></div>
+          <div class="specs">
+            <table id="m-specs"></table>
           </div>
-        </div>`;
-      document.getElementById('also-section').style.display = 'none';
-      return;
-    }
+          <div class="modal-actions">
+            <button class="btn-wa" id="m-wa-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pesan via WhatsApp
+            </button>
+            <button class="btn-close" onclick="closeModal()">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    grid.innerHTML = res.map((p, i) => {
-      const card = cardHTML(p, q);
-      /* Tambah animasi delay stagger */
-      return card.replace('class="sr-card"', `class="sr-card" style="animation-delay:${i * 0.04}s"`);
-    }).join('');
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-bottom">
+          <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
+        </div>
+      </div>
+    </footer>
 
-    /* ---- "Produk Lainnya" saat ada pencarian & hasil < total ---- */
-    const alsoSection = document.getElementById('also-section');
-    const alsoGrid    = document.getElementById('also-grid');
-    const others = ALL_PRODUCTS.filter(p => !res.find(r => r.id === p.id));
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/produk-filter.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('q') || '';
+        const queryClean = query.trim().toLowerCase();
+        
+        const highlightEl = document.getElementById('query-highlight');
+        if (highlightEl) {
+          highlightEl.textContent = query || 'Semua Produk';
+        }
 
-    if (q && others.length > 0) {
-      alsoGrid.innerHTML = others.map((p, i) => {
-        return cardHTML(p, '').replace('class="sr-card"', `class="sr-card" style="animation-delay:${i * 0.04}s"`);
-      }).join('');
-      alsoSection.style.display = 'block';
-    } else {
-      alsoSection.style.display = 'none';
-    }
-  }
+        const gridEl = document.getElementById('search-grid');
+        const countEl = document.getElementById('results-count');
+        const emptyEl = document.getElementById('search-empty');
 
-  /* ---- Suggest pill click ---- */
-  function searchFor(q) {
-    currentQuery = q;
-    currentCat   = 'all';
-    document.querySelectorAll('.sr-cat-pill').forEach(b => b.classList.remove('active'));
-    document.querySelector('[data-cat="all"]').classList.add('active');
-    /* Update URL tanpa reload */
-    const url = new URL(window.location);
-    url.searchParams.set('q', q);
-    window.history.replaceState({}, '', url);
-    renderPage();
-  }
+        // Search products in global 'prods' object from produk-filter.js
+        if (typeof prods !== 'undefined') {
+          const matchedIds = Object.keys(prods).filter(id => {
+            const p = prods[id];
+            return p.name.toLowerCase().includes(queryClean) || 
+                   p.cat.toLowerCase().includes(queryClean) ||
+                   (p.desc && p.desc.toLowerCase().includes(queryClean));
+          });
 
-  /* ---- Init ---- */
-  document.addEventListener('DOMContentLoaded', function () {
-    currentQuery = getQueryParam('q').trim();
+          if (matchedIds.length === 0) {
+            if (gridEl) gridEl.innerHTML = '';
+            if (countEl) countEl.textContent = '0';
+            if (emptyEl) emptyEl.style.display = 'block';
+          } else {
+            if (emptyEl) emptyEl.style.display = 'none';
+            if (countEl) countEl.textContent = matchedIds.length;
 
-    /* Update judul tab browser */
-    if (currentQuery) {
-      document.title = `"${currentQuery}" — Haji Tohirin 6A`;
-    }
+            const BASE = window._PRODUK_BASE || '../assets/img/produk/';
 
-    renderPage();
-  });
-  </script>
+            const cardsHTML = matchedIds.map(id => {
+              const p = prods[id];
+              const emoji = getFallbackEmoji(p.cat);
+              const badgeHTML = p.badge 
+                ? `<span class="card-badge">${p.badge}</span>` 
+                : '';
 
-</body>
+              return `
+                <div class="card" data-cat="${p.cat.toLowerCase().replace(' ', '-')}" onclick="openModal('${id}')">
+                  <div class="card-img">
+                    <img src="../assets/img/produk/foto.jpeg" alt="${p.name}" referrerPolicy="no-referrer" onerror="this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
+                    <div class="card-emoji" style="display: none;">${emoji}</div>
+                    ${badgeHTML}
+                  </div>
+                  <div class="card-body">
+                    <div class="card-cat">${p.cat}</div>
+                    <div class="card-name">${p.name}</div>
+                    <div class="card-sub">${p.desc ? p.desc.substring(0, 45) + '...' : 'Pilihan terbaik'}</div>
+                    <span class="card-cta">${p.price}</span>
+                  </div>
+                </div>
+              `;
+            }).join('');
+
+            if (gridEl) gridEl.innerHTML = cardsHTML;
+          }
+        } else {
+          console.error("Data produk 'prods' tidak ditemukan.");
+          if (emptyEl) {
+            emptyEl.textContent = "Terjadi kesalahan loading data produk.";
+            emptyEl.style.display = 'block';
+          }
+        }
+      });
+    </script>
+  </body>
 </html>
