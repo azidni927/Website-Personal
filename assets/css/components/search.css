@@ -215,12 +215,14 @@
   border: 1px solid #ede4d4;
 }
 
+/* SESUDAH */
 .sr-thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: inherit;
   display: block;
+  padding: 3px; /* sedikit ruang agar tidak mepet tepi */
 }
 
 .sr-info {
