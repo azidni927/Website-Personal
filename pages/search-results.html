@@ -237,21 +237,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ---- Hasil count bar ---- */
-    .sr-results-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.2rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--kd);
-    }
-    .sr-results-text {
-      font-size: 0.82rem;
-      color: var(--tl);
-    }
-    .sr-results-text strong { color: var(--h); }
-
     /* ---- Mobile ---- */
     @media (max-width: 768px) {
       .sr-toolbar { top: 56px; padding: 0.6rem 1rem; }
@@ -259,7 +244,6 @@
       .sr-main { padding: 1.5rem 1rem 3rem; }
       .sr-page-header { padding: 2rem 1rem 1.5rem; }
       .sr-page-query { font-size: 1.5rem; }
-      .sr-results-bar { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
     }
 
     @media (max-width: 480px) {
@@ -337,7 +321,6 @@
 
   <!-- MAIN CONTENT -->
   <div class="sr-main">
-   
 
     <!-- Grid hasil -->
     <div class="grid" id="results-grid"></div>
@@ -452,8 +435,7 @@
     const BASE = window._PRODUK_BASE || '../assets/img/produk/';
     const emoji = window.getFallbackEmoji ? window.getFallbackEmoji(p.cat) : '🍱';
     const hasBadge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
-    
-    // Use the product's precise image filename, falling back gracefully if not specified
+
     let imgName = p.img || 'foto.jpeg';
     if (!p.img) {
       if (p.id && p.id.startsWith('getuk')) {
@@ -555,16 +537,6 @@
       countEl.innerHTML = `Menampilkan <strong>${res.length} produk</strong>`;
     }
 
-    /* ---- Results bar ---- */
-    const barEl = document.getElementById('results-bar-text');
-    if (currentCat !== 'all') {
-      barEl.innerHTML = `Kategori: <strong>${currentCat}</strong> — ${res.length} produk`;
-    } else if (q) {
-      barEl.innerHTML = `Hasil untuk <strong>"${q}"</strong>: ${res.length} produk`;
-    } else {
-      barEl.innerHTML = `Semua produk: <strong>${res.length}</strong>`;
-    }
-
     /* ---- Render grid ---- */
     const grid = document.getElementById('results-grid');
     if (res.length === 0) {
@@ -585,7 +557,6 @@
 
     grid.innerHTML = res.map((p, i) => {
       const card = cardHTML(p, q);
-      /* Tambah animasi delay stagger */
       return card.replace('class="card"', `class="card" style="animation-delay:${i * 0.04}s"`);
     }).join('');
 
@@ -610,7 +581,6 @@
     currentCat   = 'all';
     document.querySelectorAll('.sr-cat-pill').forEach(b => b.classList.remove('active'));
     document.querySelector('[data-cat="all"]').classList.add('active');
-    /* Update URL tanpa reload */
     const url = new URL(window.location);
     url.searchParams.set('q', q);
     window.history.replaceState({}, '', url);
@@ -631,7 +601,6 @@
 
     currentQuery = getQueryParam('q').trim();
 
-    /* Update judul tab browser */
     if (currentQuery) {
       document.title = `"${currentQuery}" — Haji Tohirin 6A`;
     }
