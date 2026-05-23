@@ -61,7 +61,7 @@
         <button class="ftab" onclick="filterCatalog(this,'getuk')">Getuk Goreng</button>
         <button class="ftab" onclick="filterCatalog(this,'nopia')">Nopia</button>
         <button class="ftab" onclick="filterCatalog(this,'klanting-bumbu')">Klanting Bumbu</button>
-        <button class="ftab" onclick="filterCatalog(this,'klanting-ori')">Klanting Original</button>
+        <button class="ftab" onclick="filterCatalog(this,'klanting-original')">Klanting Original</button>
       </div>
 
       <div class="count-bar">
@@ -69,173 +69,7 @@
       </div>
 
       <div class="grid" id="grid">
-        <!-- Getuk 1KG -->
-        <div class="card" data-cat="getuk" onclick="openModal('getuk1')">
-          <div class="card-img">
-            <img src="../assets/img/produk/getuk1kg_1.jpeg" alt="Getuk Goreng Haji Tohirin 1 KG" referrerPolicy="no-referrer" onerror="this.src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg';">
-            <span class="card-badge">Terlaris</span>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Getuk Goreng</div>
-            <div class="card-name">Getuk Goreng Haji Tohirin 1 KG</div>
-            <div class="card-sub">Resep Asli Sokaraja</div>
-            <span class="card-cta">Rp 36.000</span>
-          </div>
-        </div>
-
-        <!-- Getuk 500g -->
-        <div class="card" data-cat="getuk" onclick="openModal('getuk2')">
-          <div class="card-img">
-            <img src="../assets/img/produk/getuk1kg_2.jpeg" alt="Getuk Goreng Haji Tohirin 1/2 KG" referrerPolicy="no-referrer" onerror="this.src='../assets/img/produk/getuk1kg_2.jpeg'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-            <div class="card-emoji" style="display: none;">🍠</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Getuk Goreng</div>
-            <div class="card-name">Getuk Goreng Haji Tohirin 1/2 KG</div>
-            <div class="card-sub">Resep Asli Sokaraja</div>
-            <span class="card-cta">Rp 18.000</span>
-          </div>
-        </div>
-
-        <!-- Nopia 1 -->
-        <div class="card" data-cat="nopia" onclick="openModal('nopia1')">
-          <div class="card-img">
-            <img src="../assets/img/produk/nopia_gulajawa.jpeg" alt="Nopia Gula Jawa" referrerPolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="card-emoji" style="display: none;">🟤</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Nopia</div>
-            <div class="card-name">Nopia Gula Jawa</div>
-            <div class="card-sub">Isian Gula Merah</div>
-            <span class="card-cta">Rp 26.000</span>
-          </div>
-        </div>
-
-        <!-- Nopia 2 -->
-        <div class="card" data-cat="nopia" onclick="openModal('nopia2')">
-          <div class="card-img">
-            <img src="../assets/img/produk/nopia_coklat1.jpeg" alt="Nopia Rasa Coklat" referrerPolicy="no-referrer" onerror="this.src='../assets/img/produk/nopia_coklat1.jpeg'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-            <div class="card-emoji" style="display: none;">🍫</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Nopia</div>
-            <div class="card-name">Nopia Rasa Coklat</div>
-            <div class="card-sub">Isian Coklat Lumer</div>
-            <span class="card-cta">Rp 26.000</span>
-          </div>
-        </div>
-
-        <!-- Nopia 3 -->
-        <div class="card" data-cat="nopia" onclick="openModal('nopia3')">
-          <div class="card-img">
-            <img src="../assets/img/produk/nopia_durian1.jpeg" alt="Nopia Rasa Durian" referrerPolicy="no-referrer" onerror="this.src='../assets/img/produk/nopia_durian1.jpeg'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-            <div class="card-emoji" style="display: none;">🍈</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Nopia</div>
-            <div class="card-name">Nopia Rasa Durian</div>
-            <div class="card-sub">Durian Asli</div>
-            <span class="card-cta">Rp 26.000</span>
-          </div>
-        </div>
-
-        <!-- KB 1 -->
-        <div class="card" data-cat="klanting-bumbu" onclick="openModal('kb1')">
-          <div class="card-img">
-            <img src="../assets/img/produk/klanting_bumbu_jagungbakar.jpeg" alt="Klanting Bumbu Jagung Bakar" referrerPolicy="no-referrer" onerror="this.src='../assets/img/produk/klanting_bumbu_jagungbakar.jpeg'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-            <div class="card-emoji" style="display: none;">🌽</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Klanting Bumbu</div>
-            <div class="card-name">Klanting Bumbu Jagung Bakar</div>
-            <div class="card-sub">Pecinta Jagung</div>
-            <span class="card-cta">Rp 22.000</span>
-          </div>
-        </div>
-
-        <!-- KB 2 -->
-        <div class="card" data-cat="klanting-bumbu" onclick="openModal('kb2')">
-          <div class="card-img">
-            <img src="../assets/img/produk/klanting_bumbu_pedasmanis.jpeg" alt="Klanting Bumbu Pedas Manis" referrerPolicy="no-referrer" onerror="this.src='../assets/img/produk/klanting_bumbu_pedasmanis.jpeg'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-            <div class="card-emoji" style="display: none;">🌶️</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Klanting Bumbu</div>
-            <div class="card-name">Klanting Bumbu Pedas Manis</div>
-            <div class="card-sub">Pedas Pas</div>
-            <span class="card-cta">Rp 22.000</span>
-          </div>
-        </div>
-
-        <!-- KB 3 -->
-        <div class="card" data-cat="klanting-bumbu" onclick="openModal('kb3')">
-          <div class="card-img">
-            <img src="../assets/img/produk/klanting_bumbu_bawang.jpeg" alt="Klanting Bumbu Bawang" referrerPolicy="no-referrer" onerror="this.src='../assets/img/produk/klanting_bumbu_bawang.jpeg'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-            <div class="card-emoji" style="display: none;">🧄</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Klanting Bumbu</div>
-            <div class="card-name">Klanting Bumbu Bawang</div>
-            <div class="card-sub">Gurih Bawang</div>
-            <span class="card-cta">Rp 22.000</span>
-          </div>
-        </div>
-
-        <!-- KB 4 -->
-        <div class="card" data-cat="klanting-bumbu" onclick="openModal('kb4')">
-          <div class="card-img">
-            <img src="../assets/img/produk/klanting_bumbu_keju.jpeg" alt="Klanting Bumbu Keju" referrerPolicy="no-referrer" onerror="this.src='../assets/img/produk/klanting_bumbu_keju.jpeg'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-            <div class="card-emoji" style="display: none;">🧀</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Klanting Bumbu</div>
-            <div class="card-name">Klanting Bumbu Keju</div>
-            <div class="card-sub">Keju Gurih</div>
-            <span class="card-cta">Rp 22.000</span>
-          </div>
-        </div>
-
-        <!-- KO 1 -->
-        <div class="card" data-cat="klanting-ori" onclick="openModal('ko1')">
-          <div class="card-img">
-            <img src="../assets/img/produk/klanting_originalbesar.jpeg" alt="Klanting Original Besar" referrerPolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="card-emoji" style="display: none;">⭕</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Klanting Original</div>
-            <div class="card-name">Klanting Original Besar</div>
-            <div class="card-sub">Kepingan Besar</div>
-            <span class="card-cta">Rp 20.000</span>
-          </div>
-        </div>
-
-        <!-- KO 2 -->
-        <div class="card" data-cat="klanting-ori" onclick="openModal('ko2')">
-          <div class="card-img">
-            <img src="../assets/img/produk/klanting_originalkecil.jpeg" alt="Klanting Original Kecil" referrerPolicy="no-referrer" onerror="this.src='../assets/img/produk/klanting_originalkecil.jpeg'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-            <div class="card-emoji" style="display: none;">⚪</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Klanting Original</div>
-            <div class="card-name">Klanting Original Kecil</div>
-            <div class="card-sub">Kepingan Kecil</div>
-            <span class="card-cta">Rp 20.000</span>
-          </div>
-        </div>
-
-        <!-- KO 3 -->
-        <div class="card" data-cat="klanting-ori" onclick="openModal('ko3')">
-          <div class="card-img">
-            <img src="../assets/img/produk/klanting_originalwarna.jpeg" alt="Klanting Original Warna" referrerPolicy="no-referrer" onerror="this.src='../assets/img/produk/klanting_originalwarna.jpeg'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-            <div class="card-emoji" style="display: none;">🎨</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Klanting Original</div>
-            <div class="card-name">Klanting Original Warna</div>
-            <div class="card-sub">Warna Warni</div>
-            <span class="card-cta">Rp 20.000</span>
-          </div>
-        </div>
+        <!-- Produk dimuat secara dinamis oleh produk-filter.js -->
       </div>
       <div class="empty" id="empty">Tidak ada produk dalam kategori ini.</div>
     </div>
@@ -275,11 +109,6 @@
     <script src="../assets/js/navbar.js"></script>
     <script src="../assets/js/search.js"></script>
     <script src="../assets/js/produk-filter.js"></script>
-    <script>
-      // Initial count update
-      document.addEventListener('DOMContentLoaded', () => {
-        filterCatalog(document.querySelector('.ftab.active'), 'all');
-      });
-    </script>
+
   </body>
 </html>
