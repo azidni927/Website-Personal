@@ -7,7 +7,7 @@
     position: fixed;
     inset: 0;
     z-index: 99999;
-    background: #fff;
+    background: #FFFDF7;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +20,6 @@
     visibility: hidden;
     pointer-events: none;
   }
-
   .pl-logo-row {
     display: flex;
     align-items: center;
@@ -30,29 +29,33 @@
     animation: plLogoIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
   }
   .pl-icon-box {
-    width: 40px;
-    height: 40px;
-    background: #F97316;   /* ganti warna brand */
+    width: 44px;
+    height: 44px;
+    background: #C9973A;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .pl-icon-box svg { width: 22px; height: 22px; fill: #fff; }
+  .pl-icon-box img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
   .pl-site-name {
+    font-family: 'Playfair Display', serif;
     font-size: 22px;
     font-weight: 700;
-    color: #111;
-    letter-spacing: -0.5px;
+    color: #3B2507;
+    letter-spacing: 0.5px;
   }
-  .pl-site-name span { color: #F97316; }  /* aksen nama */
-
+  .pl-site-name span { color: #C9973A; }
   @keyframes plLogoIn { to { opacity: 1; transform: scale(1); } }
-
   .pl-bar-wrap {
     width: 200px;
     height: 3px;
-    background: #f3f4f6;
+    background: #EDE4CC;
     border-radius: 99px;
     overflow: hidden;
     opacity: 0;
@@ -61,13 +64,14 @@
   .pl-bar {
     height: 100%;
     width: 0%;
-    background: #F97316;
+    background: linear-gradient(90deg, #A0631A, #C9973A, #EDD07A);
     border-radius: 99px;
     transition: width 0.1s linear;
   }
   .pl-status {
+    font-family: 'DM Sans', sans-serif;
     font-size: 12px;
-    color: #9ca3af;
+    color: #9C7A3A;
     opacity: 0;
     animation: plFadeIn 0.3s ease 0.4s forwards;
   }
@@ -97,11 +101,9 @@
     <div id="mp-preloader" role="status" aria-label="Memuat halaman...">
   <div class="pl-logo-row">
     <div class="pl-icon-box">
-      <!-- Ganti dengan logo/icon toko Anda -->
-      <svg viewBox="0 0 24 24"><path d="M20 7H4C2.9 7 2 7.9 2 9v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm0 12H4V9h16v10zM6 2h12v2H6z"/></svg>
-    </div>
-    <!-- Ganti nama toko Anda -->
-    <span class="pl-site-name">nama<span>toko</span></span>
+  <img src="assets/img/logo.png" alt="Logo">
+</div>
+<span class="pl-site-name">Haji <span>Tohirin</span></span>
   </div>
 
   <div class="pl-bar-wrap">
@@ -481,8 +483,8 @@
     var pl     = document.getElementById('mp-preloader');
     var bar    = document.getElementById('pl-bar');
     var status = document.getElementById('pl-status');
-    var msgs   = ['Memuat produk...', 'Menyiapkan kategori...', 'Hampir selesai...'];
-
+    var msgs = ['Menyiapkan oleh-oleh...', 'Memuat produk pilihan...', 'Hampir siap...'];
+    
     if (sessionStorage.getItem(KEY)) {
       pl.style.display = 'none';
       document.body.classList.remove('pl-active');
