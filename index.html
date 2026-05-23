@@ -107,7 +107,7 @@
         <button class="cat-tab" onclick="filterProd(this,'getuk')">Getuk Goreng</button>
         <button class="cat-tab" onclick="filterProd(this,'nopia')">Nopia</button>
         <button class="cat-tab" onclick="filterProd(this,'klanting-bumbu')">Klanting Bumbu</button>
-        <button class="cat-tab" onclick="filterProd(this,'klanting-ori')">Klanting Original</button>
+        <button class="cat-tab" onclick="filterProd(this,'klanting-original')">Klanting Original</button>
       </div>
       <div class="products-grid" id="prod-grid">
        <!-- Getuk -->
@@ -172,6 +172,17 @@
     <span class="product-order">Rp 22.000</span>
   </div>
 </div>
+        <div class="product-card" data-cat="klanting-bumbu" onclick="openModal('kb2')">
+  <div class="product-img">
+    <img src="assets/img/produk/klanting_bumbu_pedasmanis.jpeg" alt="Klanting Bumbu Pedas Manis"
+      onerror="this.style.display='none'; this.parentElement.style.cssText='background:var(--kd);display:flex;align-items:center;justify-content:center;font-size:3rem'; this.parentElement.innerHTML='🌶️';">
+  </div>
+  <div class="product-info">
+    <div class="product-cat">Klanting Bumbu</div>
+    <div class="product-name">Klanting Bumbu Pedas Manis</div>
+    <span class="product-order">Rp 22.000</span>
+  </div>
+</div>
 
 <!-- Klanting Original -->
 <div class="product-card" data-cat="klanting-original" onclick="openModal('ko1')">
@@ -183,6 +194,17 @@
     <div class="product-cat">Klanting Original</div>
     <div class="product-name">Klanting Original Besar</div>
     <span class="product-order">Rp 20.000</span>
+  </div>
+</div>
+        <div class="product-card" data-cat="klanting-original" onclick="openModal('ko2')">
+  <div class="product-img">
+    <img src="assets/img/produk/klanting_originalkecil.jpeg" alt="Klanting Original Kecil"
+      onerror="this.style.display='none'; this.parentElement.style.cssText='background:var(--kd);display:flex;align-items:center;justify-content:center;font-size:3rem'; this.parentElement.innerHTML='⭕';">
+  </div>
+  <div class="product-info">
+    <div class="product-cat">Klanting Original</div>
+    <div class="product-name">Klanting Original Kecil</div>
+    <span class="product-order">Rp 15.000</span>
   </div>
 </div>
 
