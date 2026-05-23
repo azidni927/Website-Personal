@@ -3,81 +3,134 @@
   <head>
     <!-- PRELOADER STYLES -->
     <style>
-  #mp-preloader {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    background: #FFFDF7;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-  }
-  #mp-preloader.pl-out {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-  .pl-logo-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    opacity: 0;
-    transform: scale(0.85);
-    animation: plLogoIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
-  }
-  .pl-icon-box {
-    width: 44px;
-    height: 44px;
-    background: #C9973A;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .pl-icon-box img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-  }
-  .pl-site-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: #3B2507;
-    letter-spacing: 0.5px;
-  }
-  .pl-site-name span { color: #C9973A; }
-  @keyframes plLogoIn { to { opacity: 1; transform: scale(1); } }
-  .pl-bar-wrap {
-    width: 200px;
-    height: 3px;
-    background: #EDE4CC;
-    border-radius: 99px;
-    overflow: hidden;
-    opacity: 0;
-    animation: plFadeIn 0.3s ease 0.4s forwards;
-  }
-  .pl-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #A0631A, #C9973A, #EDD07A);
-    border-radius: 99px;
-    transition: width 0.1s linear;
-  }
-  .pl-status {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    color: #9C7A3A;
-    opacity: 0;
-    animation: plFadeIn 0.3s ease 0.4s forwards;
-  }
-  @keyframes plFadeIn { to { opacity: 1; } }
-  body.pl-active { overflow: hidden; }
-</style>
+      #ht-preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: #1B0F05;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 1s ease, visibility 1s ease;
+      }
+      #ht-preloader.pl-out {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .pl-corner {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        opacity: 0;
+        animation: plCornerIn 0.5s ease 0.15s forwards;
+      }
+      .pl-corner.tl { top: 24px; left: 24px; border-top: 1px solid #C9973A; border-left: 1px solid #C9973A; }
+      .pl-corner.tr { top: 24px; right: 24px; border-top: 1px solid #C9973A; border-right: 1px solid #C9973A; }
+      .pl-corner.bl { bottom: 24px; left: 24px; border-bottom: 1px solid #C9973A; border-left: 1px solid #C9973A; }
+      .pl-corner.br { bottom: 24px; right: 24px; border-bottom: 1px solid #C9973A; border-right: 1px solid #C9973A; }
+      @keyframes plCornerIn { to { opacity: 1; } }
+
+      .pl-logo-img {
+        width: 72px;
+        height: 72px;
+        object-fit: contain;
+        opacity: 0;
+        transform: scale(0.85);
+        animation: plLogoIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+        margin-bottom: 18px;
+        filter: drop-shadow(0 0 12px #C9973A55);
+      }
+      .pl-logo-fallback {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: #2D1A07;
+        border: 1px solid #C9973A66;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        opacity: 0;
+        transform: scale(0.85);
+        animation: plLogoIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+        margin-bottom: 18px;
+      }
+      @keyframes plLogoIn { to { opacity: 1; transform: scale(1); } }
+
+      .pl-brand {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(26px, 6vw, 40px);
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: transparent;
+        background: linear-gradient(90deg, #A0631A 0%, #C9973A 30%, #EDD07A 55%, #C9973A 75%, #A0631A 100%);
+        background-size: 300% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        opacity: 0;
+        transform: translateY(16px);
+        animation:
+          plBrandIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards,
+          plShimmer 3.5s linear 1.4s infinite;
+        text-align: center;
+        line-height: 1.2;
+      }
+      @keyframes plBrandIn { to { opacity: 1; transform: translateY(0); } }
+      @keyframes plShimmer {
+        0%   { background-position: 300% 0; }
+        100% { background-position: -300% 0; }
+      }
+
+      .pl-sub {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 10px;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: #6B4A1E;
+        margin-top: 6px;
+        opacity: 0;
+        animation: plSubIn 0.8s ease 0.9s forwards;
+      }
+      @keyframes plSubIn { to { opacity: 1; } }
+
+      .pl-divider {
+        width: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #C9973A 30%, #EDD07A 50%, #C9973A 70%, transparent);
+        margin: 28px 0 22px;
+        animation: plLineExpand 1s ease 0.7s forwards;
+      }
+      @keyframes plLineExpand { to { width: 220px; } }
+
+      .pl-track {
+        width: 220px;
+        height: 2px;
+        background: #2D1A07;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .pl-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 2px;
+        background: linear-gradient(90deg, #A0631A, #EDD07A, #C9973A);
+        transition: width 0.12s linear;
+      }
+      .pl-pct {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 10px;
+        letter-spacing: 4px;
+        color: #4A2E0A;
+        margin-top: 12px;
+        opacity: 0;
+        animation: plSubIn 0.6s ease 1.1s forwards;
+      }
+
+      body.pl-active { overflow: hidden; }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Haji Tohirin 6A - Getuk Goreng Sokaraja</title>
@@ -98,19 +151,30 @@
   </head>
   <body class="pl-active">
     <!-- PRELOADER HTML -->
-    <div id="mp-preloader" role="status" aria-label="Memuat halaman...">
-  <div class="pl-logo-row">
-    <div class="pl-icon-box">
-  <img src="assets/img/logo.png" alt="Logo">
-</div>
-<span class="pl-site-name">Haji <span>Tohirin</span></span>
-  </div>
+    <div id="ht-preloader" role="status" aria-label="Memuat halaman...">
+      <div class="pl-corner tl"></div>
+      <div class="pl-corner tr"></div>
+      <div class="pl-corner bl"></div>
+      <div class="pl-corner br"></div>
 
-  <div class="pl-bar-wrap">
-    <div class="pl-bar" id="pl-bar"></div>
-  </div>
-  <div class="pl-status" id="pl-status">Memuat produk...</div>
-</div>
+      <img
+        class="pl-logo-img"
+        src="assets/img/logo.png"
+        alt="Logo Haji Tohirin"
+        onerror="this.style.display='none'; document.getElementById('pl-logo-fb').style.display='flex';"
+      >
+      <div class="pl-logo-fallback" id="pl-logo-fb" style="display:none;">🍠</div>
+
+      <div class="pl-brand">Haji Tohirin</div>
+      <div class="pl-sub">Getuk Goreng · Sokaraja · Asli</div>
+
+      <div class="pl-divider"></div>
+
+      <div class="pl-track">
+        <div class="pl-fill" id="pl-fill"></div>
+      </div>
+      <div class="pl-pct" id="pl-pct">0%</div>
+    </div>
     <nav>
       <div class="nav-left">
         <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
@@ -201,107 +265,7 @@
         <button class="cat-tab" onclick="filterProd(this,'klanting-original')">Klanting Original</button>
       </div>
       <div class="products-grid" id="prod-grid">
-        <!-- Getuk -->
-        <div class="product-card" data-cat="getuk" onclick="openModal('getuk1')">
-          <div class="product-img">
-            <img src="assets/img/produk/getuk1kg_1.jpeg" alt="Getuk Goreng Haji Tohirin 1 KG"
-              onerror="this.src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1atSRQ4rpQPsJ-gBPHiSKAURO8kcWzu9-eNYdNjMG8ehhkiypHabR-xR9lqTf4zMjtFYrKqRfFP0Ndb3Htvm7FxdVpjttAzvFWqLjgEXDdXV8-92s4cevy0YN8OQCDeiFTihIDI6IrVLPvyLZhEZlGPst4TFIzdXLpRoS7kjixPG/s1280/WhatsApp%20Image%202024-07-29%20at%2000.36.17.jpeg';">
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Getuk Goreng</div>
-            <div class="product-name">Haji Tohirin 1 KG</div>
-            <span class="product-order">Rp 36.000</span>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="getuk" onclick="openModal('getuk2')">
-          <div class="product-img">
-            <img src="assets/img/produk/getuk1kg_2.jpeg" alt="Getuk Goreng Haji Tohirin 1/2 KG"
-              onerror="this.style.display='none'; this.parentElement.style.cssText='background:var(--kd);display:flex;align-items:center;justify-content:center;font-size:3rem'; this.parentElement.innerHTML='🍠';">
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Getuk Goreng</div>
-            <div class="product-name">Haji Tohirin 1/2 KG</div>
-            <span class="product-order">Rp 18.000</span>
-          </div>
-        </div>
-
-        <!-- Nopia -->
-        <div class="product-card" data-cat="nopia" onclick="openModal('nopia1')">
-          <div class="product-img">
-            <img src="assets/img/produk/nopia_gulajawa.jpeg" alt="Nopia Gula Jawa"
-              onerror="this.style.display='none'; this.parentElement.style.cssText='background:var(--kd);display:flex;align-items:center;justify-content:center;font-size:3rem'; this.parentElement.innerHTML='🟤';">
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Nopia</div>
-            <div class="product-name">Nopia Gula Jawa</div>
-            <span class="product-order">Rp 26.000</span>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="nopia" onclick="openModal('nopia2')">
-          <div class="product-img">
-            <img src="assets/img/produk/nopia_coklat1.jpeg" alt="Nopia Rasa Coklat"
-              onerror="this.style.display='none'; this.parentElement.style.cssText='background:var(--kd);display:flex;align-items:center;justify-content:center;font-size:3rem'; this.parentElement.innerHTML='🍫';">
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Nopia</div>
-            <div class="product-name">Nopia Rasa Coklat</div>
-            <span class="product-order">Rp 26.000</span>
-          </div>
-        </div>
-
-        <!-- Klanting Bumbu -->
-        <div class="product-card" data-cat="klanting-bumbu" onclick="openModal('kb1')">
-          <div class="product-img">
-            <img src="assets/img/produk/klanting_bumbu_jagungbakar.jpeg" alt="Klanting Bumbu Jagung Bakar"
-              onerror="this.style.display='none'; this.parentElement.style.cssText='background:var(--kd);display:flex;align-items:center;justify-content:center;font-size:3rem'; this.parentElement.innerHTML='🌽';">
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Klanting Bumbu</div>
-            <div class="product-name">Klanting Bumbu Jagung Bakar</div>
-            <span class="product-order">Rp 22.000</span>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="klanting-bumbu" onclick="openModal('kb2')">
-          <div class="product-img">
-            <img src="assets/img/produk/klanting_bumbu_pedasmanis.jpeg" alt="Klanting Bumbu Pedas Manis"
-              onerror="this.style.display='none'; this.parentElement.style.cssText='background:var(--kd);display:flex;align-items:center;justify-content:center;font-size:3rem'; this.parentElement.innerHTML='🌶️';">
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Klanting Bumbu</div>
-            <div class="product-name">Klanting Bumbu Pedas Manis</div>
-            <span class="product-order">Rp 22.000</span>
-          </div>
-        </div>
-
-        <!-- Klanting Original -->
-        <div class="product-card" data-cat="klanting-original" onclick="openModal('ko1')">
-          <div class="product-img">
-            <img src="assets/img/produk/klanting_originalbesar.jpeg" alt="Klanting Original Besar"
-              onerror="this.style.display='none'; this.parentElement.style.cssText='background:var(--kd);display:flex;align-items:center;justify-content:center;font-size:3rem'; this.parentElement.innerHTML='⭕';">
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Klanting Original</div>
-            <div class="product-name">Klanting Original Besar</div>
-            <span class="product-order">Rp 20.000</span>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="klanting-original" onclick="openModal('ko2')">
-          <div class="product-img">
-            <img src="assets/img/produk/klanting_originalkecil.jpeg" alt="Klanting Original Kecil"
-              onerror="this.style.display='none'; this.parentElement.style.cssText='background:var(--kd);display:flex;align-items:center;justify-content:center;font-size:3rem'; this.parentElement.innerHTML='⭕';">
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Klanting Original</div>
-            <div class="product-name">Klanting Original Kecil</div>
-            <span class="product-order">Rp 15.000</span>
-          </div>
-        </div>
-
-        <a href="pages/produk.html" class="btn-primary" style="grid-column: 1/-1; margin-top: 2rem; text-align: center;">Lihat Semua Produk</a>
+        <!-- Produk dimuat secara dinamis oleh produk-filter.js -->
       </div>
     </div>
 
@@ -478,39 +442,47 @@
     <script src="assets/js/produk-filter.js"></script>
     <!-- PRELOADER SCRIPT -->
     <script>
-  (function () {
-    var KEY = 'mp_visited';
-    var pl     = document.getElementById('mp-preloader');
-    var bar    = document.getElementById('pl-bar');
-    var status = document.getElementById('pl-status');
-    var msgs = ['Menyiapkan oleh-oleh...', 'Memuat produk pilihan...', 'Hampir siap...'];
-    
-    if (sessionStorage.getItem(KEY)) {
-      pl.style.display = 'none';
-      document.body.classList.remove('pl-active');
-      return;
-    }
-    sessionStorage.setItem(KEY, '1');
+      (function () {
+        var STORAGE_KEY = 'ht_visited_home';
+        var pl   = document.getElementById('ht-preloader');
+        var fill = document.getElementById('pl-fill');
+        var pct  = document.getElementById('pl-pct');
 
-    var p = 0;
-    var t = setInterval(function () {
-      p = Math.min(p + Math.random() * 6 + 2, 100);
-      bar.style.width = Math.round(p) + '%';
-      status.textContent = msgs[p < 40 ? 0 : p < 80 ? 1 : 2];
-      if (p >= 100) {
-        clearInterval(t);
-        setTimeout(dismiss, 300);
-      }
-    }, 80);
+        if (sessionStorage.getItem(STORAGE_KEY)) {
+          pl.style.display = 'none';
+          document.body.classList.remove('pl-active');
+          return;
+        }
 
-    function dismiss() {
-      pl.classList.add('pl-out');
-      document.body.classList.remove('pl-active');
-      setTimeout(function () { pl.remove(); }, 600);
-    }
+        sessionStorage.setItem(STORAGE_KEY, '1');
 
-    setTimeout(function () { clearInterval(t); dismiss(); }, 5000);
-  })();
-</script>
+        var progress = 0;
+        var timer = setInterval(function () {
+          var step = Math.random() * 5 + 1.5;
+          if (progress > 70 && progress < 90) step = step * 0.5;
+          progress = Math.min(progress + step, 100);
+
+          fill.style.width = progress + '%';
+          pct.textContent  = Math.round(progress) + '%';
+
+          if (progress >= 100) {
+            clearInterval(timer);
+            setTimeout(dismiss, 400);
+          }
+        }, 90);
+
+        function dismiss() {
+          pl.classList.add('pl-out');
+          document.body.classList.remove('pl-active');
+          setTimeout(function () { pl.remove(); }, 1100);
+        }
+
+        // Fallback: hilang otomatis maksimal 6 detik
+        setTimeout(function () {
+          clearInterval(timer);
+          dismiss();
+        }, 6000);
+      })();
+    </script>
   </body>
 </html>
