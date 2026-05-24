@@ -117,7 +117,7 @@ const prods = {
     cat: 'Klanting Original',
     name: 'Klanting Original Kecil',
     sub: 'Kepingan Kecil',
-    price: 'Rp 15.000',
+    price: 'Rp 20.000',
     desc: 'Klanting original ukuran kecil yang praktis. Ideal untuk isian toples lebaran, souvenir, atau camilan sekali santap.',
     specs: [['Varian', 'Original / Polos'], ['Ukuran', 'Kecil'], ['Masa simpan', '30+ hari'], ['Kemasan', 'Plastik kedap']],
     img: 'klanting_originalkecil.jpeg',
