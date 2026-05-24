@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../assets/css/layout/navbar.css">
   <link rel="stylesheet" href="../assets/css/layout/section.css">
   <link rel="stylesheet" href="../assets/css/components/buttons.css">
+  <link rel="stylesheet" href="../assets/css/components/modal.css">
   <link rel="stylesheet" href="../assets/css/components/search.css">
   <link rel="stylesheet" href="../assets/css/pages/produk.css">
   <link rel="stylesheet" href="../assets/css/layout/footer.css">
@@ -237,6 +238,21 @@
       margin-bottom: 1.5rem;
     }
 
+    /* ---- Hasil count bar ---- */
+    .sr-results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--kd);
+    }
+    .sr-results-text {
+      font-size: 0.82rem;
+      color: var(--tl);
+    }
+    .sr-results-text strong { color: var(--h); }
+
     /* ---- Mobile ---- */
     @media (max-width: 768px) {
       .sr-toolbar { top: 56px; padding: 0.6rem 1rem; }
@@ -244,6 +260,7 @@
       .sr-main { padding: 1.5rem 1rem 3rem; }
       .sr-page-header { padding: 2rem 1rem 1.5rem; }
       .sr-page-query { font-size: 1.5rem; }
+      .sr-results-bar { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
     }
 
     @media (max-width: 480px) {
@@ -321,6 +338,9 @@
 
   <!-- MAIN CONTENT -->
   <div class="sr-main">
+    <div class="sr-results-bar">
+      <div class="sr-results-text" id="results-bar-text"></div>
+    </div>
 
     <!-- Grid hasil -->
     <div class="grid" id="results-grid"></div>
@@ -367,28 +387,7 @@
   </footer>
 
 
-  <!-- MODAL -->
-  <div class="overlay" id="overlay" onclick="closeOverlayOut(event)">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-img" id="m-img"></div>
-      <div class="modal-body">
-        <div class="modal-cat" id="m-cat"></div>
-        <h2 class="modal-title" id="m-title"></h2>
-        <div class="modal-desc" id="m-desc"></div>
-        <div class="specs">
-          <table id="m-specs"></table>
-        </div>
-        <div class="modal-actions">
-          <button class="btn-wa" id="m-wa-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Pesan via WhatsApp
-          </button>
-          <button class="btn-close" onclick="closeModal()">Tutup</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- MODAL dimuat secara dinamis oleh produk-filter.js -->
 
   <!-- JS dari project -->
   <script src="../assets/js/main.js"></script>
@@ -435,7 +434,8 @@
     const BASE = window._PRODUK_BASE || '../assets/img/produk/';
     const emoji = window.getFallbackEmoji ? window.getFallbackEmoji(p.cat) : '🍱';
     const hasBadge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
-
+    
+    // Use the product's precise image filename, falling back gracefully if not specified
     let imgName = p.img || 'foto.jpeg';
     if (!p.img) {
       if (p.id && p.id.startsWith('getuk')) {
@@ -537,6 +537,16 @@
       countEl.innerHTML = `Menampilkan <strong>${res.length} produk</strong>`;
     }
 
+    /* ---- Results bar ---- */
+    const barEl = document.getElementById('results-bar-text');
+    if (currentCat !== 'all') {
+      barEl.innerHTML = `Kategori: <strong>${currentCat}</strong> — ${res.length} produk`;
+    } else if (q) {
+      barEl.innerHTML = `Hasil untuk <strong>"${q}"</strong>: ${res.length} produk`;
+    } else {
+      barEl.innerHTML = `Semua produk: <strong>${res.length}</strong>`;
+    }
+
     /* ---- Render grid ---- */
     const grid = document.getElementById('results-grid');
     if (res.length === 0) {
@@ -557,6 +567,7 @@
 
     grid.innerHTML = res.map((p, i) => {
       const card = cardHTML(p, q);
+      /* Tambah animasi delay stagger */
       return card.replace('class="card"', `class="card" style="animation-delay:${i * 0.04}s"`);
     }).join('');
 
@@ -581,6 +592,7 @@
     currentCat   = 'all';
     document.querySelectorAll('.sr-cat-pill').forEach(b => b.classList.remove('active'));
     document.querySelector('[data-cat="all"]').classList.add('active');
+    /* Update URL tanpa reload */
     const url = new URL(window.location);
     url.searchParams.set('q', q);
     window.history.replaceState({}, '', url);
@@ -601,6 +613,7 @@
 
     currentQuery = getQueryParam('q').trim();
 
+    /* Update judul tab browser */
     if (currentQuery) {
       document.title = `"${currentQuery}" — Haji Tohirin 6A`;
     }
