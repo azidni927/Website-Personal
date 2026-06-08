@@ -526,12 +526,18 @@
 
     /* ---- Results bar ---- */
     const barEl = document.getElementById('results-bar-text');
-    if (currentCat !== 'all') {
-      barEl.innerHTML = `Kategori: <strong>${currentCat}</strong> — ${res.length} produk`;
-    } else if (q) {
-      barEl.innerHTML = `Hasil untuk <strong>"${q}"</strong>: ${res.length} produk`;
+    const barContainer = document.querySelector('.sr-results-bar');
+    if (res.length === 0) {
+      if (barContainer) barContainer.style.display = 'none';
     } else {
-      barEl.innerHTML = `Semua produk: <strong>${res.length}</strong>`;
+      if (barContainer) barContainer.style.display = 'flex';
+      if (currentCat !== 'all') {
+        barEl.innerHTML = `Kategori: <strong>${currentCat}</strong> — ${res.length} produk`;
+      } else if (q) {
+        barEl.innerHTML = `Hasil untuk <strong>"${q}"</strong>: ${res.length} produk`;
+      } else {
+        barEl.innerHTML = `Semua produk: <strong>${res.length}</strong>`;
+      }
     }
 
     /* ---- Render grid ---- */
