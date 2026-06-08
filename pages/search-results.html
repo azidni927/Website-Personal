@@ -23,7 +23,7 @@
 
  <style>
     /* ============================================================
-       search-results.css — Optimized Layout
+       search-results.css — inline untuk kemudahan deployment
        ============================================================ */
 
     /* ---- Page header ---- */
@@ -99,19 +99,14 @@
       transition: background 0.2s;
     }
     .sr-filter-btn:hover { background: var(--hm); }
+    .sr-filter-btn svg { flex-shrink: 0; }
 
     .sr-cat-filter {
       display: flex;
       gap: 0.45rem;
       flex-wrap: wrap;
       flex: 1;
-     align-items: center;
-    }
-    .sr-cat-pill:hover,
-    .sr-cat-pill.active {
-      background: var(--h);
-      border-color: var(--h);
-      color: var(--k);
+      align-items: center;
     }
 
     .sr-sort {
@@ -143,7 +138,7 @@
       min-height: 60vh;
     }
 
-    /* ---- Animation for Cards ---- */
+    /* ---- Transition / Entry Animation for Cards ---- */
     .card {
       opacity: 0;
       animation: cardIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -153,7 +148,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---- Highlight search term ---- */
+    /* ---- Highlight search term in catalog names ---- */
     .card-name mark {
       background: #fff3c4;
       color: #7a4f10;
@@ -204,7 +199,7 @@
     }
     .sr-suggest-pill:hover { background: var(--km); }
 
-    /* ---- "Produk Lainnya" section ---- */
+    /* ---- "Mungkin maksud kamu" section ---- */
     .sr-also-section {
       margin-top: 3rem;
       padding-top: 2rem;
@@ -240,7 +235,7 @@
     }
     .sr-results-text strong { color: var(--h); }
 
-    /* ---- Responsive Mobile ---- */
+    /* ---- Mobile ---- */
     @media (max-width: 768px) {
       .sr-toolbar { top: 56px; padding: 0.6rem 1rem; }
       .sr-sort { display: none; }
