@@ -16,14 +16,185 @@
     <link rel="stylesheet" href="../assets/css/components/search.css">
     <link rel="stylesheet" href="../assets/css/pages/produk.css">
     <link rel="stylesheet" href="../assets/css/layout/footer.css">
+
+    <style>
+      /* ============================================================
+         Hero collapse behavior
+         ============================================================ */
+
+      /* Hero wrapper — overflow hidden supaya collapse smooth */
+      .page-hero {
+        overflow: hidden;
+        max-height: 300px; /* cukup besar untuk konten hero apapun */
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.3s ease;
+        opacity: 1;
+      }
+
+      /* State: hero dikecilkan */
+      .hero-collapsed .page-hero {
+        max-height: 0;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Sembunyikan tombol search di navbar saat mode search aktif */
+      .nav-search-btn {
+        transition: opacity 0.2s ease;
+      }
+      .hero-collapsed .nav-search-btn {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Toolbar sticky di bawah navbar */
+      .catalog-toolbar {
+        background: var(--k);
+        border-bottom: 1px solid var(--kd);
+        position: sticky;
+        top: 60px;
+        z-index: 40;
+        transition: box-shadow 0.25s ease;
+      }
+      .hero-collapsed .catalog-toolbar {
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      }
+      .catalog-toolbar-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.9rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      /* ---- Search row ---- */
+      .catalog-search-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .catalog-search-box {
+        position: relative;
+        flex: 1;
+        max-width: 480px;
+      }
+      .catalog-search-box svg.search-icon {
+        position: absolute;
+        left: 0.85rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--tl);
+        pointer-events: none;
+        transition: color 0.2s;
+      }
+      .catalog-search-box:focus-within svg.search-icon {
+        color: var(--h);
+      }
+      .catalog-search-input {
+        width: 100%;
+        border: 1.5px solid var(--kd);
+        background: white;
+        color: var(--h);
+        padding: 0.6rem 2.4rem 0.6rem 2.5rem;
+        border-radius: 2px;
+        font-size: 0.88rem;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 400;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .catalog-search-input:focus {
+        border-color: var(--h);
+      }
+      .catalog-search-input::placeholder { color: var(--tl); }
+      .catalog-search-clear {
+        position: absolute;
+        right: 0.6rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--tl);
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0.1rem 0.25rem;
+        line-height: 1;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.15s;
+      }
+      .catalog-search-input:not(:placeholder-shown) ~ .catalog-search-clear {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* Tombol collapse (panah balik) — hanya muncul saat searching */
+      .catalog-back-btn {
+        display: none;
+        align-items: center;
+        gap: 0.3rem;
+        background: none;
+        border: none;
+        color: var(--h);
+        font-size: 0.8rem;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        padding: 0.4rem 0.6rem;
+        border-radius: 2px;
+        white-space: nowrap;
+        transition: background 0.15s;
+        flex-shrink: 0;
+      }
+      .catalog-back-btn:hover { background: var(--kd); }
+      .hero-collapsed .catalog-back-btn { display: flex; }
+
+      /* ---- Filter tab row ---- */
+      .catalog-filter-row {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+      .filter-label {
+        font-size: 0.72rem;
+        color: var(--tl);
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        flex-shrink: 0;
+      }
+
+      /* ---- Count bar ---- */
+      .count-bar {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.8rem 2rem 0;
+      }
+
+      /* ---- Responsive ---- */
+      @media (max-width: 768px) {
+        .catalog-toolbar { top: 56px; }
+        .catalog-toolbar-inner { padding: 0.75rem 1rem; }
+        .count-bar { padding: 0.6rem 1rem 0; }
+      }
+      @media (max-width: 560px) {
+        .catalog-search-box { max-width: 100%; }
+        .catalog-filter-row { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+        .catalog-filter-row::-webkit-scrollbar { display: none; }
+        .ftab { white-space: nowrap; }
+      }
+    </style>
   </head>
   <body>
+
     <nav>
       <div class="nav-left">
         <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
       </div>
       <a href="../index.html" class="nav-logo-centered">
@@ -40,79 +211,164 @@
           <li><a href="kontak.html">Kontak</a></li>
         </ul>
         <button class="nav-search-btn" aria-label="Search" onclick="openSearch()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
         </button>
       </div>
-      <!-- SEARCH OVERLAY -->
       <div id="search-overlay"></div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO — collapse saat search aktif -->
     <div class="page-hero">
       <div class="hero-badge">Katalog Lengkap</div>
       <h1>Semua Produk</h1>
       <p>Pilihan lengkap oleh-oleh khas Sokaraja — getuk goreng, nopia, klanting bumbu, dan klanting original.</p>
     </div>
 
+    <!-- TOOLBAR: Search + Filter (sticky saat hero collapsed) -->
+    <div class="catalog-toolbar">
+      <div class="catalog-toolbar-inner">
+
+        <!-- Search row -->
+        <div class="catalog-search-row">
+          <div class="catalog-search-box">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              type="search"
+              id="catalog-search-input"
+              class="catalog-search-input"
+              placeholder="Cari produk…"
+              autocomplete="off"
+              aria-label="Cari produk"
+            />
+            <button id="catalog-search-clear" class="catalog-search-clear" aria-label="Hapus pencarian">✕</button>
+          </div>
+
+          <!-- Tombol kembali ke hero — hanya tampil saat searching -->
+          <button class="catalog-back-btn" id="catalog-back-btn" onclick="exitSearch()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Semua Produk
+          </button>
+        </div>
+
+        <!-- Filter tab row -->
+        <div class="catalog-filter-row">
+          <span class="filter-label">Filter:</span>
+          <button class="ftab active" onclick="filterCatalog(this,'all')">Semua</button>
+          <button class="ftab" onclick="filterCatalog(this,'getuk')">Getuk Goreng</button>
+          <button class="ftab" onclick="filterCatalog(this,'nopia')">Nopia</button>
+          <button class="ftab" onclick="filterCatalog(this,'klanting-bumbu')">Klanting Bumbu</button>
+          <button class="ftab" onclick="filterCatalog(this,'klanting-original')">Klanting Original</button>
+        </div>
+
+      </div>
+    </div>
+
     <!-- MAIN CONTENT -->
     <div class="main">
-      <div class="filter-bar">
-        <span class="filter-label">Filter:</span>
-        <button class="ftab active" onclick="filterCatalog(this,'all')">Semua</button>
-        <button class="ftab" onclick="filterCatalog(this,'getuk')">Getuk Goreng</button>
-        <button class="ftab" onclick="filterCatalog(this,'nopia')">Nopia</button>
-        <button class="ftab" onclick="filterCatalog(this,'klanting-bumbu')">Klanting Bumbu</button>
-        <button class="ftab" onclick="filterCatalog(this,'klanting-original')">Klanting Original</button>
-      </div>
-
       <div class="count-bar">
         <div class="count-text">Menampilkan <strong id="count">12</strong> produk</div>
       </div>
-
-      <div class="grid" id="grid">
-        <!-- Produk dimuat secara dinamis oleh produk-filter.js -->
-      </div>
+      <div class="grid" id="grid"></div>
       <div class="empty" id="empty">Tidak ada produk dalam kategori ini.</div>
     </div>
 
-    <!-- MODAL dimuat secara dinamis oleh produk-filter.js -->
-
     <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-brand-name">Haji Tohirin <span>6A</span></div>
-        <p>Oleh-oleh khas Sokaraja yang autentik sejak generasi pertama.</p>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-brand-name">Haji Tohirin <span>6A</span></div>
+            <p>Oleh-oleh khas Sokaraja yang autentik sejak generasi pertama.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Produk</h4>
+            <ul>
+              <li><a href="produk.html">Getuk Goreng</a></li>
+              <li><a href="produk.html">Nopia</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Informasi</h4>
+            <ul>
+              <li><a href="profil.html">Profil Toko</a></li>
+              <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
+          <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">WhatsApp</a>
+          </div>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Produk</h4>
-        <ul>
-          <li><a href="produk.html">Getuk Goreng</a></li>
-          <li><a href="produk.html">Nopia</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Informasi</h4>
-        <ul>
-          <li><a href="profil.html">Profil Toko</a></li>
-          <li><a href="kontak.html">Hubungi Kami</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
-      <div class="social-links">
-        <a href="#">Instagram</a>
-        <a href="#">WhatsApp</a>
-      </div>
-    </div>
-  </div>
-</footer>
+    </footer>
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/navbar.js"></script>
     <script src="../assets/js/search.js"></script>
     <script src="../assets/js/produk-filter.js"></script>
+
+    <script>
+      /* ============================================================
+         Hero collapse logic — hanya di produk.html
+         ============================================================ */
+
+      function enterSearch() {
+        document.body.classList.add('hero-collapsed');
+      }
+
+      function exitSearch() {
+        const input = document.getElementById('catalog-search-input');
+        if (input) {
+          input.value = '';
+          /* Trigger filter reset */
+          if (typeof searchCatalog === 'function') searchCatalog('');
+        }
+        /* Bersihkan URL */
+        const url = new URL(window.location);
+        url.searchParams.delete('q');
+        window.history.replaceState({}, '', url);
+        document.body.classList.remove('hero-collapsed');
+        /* Scroll ke atas supaya hero terlihat */
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const input   = document.getElementById('catalog-search-input');
+        const clearBtn = document.getElementById('catalog-search-clear');
+
+        /* Collapse hero saat input difokuskan */
+        input.addEventListener('focus', enterSearch);
+
+        /* Clear button */
+        clearBtn.addEventListener('click', function () {
+          input.value = '';
+          if (typeof searchCatalog === 'function') searchCatalog('');
+          input.focus();
+          const url = new URL(window.location);
+          url.searchParams.delete('q');
+          window.history.replaceState({}, '', url);
+        });
+
+        /* Kalau ada ?q= dari URL saat load, langsung masuk mode search */
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('q')) {
+          enterSearch();
+        }
+
+        /* Escape key: keluar dari search */
+        input.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') exitSearch();
+        });
+      });
+    </script>
 
   </body>
 </html>
