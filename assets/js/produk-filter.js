@@ -195,8 +195,18 @@ function filterCatalog(btn, cat) {
 
   const countEl = document.getElementById('count');
   if (countEl) countEl.textContent = vis;
+
   const emptyEl = document.getElementById('empty');
-  if (emptyEl) emptyEl.style.display = vis === 0 ? 'block' : 'none';
+  if (emptyEl) {
+    if (vis === 0) {
+      emptyEl.classList.add('visible');
+      emptyEl.innerHTML = q
+        ? `Tidak ada produk untuk <strong>"${q}"</strong><br><span style="font-size:0.8rem;opacity:0.7">Coba kata kunci lain atau pilih kategori berbeda.</span>`
+        : 'Tidak ada produk dalam kategori ini.';
+    } else {
+      emptyEl.classList.remove('visible');
+    }
+  }
 
   // Update judul section kalau ada search
   updateCatalogHeader(q);
