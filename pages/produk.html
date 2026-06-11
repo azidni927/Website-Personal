@@ -165,8 +165,14 @@
       .count-bar {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 0.8rem 2rem 0;
+        padding: 1.2rem 2rem 0;
+        text-align: left;
       }
+      .count-text {
+        font-size: 0.8rem;
+        color: var(--tl);
+      }
+      .count-text strong { color: var(--h); }
 
       /* Pastikan area konten mengisi sisa viewport —
          footer tidak naik saat hasil kosong */
@@ -203,7 +209,7 @@
       @media (max-width: 768px) {
         .catalog-toolbar { top: 56px; }
         .catalog-toolbar-inner { padding: 0.75rem 1rem; }
-        .count-bar { padding: 0.6rem 1rem 0; }
+        .count-bar { padding: 1rem 1rem 0.4rem; }
       }
       @media (max-width: 560px) {
         .catalog-search-box { max-width: 100%; }
@@ -261,7 +267,7 @@
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
             <input
-              type="search"
+              type="text"
               id="catalog-search-input"
               class="catalog-search-input"
               placeholder="Cari produk…"
@@ -293,11 +299,13 @@
       </div>
     </div>
 
+    <!-- COUNT BAR — di luar .main, sejajar dengan toolbar -->
+    <div class="count-bar">
+      <div class="count-text">Menampilkan <strong id="count">12</strong> produk</div>
+    </div>
+
     <!-- MAIN CONTENT -->
     <div class="main">
-      <div class="count-bar">
-        <div class="count-text">Menampilkan <strong id="count">12</strong> produk</div>
-      </div>
       <div class="grid" id="grid"></div>
       <div class="empty" id="empty">Tidak ada produk dalam kategori ini.</div>
     </div>
