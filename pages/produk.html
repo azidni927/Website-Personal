@@ -50,17 +50,10 @@
         pointer-events: none;
       }
 
-      /* Toolbar sticky di bawah navbar */
+      /* Toolbar — tidak sticky, tetap di posisi asli saat scroll */
       .catalog-toolbar {
         background: var(--k);
         border-bottom: 1px solid var(--kd);
-        position: sticky;
-        top: 60px;
-        z-index: 40;
-        transition: box-shadow 0.25s ease;
-      }
-      .hero-collapsed .catalog-toolbar {
-        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       }
       .catalog-toolbar-inner {
         max-width: 1100px;
