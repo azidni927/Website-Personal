@@ -1,25 +1,22 @@
 /* ============================================================
    search.js — Getuk Goreng Haji Tohirin 6A
-   Letakkan di: assets/js/search.js
-   Tambahkan di index.html (sebelum </body>):
-     <script src="assets/js/search.js"></script>
    ============================================================ */
 
 (function () {
   /* ---- Data Produk ---- */
   const PRODUCTS = [
-    { id: 'getuk1',  name: 'Getuk Goreng Haji Tohirin 1 KG',   cat: 'Getuk Goreng',      icon: '🍠', img: 'getuk1kg_1.jpeg',    page: 'pages/produk.html', modal: 'getuk1' },
-    { id: 'getuk2',  name: 'Getuk Goreng Haji Tohirin 1/2 KG', cat: 'Getuk Goreng',      icon: '🍠', img: 'getuk1kg_2.jpeg',    page: 'pages/produk.html', modal: 'getuk2' },
-    { id: 'nopia1',  name: 'Nopia Gula Jawa',                  cat: 'Nopia',             icon: '🟤', img: 'nopia_gulajawa.jpeg',     page: 'pages/produk.html', modal: 'nopia1' },
-    { id: 'nopia2',  name: 'Nopia Rasa Coklat',                cat: 'Nopia',             icon: '🍫', img: 'nopia_coklat1.jpeg',     page: 'pages/produk.html', modal: 'nopia2' },
-    { id: 'nopia3',  name: 'Nopia Rasa Durian',                cat: 'Nopia',             icon: '🍈', img: 'nopia_durian1.jpeg',     page: 'pages/produk.html', modal: 'nopia3' },
-    { id: 'kb1',     name: 'Klanting Bumbu Jagung Bakar',      cat: 'Klanting Bumbu',    icon: '🌽', img: 'klanting_bumbu_jagungbakar.jpeg',     page: 'pages/produk.html', modal: 'kb1'    },
-    { id: 'kb2',     name: 'Klanting Bumbu Pedas Manis',       cat: 'Klanting Bumbu',    icon: '🌶️', img: 'klanting_bumbu_pedasmanis.jpeg',     page: 'pages/produk.html', modal: 'kb2'    },
-    { id: 'kb3',     name: 'Klanting Bumbu Bawang',            cat: 'Klanting Bumbu',    icon: '🧄', img: 'klanting_bumbu_bawang.jpeg',     page: 'pages/produk.html', modal: 'kb3'    },
-    { id: 'kb4',     name: 'Klanting Bumbu Keju',              cat: 'Klanting Bumbu',    icon: '🧀', img: 'klanting_bumbu_keju.jpeg',     page: 'pages/produk.html', modal: 'kb4'    },
-    { id: 'ko1',     name: 'Klanting Original Besar',          cat: 'Klanting Original', icon: '⭕', img: 'klanting_originalbesar.jpeg',     page: 'pages/produk.html', modal: 'ko1'    },
-    { id: 'ko2',     name: 'Klanting Original Kecil',          cat: 'Klanting Original', icon: '⚪', img: 'klanting_originalkecil.jpeg',     page: 'pages/produk.html', modal: 'ko2'    },
-    { id: 'ko3',     name: 'Klanting Original Warna',          cat: 'Klanting Original', icon: '🎨', img: 'klanting_originalwarna.jpeg',     page: 'pages/produk.html', modal: 'ko3'    },
+    { id: 'getuk1',  name: 'Getuk Goreng Haji Tohirin 1 KG',   cat: 'Getuk Goreng',      icon: '🍠', img: 'getuk1kg_1.jpeg',                    modal: 'getuk1' },
+    { id: 'getuk2',  name: 'Getuk Goreng Haji Tohirin 1/2 KG', cat: 'Getuk Goreng',      icon: '🍠', img: 'getuk1kg_2.jpeg',                    modal: 'getuk2' },
+    { id: 'nopia1',  name: 'Nopia Gula Jawa',                  cat: 'Nopia',             icon: '🟤', img: 'nopia_gulajawa.jpeg',                modal: 'nopia1' },
+    { id: 'nopia2',  name: 'Nopia Rasa Coklat',                cat: 'Nopia',             icon: '🍫', img: 'nopia_coklat1.jpeg',                 modal: 'nopia2' },
+    { id: 'nopia3',  name: 'Nopia Rasa Durian',                cat: 'Nopia',             icon: '🍈', img: 'nopia_durian1.jpeg',                 modal: 'nopia3' },
+    { id: 'kb1',     name: 'Klanting Bumbu Jagung Bakar',      cat: 'Klanting Bumbu',    icon: '🌽', img: 'klanting_bumbu_jagungbakar.jpeg',    modal: 'kb1'    },
+    { id: 'kb2',     name: 'Klanting Bumbu Pedas Manis',       cat: 'Klanting Bumbu',    icon: '🌶️', img: 'klanting_bumbu_pedasmanis.jpeg',     modal: 'kb2'    },
+    { id: 'kb3',     name: 'Klanting Bumbu Bawang',            cat: 'Klanting Bumbu',    icon: '🧄', img: 'klanting_bumbu_bawang.jpeg',         modal: 'kb3'    },
+    { id: 'kb4',     name: 'Klanting Bumbu Keju',              cat: 'Klanting Bumbu',    icon: '🧀', img: 'klanting_bumbu_keju.jpeg',           modal: 'kb4'    },
+    { id: 'ko1',     name: 'Klanting Original Besar',          cat: 'Klanting Original', icon: '⭕', img: 'klanting_originalbesar.jpeg',        modal: 'ko1'    },
+    { id: 'ko2',     name: 'Klanting Original Kecil',          cat: 'Klanting Original', icon: '⚪', img: 'klanting_originalkecil.jpeg',        modal: 'ko2'    },
+    { id: 'ko3',     name: 'Klanting Original Warna',          cat: 'Klanting Original', icon: '🎨', img: 'klanting_originalwarna.jpeg',        modal: 'ko3'    },
   ];
 
   /* ---- Konstanta ---- */
@@ -28,12 +25,12 @@
   const DEBOUNCE_MS = 250;
 
   /* ---- State ---- */
-  let activeIdx  = -1;
-  let results    = [];
+  let activeIdx = -1;
+  let results   = [];
   let debounceTimer;
-  let isOpen     = false;
+  let isOpen    = false;
 
-  /* ---- Recent Searches (localStorage) ---- */
+  /* ---- Recent Searches ---- */
   function getRecent() {
     try { return JSON.parse(localStorage.getItem(RECENT_KEY)) || []; }
     catch (_) { return []; }
@@ -57,44 +54,31 @@
     return text.replace(re, '<mark>$1</mark>');
   }
 
- // SESUDAH
-function getBase() {
-  if (window._PRODUK_BASE) return window._PRODUK_BASE;
-
-  // Cari <script> yang src-nya mengandung "search.js" lalu
-  // ambil path relatifnya — ini selalu akurat tanpa peduli halaman mana
-  const scripts = document.querySelectorAll('script[src]');
-  for (const s of scripts) {
-    const src = s.getAttribute('src');
-    if (src && src.includes('search.js')) {
-      // src bisa: "assets/js/search.js" atau "../assets/js/search.js"
-      return src.replace(/js\/search\.js.*$/, 'img/produk/');
+  /* ---- Path helper ---- */
+  function getBase() {
+    if (window._PRODUK_BASE) return window._PRODUK_BASE;
+    const scripts = document.querySelectorAll('script[src]');
+    for (const s of scripts) {
+      const src = s.getAttribute('src');
+      if (src && src.includes('search.js')) {
+        return src.replace(/js\/search\.js.*$/, 'img/produk/');
+      }
     }
+    const inPages = window.location.pathname.replace(/\\/g, '/').includes('/pages/');
+    return inPages ? '../assets/img/produk/' : 'assets/img/produk/';
   }
 
-  // Fallback: deteksi lewat pathname
-  const inPages = window.location.pathname.replace(/\\/g, '/').includes('/pages/');
-  return inPages ? '../assets/img/produk/' : 'assets/img/produk/';
-}
+  function getThumbHTML(p) {
+    const base   = getBase();
+    const imgSrc = base + (p.img || 'foto.jpeg');
+    return `<div class="sr-thumb">
+      <img src="${imgSrc}" alt="${p.name}" loading="lazy"
+        onerror="this.style.display='none';var fb=this.nextElementSibling;if(fb)fb.style.display='flex';">
+      <div class="sr-thumb-fallback" aria-hidden="true" style="display:none">${p.icon || '🍱'}</div>
+    </div>`;
+  }
 
- // SESUDAH — getThumbHTML yang fixed
-function getThumbHTML(p) {
-  const base  = getBase();
-  const imgSrc = base + (p.img || 'foto.jpeg');
-  const emoji  = p.icon || '🍱';
-
-  return `<div class="sr-thumb">
-    <img
-      src="${imgSrc}"
-      alt="${p.name}"
-      loading="lazy"
-      onerror="this.style.display='none'; var fb=this.nextElementSibling; if(fb) fb.style.display='flex';"
-    >
-    <div class="sr-thumb-fallback" aria-hidden="true" style="display:none">${emoji}</div>
-  </div>`;
-}
-
-  /* ---- renderDefault (state awal / kosong) ---- */
+  /* ---- Render default (kosong / baru buka) ---- */
   function renderDefault() {
     const recent = getRecent();
     const recentHTML = recent.length
@@ -118,7 +102,7 @@ function getThumbHTML(p) {
     const popularHTML = `<div class="sr-section">
       <div class="sr-label"><span>Produk populer</span></div>
       ${PRODUCTS.slice(0, 4).map(p =>
-        `<div class="sr-item" role="option" tabindex="-1" onclick="window._search.pickProduct('${p.modal}', '${p.name}')">
+        `<div class="sr-item" role="option" tabindex="-1" onclick="window._search.pickProduct('${p.modal}','${p.name}')">
           ${getThumbHTML(p)}
           <div class="sr-info">
             <div class="sr-name">${p.name}</div>
@@ -134,7 +118,7 @@ function getThumbHTML(p) {
     activeIdx = -1;
   }
 
-  /* ---- renderResults ---- */
+  /* ---- Render hasil pencarian ---- */
   function renderResults(q) {
     if (!q) { renderDefault(); return; }
 
@@ -143,10 +127,9 @@ function getThumbHTML(p) {
       p.cat.toLowerCase().includes(q.toLowerCase())
     );
 
-    const count = results.length;
-    document.getElementById('sr-count').textContent = count ? count + ' hasil' : '';
+    document.getElementById('sr-count').textContent = results.length ? results.length + ' hasil' : '';
 
-    if (count === 0) {
+    if (results.length === 0) {
       document.getElementById('sr-body').innerHTML =
         `<div class="sr-empty">
           <div class="sr-empty-icon">🔍</div>
@@ -161,7 +144,7 @@ function getThumbHTML(p) {
         <div class="sr-label"><span>Hasil pencarian</span></div>
         ${results.map((p, i) =>
           `<div class="sr-item" role="option" tabindex="-1" data-idx="${i}"
-               onclick="window._search.pickProduct('${p.modal}', '${q}')">
+               onclick="window._search.pickProduct('${p.modal}','${q}')">
             ${getThumbHTML(p)}
             <div class="sr-info">
               <div class="sr-name">${hl(p.name, q)}</div>
@@ -180,17 +163,14 @@ function getThumbHTML(p) {
     });
   }
 
-  /* ---- Public API ---- */
+  /* ---- Open / Close ---- */
   function openSearch() {
     const overlay = document.getElementById('search-overlay');
     if (!overlay) return;
     overlay.classList.add('search-open');
     isOpen = true;
     document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-      const inp = overlay.querySelector('.search-field');
-      if (inp) inp.focus();
-    }, 80);
+    setTimeout(() => { const inp = overlay.querySelector('.search-field'); if (inp) inp.focus(); }, 80);
     renderDefault();
   }
 
@@ -204,47 +184,23 @@ function getThumbHTML(p) {
     if (inp) inp.value = '';
   }
 
+  /* ---- Keyboard handler ---- */
   function handleSearch(e) {
     if (e.type === 'keydown') {
       const items = document.querySelectorAll('.sr-item[data-idx]');
-
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        activeIdx = Math.min(activeIdx + 1, items.length - 1);
-        updateActive();
-        return;
-      }
-      if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        activeIdx = Math.max(activeIdx - 1, 0);
-        updateActive();
-        return;
-      }
+      if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx + 1, items.length - 1); updateActive(); return; }
+      if (e.key === 'ArrowUp')   { e.preventDefault(); activeIdx = Math.max(activeIdx - 1, 0); updateActive(); return; }
       if (e.key === 'Enter') {
         e.preventDefault();
         const q = e.target.value.trim();
-        if (activeIdx >= 0 && items[activeIdx]) {
-          items[activeIdx].click();
-          return;
-        }
-        if (q) goToSearchResults(q);
+        if (activeIdx >= 0 && items[activeIdx]) { items[activeIdx].click(); return; }
+        if (q) goToProduk(q);
         return;
       }
-      if (e.key === 'Escape') {
-        closeSearch();
-        return;
-      }
+      if (e.key === 'Escape') { closeSearch(); return; }
     }
-
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      const q = e.target.value.trim();
-      results = PRODUCTS.filter(p =>
-        p.name.toLowerCase().includes(q.toLowerCase()) ||
-        p.cat.toLowerCase().includes(q.toLowerCase())
-      );
-      renderResults(q);
-    }, DEBOUNCE_MS);
+    debounceTimer = setTimeout(() => renderResults(e.target.value.trim()), DEBOUNCE_MS);
   }
 
   function setQuery(q) {
@@ -253,34 +209,33 @@ function getThumbHTML(p) {
     renderResults(q);
   }
 
+  /* ---- Pick product: buka modal kalau sudah di produk.html, redirect kalau tidak ---- */
   function pickProduct(modalId, query) {
     saveRecent(query);
     closeSearch();
     if (typeof openModal === 'function') {
+      // Sudah di produk.html — buka modal langsung
       openModal(modalId);
       return;
     }
-    goToSearchResults(query);
+    // Halaman lain — redirect ke produk.html dan buka modal via hash
+    const isInPages = window.location.pathname.replace(/\\/g, '/').includes('/pages/');
+    const base = isInPages ? '' : 'pages/';
+    window.location.href = `${base}produk.html?modal=${encodeURIComponent(modalId)}`;
   }
 
-  function goToSearchResults(query) {
+  /* ---- Submit search (Enter tanpa pilih item) → redirect ke produk.html?q=... ---- */
+  function goToProduk(query) {
     if (!query) return;
     saveRecent(query);
     closeSearch();
-    const isInPages = window.location.pathname.includes('/pages/');
+    const isInPages = window.location.pathname.replace(/\\/g, '/').includes('/pages/');
     const base = isInPages ? '' : 'pages/';
-    window.location.href = base + 'search-results.html?q=' + encodeURIComponent(query);
+    window.location.href = `${base}produk.html?q=${encodeURIComponent(query)}`;
   }
 
-  function clearAllRecent() {
-    try { localStorage.removeItem(RECENT_KEY); } catch (_) {}
-    renderDefault();
-  }
-
-  function removeRecentItem(q) {
-    removeRecent(q);
-    renderDefault();
-  }
+  /* ---- Expose goToProduk sebagai goToSearchResults supaya kode lama tetap jalan ---- */
+  window.goToSearchResults = goToProduk;
 
   /* ---- Build overlay HTML ---- */
   function buildOverlayHTML() {
@@ -312,27 +267,20 @@ function getThumbHTML(p) {
     `;
   }
 
-  function initBackdropClose() {
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && isOpen) closeSearch();
-    });
-  }
-
-  /* ---- Expose globals ---- */
-  window.openSearch        = openSearch;
-  window.closeSearch       = closeSearch;
-  window.handleSearch      = handleSearch;
-  window.goToSearchResults = goToSearchResults;
+  /* ---- Globals ---- */
+  window.openSearch  = openSearch;
+  window.closeSearch = closeSearch;
+  window.handleSearch = handleSearch;
 
   window._search = {
     setQuery,
     pickProduct,
-    clearAllRecent,
-    removeRecent: removeRecentItem,
+    clearAllRecent() { try { localStorage.removeItem(RECENT_KEY); } catch (_) {} renderDefault(); },
+    removeRecent(q)  { removeRecent(q); renderDefault(); },
   };
 
   document.addEventListener('DOMContentLoaded', function () {
     buildOverlayHTML();
-    initBackdropClose();
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) closeSearch(); });
   });
 })();
