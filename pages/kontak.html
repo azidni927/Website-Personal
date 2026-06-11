@@ -18,29 +18,31 @@
   </head>
   <body>
     <nav>
-      <div class="nav-left">
-        <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-      <a href="../index.html" class="nav-logo-centered">
-        <div class="nav-logo">
-          <img src="../assets/img/logo.png" alt="Logo Getuk Goreng Haji Tohirin 6A">
+      <div class="nav-inner">
+        <div class="nav-left">
+          <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-      </a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="profil.html">Profil</a></li>
-          <li><a href="produk.html">Produk</a></li>
-          <li><a href="galeri.html">Galeri</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="kontak.html" class="active">Kontak</a></li>
-        </ul>
-        <button class="nav-search-btn" aria-label="Search" onclick="openSearch()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
+        <a href="../index.html" class="nav-logo-centered">
+          <div class="nav-logo">
+            <img src="../assets/img/logo.png" alt="Logo Getuk Goreng Haji Tohirin 6A">
+          </div>
+        </a>
+        <div class="nav-right">
+          <ul class="nav-links">
+            <li><a href="profil.html">Profil</a></li>
+            <li><a href="produk.html">Produk</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="kontak.html" class="active">Kontak</a></li>
+          </ul>
+          <button class="nav-search-btn" aria-label="Search" onclick="openSearch()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </div>
       </div>
       <!-- SEARCH OVERLAY -->
       <div id="search-overlay"></div>
@@ -49,7 +51,6 @@
     <div class="section">
       <div class="section-tag">Hubungi Kami</div>
       <h1 class="section-title">Informasi Kontak & Lokasi</h1>
-      
       <div class="lokasi-grid">
         <div class="lokasi-info">
           <h3>Getuk Goreng ASLI Haji Tohirin 6A</h3>
@@ -65,9 +66,7 @@
             <div class="info-icon">📱</div>
             <div class="info-text"><strong>Kontak</strong><p>0811-2615-272</p></div>
           </div>
-          <a class="wa-btn" href="https://wa.me/628112615272" target="_blank" rel="noreferrer">
-            Chat WhatsApp
-          </a>
+          <a class="wa-btn" href="https://wa.me/628112615272" target="_blank" rel="noreferrer">Chat WhatsApp</a>
         </div>
         <div class="map-embed">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.0693082280372!2d109.29445989999999!3d-7.457584999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655b85660f3311%3A0xd9be1362e4acc38f!2sGetuk%20Goreng%20ASLI%20Haji%20Tohirin%206A!5e0!3m2!1sid!2sid!4v1722238814654!5m2!1sid!2sid" loading="lazy"></iframe>
@@ -76,36 +75,37 @@
     </div>
 
     <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-brand-name">Haji Tohirin <span>6A</span></div>
-        <p>Oleh-oleh khas Sokaraja yang autentik sejak generasi pertama.</p>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-brand-name">Haji Tohirin <span>6A</span></div>
+            <p>Oleh-oleh khas Sokaraja yang autentik sejak generasi pertama.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Produk</h4>
+            <ul>
+              <li><a href="produk.html">Getuk Goreng</a></li>
+              <li><a href="produk.html">Nopia</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Informasi</h4>
+            <ul>
+              <li><a href="profil.html">Profil Toko</a></li>
+              <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
+          <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">WhatsApp</a>
+          </div>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Produk</h4>
-        <ul>
-          <li><a href="produk.html">Getuk Goreng</a></li>
-          <li><a href="produk.html">Nopia</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Informasi</h4>
-        <ul>
-          <li><a href="profil.html">Profil Toko</a></li>
-          <li><a href="kontak.html">Hubungi Kami</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
-      <div class="social-links">
-        <a href="#">Instagram</a>
-        <a href="#">WhatsApp</a>
-      </div>
-    </div>
-  </div>
-</footer>
+    </footer>
+
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/navbar.js"></script>
     <script src="../assets/js/search.js"></script>
