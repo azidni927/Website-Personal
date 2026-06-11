@@ -18,29 +18,31 @@
   </head>
   <body>
     <nav>
-      <div class="nav-left">
-        <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-      <a href="../index.html" class="nav-logo-centered">
-        <div class="nav-logo">
-          <img src="../assets/img/logo.png" alt="Logo Getuk Goreng Haji Tohirin 6A">
+      <div class="nav-inner">
+        <div class="nav-left">
+          <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-      </a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="profil.html">Profil</a></li>
-          <li><a href="produk.html">Produk</a></li>
-          <li><a href="galeri.html" class="active">Galeri</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="kontak.html">Kontak</a></li>
-        </ul>
-        <button class="nav-search-btn" aria-label="Search" onclick="openSearch()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
+        <a href="../index.html" class="nav-logo-centered">
+          <div class="nav-logo">
+            <img src="../assets/img/logo.png" alt="Logo Getuk Goreng Haji Tohirin 6A">
+          </div>
+        </a>
+        <div class="nav-right">
+          <ul class="nav-links">
+            <li><a href="profil.html">Profil</a></li>
+            <li><a href="produk.html">Produk</a></li>
+            <li><a href="galeri.html" class="active">Galeri</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="kontak.html">Kontak</a></li>
+          </ul>
+          <button class="nav-search-btn" aria-label="Search" onclick="openSearch()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </div>
       </div>
       <!-- SEARCH OVERLAY -->
       <div id="search-overlay"></div>
@@ -53,7 +55,6 @@
     </div>
 
     <div class="main-gallery">
-      <!-- FILTER -->
       <div class="filter-row">
         <div class="filter-tabs">
           <span class="filter-label">Filter:</span>
@@ -65,134 +66,84 @@
         <div class="count-tag">Menampilkan <strong id="gcount">10</strong> foto</div>
       </div>
 
-      <!-- GRID -->
       <div class="galeri-grid" id="ggrid">
-        <!-- 1 wide - produk hero -->
         <div class="gitem wide" data-cat="produk" data-idx="0" onclick="openLB(0)">
-          <div class="gitem-inner" >
+          <div class="gitem-inner">
             <img src="../assets/img/galeri/galeri1.jpeg" alt="Getuk Goreng Original" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="ph" style="display:none">🍠</div>
-            <div class="gitem-overlay">
-              <div class="gitem-cat">Produk</div>
-              <div class="gitem-cap">Getuk Goreng Original — Sajian Khas Sokaraja</div>
-            </div>
+            <div class="gitem-overlay"><div class="gitem-cat">Produk</div><div class="gitem-cap">Getuk Goreng Original — Sajian Khas Sokaraja</div></div>
             <div class="gitem-zoom">⤢</div>
           </div>
         </div>
-
-        <!-- 2 tall - toko -->
         <div class="gitem tall" data-cat="kemasan" data-idx="1" onclick="openLB(1)">
-          <div class="gitem-inner" >
+          <div class="gitem-inner">
             <img src="../assets/img/galeri/galeri2.jpeg" alt="Toko Getuk Goreng Haji Tohirin 6A" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="ph" style="display:none">🏪</div>
-            <div class="gitem-overlay">
-              <div class="gitem-cat">Kemasan</div>
-              <div class="gitem-cap">Packing Nopia</div>
-            </div>
+            <div class="gitem-overlay"><div class="gitem-cat">Kemasan</div><div class="gitem-cap">Packing Nopia</div></div>
             <div class="gitem-zoom">⤢</div>
           </div>
         </div>
-
-        <!-- 3 normal - produk -->
         <div class="gitem" data-cat="produk" data-idx="2" onclick="openLB(2)">
           <div class="gitem-inner">
             <img src="../assets/img/galeri/galeri3.jpeg" alt="Getuk Goreng Fresh Gula Jawa" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="ph" style="display:none">🍠</div>
-            <div class="gitem-overlay">
-              <div class="gitem-cat">Produk</div>
-              <div class="gitem-cap">Getuk Goreng Fresh Gula Jawa</div>
-            </div>
+            <div class="gitem-overlay"><div class="gitem-cat">Produk</div><div class="gitem-cap">Getuk Goreng Fresh Gula Jawa</div></div>
             <div class="gitem-zoom">⤢</div>
           </div>
         </div>
-
-        <!-- 4 normal - proses -->
         <div class="gitem" data-cat="proses" data-idx="3" onclick="openLB(3)">
           <div class="gitem-inner">
             <img src="../assets/img/galeri/galeri4.jpeg" alt="Proses Tradisional Pembuatan Adonan Getuk" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="ph" style="display:none">👨‍🍳</div>
-            <div class="gitem-overlay">
-              <div class="gitem-cat">Proses Produksi</div>
-              <div class="gitem-cap">Proses Tradisional Pembuatan Adonan Getuk</div>
-            </div>
+            <div class="gitem-overlay"><div class="gitem-cat">Proses Produksi</div><div class="gitem-cap">Proses Tradisional Pembuatan Adonan Getuk</div></div>
             <div class="gitem-zoom">⤢</div>
           </div>
         </div>
-
-        <!-- 5 normal - kemasan -->
         <div class="gitem" data-cat="proses" data-idx="4" onclick="openLB(4)">
           <div class="gitem-inner">
             <img src="../assets/img/galeri/galeri5.jpeg" alt="Pembentukan Nopia" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="ph" style="display:none">📦</div>
-            <div class="gitem-overlay">
-              <div class="gitem-cat">Proses Produksi</div>
-              <div class="gitem-cap">Pembentukan Nopia</div>
-            </div>
+            <div class="gitem-overlay"><div class="gitem-cat">Proses Produksi</div><div class="gitem-cap">Pembentukan Nopia</div></div>
             <div class="gitem-zoom">⤢</div>
           </div>
         </div>
-
-        <!-- 6 normal - produk -->
         <div class="gitem" data-cat="produk" data-idx="5" onclick="openLB(5)">
           <div class="gitem-inner">
             <img src="../assets/img/galeri/galeri6.jpeg" alt="Nopia Isian Gula Aren Manis" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="ph" style="display:none">🟤</div>
-            <div class="gitem-overlay">
-              <div class="gitem-cat">Produk</div>
-              <div class="gitem-cap">Nopia Isian Gula Aren Manis</div>
-            </div>
+            <div class="gitem-overlay"><div class="gitem-cat">Produk</div><div class="gitem-cap">Nopia Isian Gula Aren Manis</div></div>
             <div class="gitem-zoom">⤢</div>
           </div>
         </div>
-
-        <!-- 7 normal - proses -->
         <div class="gitem" data-cat="proses" data-idx="6" onclick="openLB(6)">
           <div class="gitem-inner">
             <img src="../assets/img/galeri/galeri7.jpeg" alt="Penggorengan Getuk Tradisional" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="ph" style="display:none">🥣</div>
-            <div class="gitem-overlay">
-              <div class="gitem-cat">Proses Produksi</div>
-              <div class="gitem-cap">Pemanggangan Nopia Tradisional</div>
-            </div>
+            <div class="gitem-overlay"><div class="gitem-cat">Proses Produksi</div><div class="gitem-cap">Pemanggangan Nopia Tradisional</div></div>
             <div class="gitem-zoom">⤢</div>
           </div>
         </div>
-
-        <!-- 8 normal - kemasan -->
         <div class="gitem" data-cat="proses" data-idx="7" onclick="openLB(7)">
           <div class="gitem-inner">
             <img src="../assets/img/galeri/galeri8.jpeg" alt="Packing Rapi & Higienis" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="ph" style="display:none">🛍️</div>
-            <div class="gitem-overlay">
-              <div class="gitem-cat">Proses Produksi</div>
-              <div class="gitem-cap">Proses Pembuatan Adonan</div>
-            </div>
+            <div class="gitem-overlay"><div class="gitem-cat">Proses Produksi</div><div class="gitem-cap">Proses Pembuatan Adonan</div></div>
             <div class="gitem-zoom">⤢</div>
           </div>
         </div>
-
-        <!-- 9 normal - toko -->
         <div class="gitem" data-cat="proses" data-idx="8" onclick="openLB(8)">
           <div class="gitem-inner">
             <img src="../assets/img/galeri/galeri9.jpeg" alt="Display Lengkap Aneka Oleh-Oleh Banyumasan" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="ph" style="display:none">🏪</div>
-            <div class="gitem-overlay">
-              <div class="gitem-cat">Proses Produksi</div>
-              <div class="gitem-cap">Proses Pembuatan Adonann</div>
-            </div>
+            <div class="gitem-overlay"><div class="gitem-cat">Proses Produksi</div><div class="gitem-cap">Proses Pembuatan Adonan</div></div>
             <div class="gitem-zoom">⤢</div>
           </div>
         </div>
-
-        <!-- 10 normal - produk -->
         <div class="gitem" data-cat="proses" data-idx="9" onclick="openLB(9)">
           <div class="gitem-inner">
             <img src="../assets/img/galeri/galeri10.jpeg" alt="Klanting Renyah Aneka Rasa" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="ph" style="display:none">⭕</div>
-            <div class="gitem-overlay">
-              <div class="gitem-cat">Proses Produksi</div>
-              <div class="gitem-cap">Proses Tradisional Pembuatan Adonan</div>
-            </div>
+            <div class="gitem-overlay"><div class="gitem-cat">Proses Produksi</div><div class="gitem-cap">Proses Tradisional Pembuatan Adonan</div></div>
             <div class="gitem-zoom">⤢</div>
           </div>
         </div>
@@ -200,7 +151,6 @@
 
       <div class="empty" id="gempty">Tidak ada foto dalam kategori ini.</div>
 
-      <!-- CTA -->
       <div class="cta-strip">
         <div>
           <h3>Tertarik dengan Produk Kami?</h3>
@@ -234,38 +184,37 @@
       </div>
     </div>
 
-
     <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-brand-name">Haji Tohirin <span>6A</span></div>
-        <p>Oleh-oleh khas Sokaraja yang autentik sejak generasi pertama.</p>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-brand-name">Haji Tohirin <span>6A</span></div>
+            <p>Oleh-oleh khas Sokaraja yang autentik sejak generasi pertama.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Produk</h4>
+            <ul>
+              <li><a href="produk.html">Getuk Goreng</a></li>
+              <li><a href="produk.html">Nopia</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Informasi</h4>
+            <ul>
+              <li><a href="profil.html">Profil Toko</a></li>
+              <li><a href="kontak.html">Hubungi Kami</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
+          <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">WhatsApp</a>
+          </div>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Produk</h4>
-        <ul>
-          <li><a href="produk.html">Getuk Goreng</a></li>
-          <li><a href="produk.html">Nopia</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Informasi</h4>
-        <ul>
-          <li><a href="profil.html">Profil Toko</a></li>
-          <li><a href="kontak.html">Hubungi Kami</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
-      <div class="social-links">
-        <a href="#">Instagram</a>
-        <a href="#">WhatsApp</a>
-      </div>
-    </div>
-  </div>
-</footer>
+    </footer>
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/navbar.js"></script>
