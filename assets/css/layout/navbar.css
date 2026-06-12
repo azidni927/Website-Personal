@@ -223,26 +223,25 @@ nav {
 }
 
 @media(min-width:769px) {
-  nav {
-    justify-content: center;
+  .nav-toggle {
+    display: none;
+  }
+
+  /* nav-inner sudah flex + space-between,
+     logo kiri dan search kanan sudah diatur di sana.
+     nav-links di tengah cukup pakai margin auto — tanpa position absolute
+     sehingga tidak ada fractional pixel yang bikin logo blur */
+  .nav-links {
+    position: static;
+    transform: none;
+    margin: 0 auto;
   }
 
   .nav-logo-centered {
     order: -1;
-    margin-right: auto;
-  }
-
-  .nav-links {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
   }
 
   .nav-right {
-    margin-left: auto;
-  }
-
-  .nav-toggle {
-    display: none;
+    margin-left: 0;
   }
 }
