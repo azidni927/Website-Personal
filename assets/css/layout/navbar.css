@@ -19,7 +19,6 @@ nav {
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  position: relative; /* nav-links absolute sekarang relatif ke sini */
 }
 
 .nav-left {
@@ -46,12 +45,6 @@ nav {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Mencegah blur akibat composite layer dari transform di nav-links */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  image-rendering: -webkit-optimize-contrast;
 }
 
 .nav-right {
@@ -223,25 +216,26 @@ nav {
 }
 
 @media(min-width:769px) {
-  .nav-toggle {
-    display: none;
-  }
-
-  /* nav-inner sudah flex + space-between,
-     logo kiri dan search kanan sudah diatur di sana.
-     nav-links di tengah cukup pakai margin auto — tanpa position absolute
-     sehingga tidak ada fractional pixel yang bikin logo blur */
-  .nav-links {
-    position: static;
-    transform: none;
-    margin: 0 auto;
+  nav {
+    justify-content: center;
   }
 
   .nav-logo-centered {
     order: -1;
+    margin-right: auto;
+  }
+
+  .nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .nav-right {
-    margin-left: 0;
+    margin-left: auto;
+  }
+
+  .nav-toggle {
+    display: none;
   }
 }
