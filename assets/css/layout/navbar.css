@@ -224,33 +224,19 @@ nav {
     display: none;
   }
 
-  /* Grid 3 kolom: logo | links (tengah) | search
-     Ini satu-satunya cara links benar-benar center tanpa position:absolute */
+  .nav-toggle { display: none; }
+
+  /* Kolom simetris: logo(1fr) | links(auto, tengah) | search(1fr)
+     nav-left disembunyikan karena hamburger tidak dipakai di desktop */
   .nav-inner {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
+    grid-template-areas: "logo links search";
     align-items: center;
   }
 
-  .nav-left {
-    display: none;
-  }
-
-  .nav-logo-centered {
-    justify-self: start;
-    order: 0;
-  }
-
-  .nav-links {
-    position: static;
-    transform: none;
-    justify-self: center;
-    order: 0;
-  }
-
-  .nav-right {
-    justify-self: end;
-    margin-left: 0;
-    order: 0;
-  }
+  .nav-left          { display: none; }
+  .nav-logo-centered { grid-area: logo;   justify-self: start; }
+  .nav-links         { grid-area: links;  position: static; transform: none; }
+  .nav-right         { grid-area: search; justify-self: end; margin-left: 0; }
 }
