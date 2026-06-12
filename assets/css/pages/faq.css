@@ -1,99 +1,59 @@
-<!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pertanyaan Umum - Haji Tohirin 6A</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/global/reset.css">
-    <link rel="stylesheet" href="../assets/css/global/variables.css">
-    <link rel="stylesheet" href="../assets/css/global/typography.css">
-    <link rel="stylesheet" href="../assets/css/global/utilities.css">
-    <link rel="stylesheet" href="../assets/css/layout/navbar.css">
-    <link rel="stylesheet" href="../assets/css/layout/section.css">
-    <link rel="stylesheet" href="../assets/css/components/buttons.css">
-    <link rel="stylesheet" href="../assets/css/components/search.css">
-    <link rel="stylesheet" href="../assets/css/pages/faq.css">
-    <link rel="stylesheet" href="../assets/css/layout/footer.css">
-  </head>
-  <body>
-    <nav>
-      <div class="nav-left">
-        <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-      <a href="../index.html" class="nav-logo-centered">
-        <div class="nav-logo">
-          <img src="../assets/img/logo.png" alt="Logo Getuk Goreng Haji Tohirin 6A">
-        </div>
-      </a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="profil.html">Profil</a></li>
-          <li><a href="produk.html">Produk</a></li>
-          <li><a href="galeri.html">Galeri</a></li>
-          <li><a href="faq.html" class="active">FAQ</a></li>
-          <li><a href="kontak.html">Kontak</a></li>
-        </ul>
-        <button class="nav-search-btn" aria-label="Search" onclick="openSearch()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
-      </div>
-      <!-- SEARCH OVERLAY -->
-      <div id="search-overlay"></div>
-    </nav>
 
-    <div class="section" style="background: var(--h); color: var(--k); padding: 4rem 2rem; text-align: center;">
-      <div class="section-tag" style="color: var(--g)">Bantuan</div>
-      <h1 class="font-display" style="font-size: 2.5rem;">Pertanyaan Umum (FAQ)</h1>
-    </div>
 
-    <div class="section">
-      <div class="faq-grid">
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFAQ(this)">
-            <h3>Berapa lama masa simpan Getuk Goreng?</h3>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-a">Getuk goreng kami tahan selama 3-5 hari di suhu ruangan. Jika ingin lebih lama, bisa disimpan dalam lemari es dan digoreng kembali atau dikukus sebentar sebelum dinikmati.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFAQ(this)">
-            <h3>Apakah bisa kirim ke luar kota?</h3>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-a">Ya, kami melayani pengiriman ke seluruh Indonesia menggunakan jasa ekspedisi. Kami memastikan pengemasan aman agar produk tidak hancur.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFAQ(this)">
-            <h3>Apakah produk Haji Tohirin 6A bersertifikat Halal?</h3>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-a">Tentu saja. Semua produk kami menggunakan bahan-bahan alami dan telah memiliki sertifikat Halal.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFAQ(this)">
-            <h3>Dimana lokasi toko fisiknya?</h3>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-a">Toko pusat kami berlokasi di Jl. Jenderal Soedirman No.6A, Sokaraja, Banyumas, Jawa Tengah. Persis di pinggir jalan raya utama.</div>
-        </div>
-      </div>
-    </div>
 
-    <footer>
-      <div class="footer-inner">
-        <div class="footer-bottom">
-          <div class="footer-copy">© 2024 Getuk Goreng ASLI Haji Tohirin 6A</div>
-        </div>
-      </div>
-    </footer>
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/navbar.js"></script>
-    <script src="../assets/js/search.js"></script>
-    <script src="../assets/js/faq.js"></script>
-  </body>
-</html>
+.faq-grid {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--kd);
+  background: var(--w);
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.faq-q {
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.faq-q h3 {
+  font-size: 0.95rem;
+  color: var(--h);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+}
+
+.faq-icon {
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-a {
+  padding: 0 1.5rem 1.2rem;
+  display: none;
+  font-size: 0.88rem;
+  color: #4A6355;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.faq-item.open .faq-a {
+  display: block;
+}
+
+@media(max-width:768px) {
+  .faq-q { padding: 1rem 1.2rem; }
+  .faq-a { padding: 0 1.2rem 1rem; }
+  .faq-q h3 { font-size: 0.9rem; }
+}
+
