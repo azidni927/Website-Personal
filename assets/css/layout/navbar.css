@@ -1,24 +1,16 @@
 nav {
   background: var(--h);
-  padding: 0 2rem;
   display: flex;
   align-items: center;
-  justify-content: center; /* center supaya nav-inner bisa max-width */
+  justify-content: space-between;
   height: 60px;
   position: sticky;
   top: 0;
   z-index: 100;
   border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-/* Inner wrapper — selaras dengan max-width 1100px container konten */
-.nav-inner {
-  width: 100%;
-  max-width: 1100px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
+  /* Selaras dengan max-width 1100px container konten tanpa wrapper div tambahan —
+     padding adaptif: minimal 2rem, atau setengah sisa layar + 2rem saat layar lebar */
+  padding: 0 max(2rem, calc((100% - 1100px) / 2 + 2rem));
 }
 
 .nav-left {
@@ -45,6 +37,12 @@ nav {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Mencegah blur akibat composite layer dari transform di nav-links */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .nav-right {
@@ -216,26 +214,25 @@ nav {
 }
 
 @media(min-width:769px) {
-  nav {
-    justify-content: center;
+  .nav-toggle {
+    display: none;
+  }
+
+  /* nav-inner sudah flex + space-between,
+     logo kiri dan search kanan sudah diatur di sana.
+     nav-links di tengah cukup pakai margin auto — tanpa position absolute
+     sehingga tidak ada fractional pixel yang bikin logo blur */
+  .nav-links {
+    position: static;
+    transform: none;
+    margin: 0 auto;
   }
 
   .nav-logo-centered {
     order: -1;
-    margin-right: auto;
-  }
-
-  .nav-links {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
   }
 
   .nav-right {
-    margin-left: auto;
-  }
-
-  .nav-toggle {
-    display: none;
+    margin-left: 0;
   }
 }
