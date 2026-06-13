@@ -48,9 +48,7 @@ function renderLB() {
   const catEl = document.getElementById('lb-cat');
   const capEl = document.getElementById('lb-title');
   const counterEl = document.getElementById('lb-counter');
-
   if (!content) return;
-
   if (d.img) {
     content.innerHTML = `
       <img class="lb-img" src="${d.img}" alt="${d.cap}" referrerPolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -59,7 +57,6 @@ function renderLB() {
   } else {
     content.innerHTML = `<div class="lb-ph">${d.ph}</div>`;
   }
-
   if (catEl) catEl.textContent = d.cat.charAt(0).toUpperCase() + d.cat.slice(1);
   if (capEl) capEl.textContent = d.cap;
   if (counterEl) counterEl.textContent = `${curLB + 1} / ${visIdxs.length}`;
@@ -88,7 +85,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeLB();
 });
 
-// Exposure to global scope for HTML inline calls
 window.filterG = filterG;
 window.openLB = openLB;
 window.navLB = navLB;
