@@ -1,6 +1,6 @@
 const items = [
   { cat: 'produk', cap: 'Getuk Goreng Original — Sajian Khas Sokaraja', img: '../assets/img/galeri/galeri1.jpeg', ph: '🍠' },
-  { cat: 'kemasan', cap: ' Packing Nopia 6A', img: '../assets/img/galeri/galeri2.jpeg', ph: '🏪' },
+  { cat: 'kemasan', cap: ' Packing Nopia', img: '../assets/img/galeri/galeri2.jpeg', ph: '🏪' },
   { cat: 'produk', cap: 'Getuk Goreng Fresh Gula Jawa', img: '../assets/img/galeri/galeri3.jpeg', ph: '🍠' },
   { cat: 'proses produksi', cap: 'Proses Tradisional Pembuatan Adonan Getuk', img: '../assets/img/galeri/galeri4.jpeg', ph: '👨‍🍳' },
   { cat: 'proses produksi', cap: 'Pembentukan Nopia', img: '../assets/img/galeri/galeri5.jpeg', ph: '📦' },
