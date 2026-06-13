@@ -1,14 +1,14 @@
 const items = [
   { cat: 'produk', cap: 'Getuk Goreng Original — Sajian Khas Sokaraja', img: '../assets/img/galeri/galeri1.jpeg', ph: '🍠' },
-  { cat: 'toko', cap: 'Toko Getuk Goreng Haji Tohirin 6A', img: '../assets/img/galeri/galeri2.jpeg', ph: '🏪' },
+  { cat: 'kemasan', cap: ' Packing Nopia 6A', img: '../assets/img/galeri/galeri2.jpeg', ph: '🏪' },
   { cat: 'produk', cap: 'Getuk Goreng Fresh Gula Jawa', img: '../assets/img/galeri/galeri3.jpeg', ph: '🍠' },
-  { cat: 'proses', cap: 'Proses Tradisional Pembuatan Adonan Getuk', img: '../assets/img/galeri/galeri4.jpeg', ph: '👨‍🍳' },
-  { cat: 'kemasan', cap: 'Kemasan Besek Bambu & Box Khas Sokaraja', img: '../assets/img/galeri/galeri5.jpeg', ph: '📦' },
+  { cat: 'proses produksi', cap: 'Proses Tradisional Pembuatan Adonan Getuk', img: '../assets/img/galeri/galeri4.jpeg', ph: '👨‍🍳' },
+  { cat: 'proses produksi', cap: 'Pembentukan Nopia', img: '../assets/img/galeri/galeri5.jpeg', ph: '📦' },
   { cat: 'produk', cap: 'Nopia Isian Gula Aren Manis', img: '../assets/img/galeri/galeri6.jpeg', ph: '🟤' },
-  { cat: 'proses', cap: 'Penggorengan Getuk Tradisional', img: '../assets/img/galeri/galeri7.jpeg', ph: '🥣' },
-  { cat: 'kemasan', cap: 'Packing Rapi & Higienis', img: '../assets/img/galeri/galeri8.jpeg', ph: '🛍️' },
-  { cat: 'toko', cap: 'Display Lengkap Aneka Oleh-Oleh Banyumasan', img: '../assets/img/galeri/galeri9.jpeg', ph: '🏪' },
-  { cat: 'produk', cap: 'Klanting Renyah Aneka Rasa', img: '../assets/img/galeri/galeri10.jpeg', ph: '⭕' },
+  { cat: 'proses produksi', cap: 'Penggorengan Getuk Tradisional', img: '../assets/img/galeri/galeri7.jpeg', ph: '🥣' },
+  { cat: 'proses produksi', cap: 'Proses Pembuatan Adonan', img: '../assets/img/galeri/galeri8.jpeg', ph: '🛍️' },
+  { cat: 'proses produksi', cap: 'Proses Pembuatan Adonan', img: '../assets/img/galeri/galeri9.jpeg', ph: '🏪' },
+  { cat: 'proses produksi', cap: 'Proses Tradisional Pembuatan Adonan', img: '../assets/img/galeri/galeri10.jpeg', ph: '⭕' },
 ];
 
 let visIdxs = [...Array(items.length).keys()];
